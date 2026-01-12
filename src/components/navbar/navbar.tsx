@@ -56,7 +56,7 @@ const Navbar = () => {
 
           {/* Reserve Button - Desktop */}
           <a
-            href="https://www.opentable.com/r/seaworthy-new-orleans-2"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden lg:block btn-seaworthy-nav"
@@ -110,7 +110,7 @@ const Navbar = () => {
           ))}
 
           <a
-            href="https://www.opentable.com/r/seaworthy-new-orleans-2"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}

@@ -289,5 +289,20 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Cinzel", serif;
   font-weight: 600;
   text-transform: uppercase;
+  
    
+}
+
+.font-head1{
+  font-family: "Cinzel", serif;
+  font-weight: 900;
+  
+
+}
+
+.bg-images{
+  background-image: url('/src/assets/ambiance-1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
