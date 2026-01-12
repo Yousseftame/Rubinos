@@ -38,15 +38,13 @@ export default function GallerySection() {
       }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-       
-
-        {/* Gallery Grid - Responsive */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
+        {/* Gallery Grid - Uniform square images in 6 columns */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4">
           {galleryImages.map((image, index) => (
             <div
               key={index}
               onClick={() => setSelectedImage(index)}
-              className="relative group overflow-hidden cursor-pointer aspect-auto "
+              className="relative group overflow-hidden cursor-pointer aspect-auto rounded-sm"
             >
               <img
                 src={image}
@@ -55,7 +53,7 @@ export default function GallerySection() {
               />
               {/* Overlay on hover */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <ZoomIn className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: '#e8dfd7' }} strokeWidth={1.5} />
+                <ZoomIn className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" style={{ color: '#e8dfd7' }} strokeWidth={1.5} />
               </div>
             </div>
           ))}

@@ -5,7 +5,6 @@ import section1 from '../../assets/section1.webp';
 import mermaid from '../../assets/mermaid.webp';
 
 import { MapPin, Phone, Mail } from 'lucide-react';
-import Gallery from '../Gallery/Gallery';
 import GallerySection from './GallerySection';
 
 const Dashboard = () => {
@@ -65,7 +64,7 @@ const Dashboard = () => {
             </h2>
 
             {/* Body Text */}
-            <div className="space-y-5 font-serif text-sm lg:text-base leading-relaxed" style={{ color: '#6b7c7e' }}>
+            <div className="space-y-5 font-serif text-sm lg:text-base leading-relaxed animate-fade-in" style={{ color: '#6b7c7e' }}>
               <p>
                 Seaworthy showcases wild-caught, sustainably harvested oysters from American waters—including the Gulf Coast, East Coast, and West Coast—alongside locally sourced fish and game. Named the <u>Best Oyster Happy Hour</u> by <u>Eater</u> and recognized for the <u>Best Raw Oysters in New Orleans</u> by <u>Where Y'at</u>, Seaworthy has become the go-to destination for oyster lovers across the city. The acclaimed beverage program complements the seafood experience with a mix of classic and signature cocktails, as well as a curated selection of beer and wine.
               </p>
@@ -132,13 +131,13 @@ const Dashboard = () => {
           {/* Right Content */}
           <div className="flex flex-col justify-start">
             {/* Heading */}
-            <h2 className="text-4xl lg:text-4xl font-head font-serif font-bold mb-8 leading-tight" style={{ color: '#5a7a82' }}>
+            <h2 className="text-4xl lg:text-4xl font-head font-serif font-bold mb-8 leading-tight animate-fade-in" style={{ color: '#5a7a82' }}>
               The Pearl of Private<br />
               Dining
             </h2>
 
             {/* Body Text */}
-            <div className="space-y-5 font-serif text-sm lg:text-base leading-relaxed" style={{ color: '#6b7c7e' }}>
+            <div className="space-y-5 font-serif text-sm lg:text-base leading-relaxed animate-fade-in " style={{ color: '#6b7c7e' }}>
               <p>
                 Seaworthy provides a unique setting for intimate gatherings, special celebrations, or corporate dinners. Guests can enjoy a curated menu featuring fresh, wild-caught oysters, locally sourced seafood, and expertly crafted cocktails, all tailored to fit your occasion. The warm, nautical-inspired interiors combined with the charm of Southern hospitality make Seaworthy's private dining space the perfect venue for creating memorable moments with friends, family, or colleagues.
               </p>
