@@ -63,7 +63,7 @@ const Footer = () => {
             style={{ color: '#d4ccc0' }}
           >
             <Instagram size={14} strokeWidth={1.5} />
-            @seaworthyneworleans
+            @rebinos.com
           </a>
         </div>
 

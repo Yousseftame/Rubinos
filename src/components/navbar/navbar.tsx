@@ -108,7 +108,7 @@ const Navbar = () => {
             </button>
 
             {/* Mobile Logo */}
-            <img src={logo} alt="Seaworthy" className="h-12 mb-8" />
+            <img src={logo} alt="Seaworthy" className="h-28  mb-8" />
 
             {navLinks.map((link, index) => (
               <a
