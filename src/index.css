@@ -1,1 +1,228 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+
+@theme {
+  /* Seaworthy Color Palette */
+  --color-background: hsl(186 22% 25%);
+  --color-foreground: hsl(45 20% 90%);
+  --color-card: hsl(186 22% 22%);
+  --color-card-foreground: hsl(45 20% 90%);
+  --color-popover: hsl(186 22% 22%);
+  --color-popover-foreground: hsl(45 20% 90%);
+  --color-primary: hsl(186 22% 28%);
+  --color-primary-foreground: hsl(45 20% 95%);
+  --color-secondary: hsl(45 20% 90%);
+  --color-secondary-foreground: hsl(186 22% 20%);
+  --color-muted: hsl(186 20% 20%);
+  --color-muted-foreground: hsl(186 10% 60%);
+  --color-accent: hsl(35 40% 45%);
+  --color-accent-foreground: hsl(45 20% 95%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-border: hsl(186 15% 35%);
+  --color-input: hsl(186 15% 35%);
+  --color-ring: hsl(45 20% 80%);
+
+  /* Custom Seaworthy colors */
+  --color-seaworthy-teal: hsl(186 22% 28%);
+  --color-seaworthy-teal-dark: hsl(186 25% 18%);
+  --color-seaworthy-teal-light: hsl(186 20% 35%);
+  --color-seaworthy-cream: hsl(45 20% 90%);
+  --color-seaworthy-cream-dark: hsl(45 15% 80%);
+  --color-seaworthy-brass: hsl(35 40% 45%);
+  --color-seaworthy-charcoal: hsl(210 15% 12%);
+  --color-seaworthy-navy: hsl(210 30% 20%);
+
+  /* Sidebar */
+  --color-sidebar-background: hsl(186 22% 20%);
+  --color-sidebar-foreground: hsl(45 20% 90%);
+  --color-sidebar-primary: hsl(186 22% 28%);
+  --color-sidebar-primary-foreground: hsl(45 20% 95%);
+  --color-sidebar-accent: hsl(186 20% 25%);
+  --color-sidebar-accent-foreground: hsl(45 20% 90%);
+  --color-sidebar-border: hsl(186 15% 30%);
+  --color-sidebar-ring: hsl(45 20% 80%);
+
+  /* Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+
+  /* Fonts */
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+
+/* Background image text effect */
+.bg-img {
+  background-image: url('./assets/SeaworthyShoot28211.jpg');
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation link style */
+.nav-link {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Seaworthy button styles - outline style */
+.btn-seaworthy {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-seaworthy:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-seaworthy-teal);
+}
+
+/* Solid cream button */
+.btn-seaworthy-solid {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background-color: var(--color-secondary);
+  color: var(--color-seaworthy-teal);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-secondary);
+}
+
+.btn-seaworthy-solid:hover {
+  background-color: transparent;
+  color: var(--color-secondary);
+}
+
+/* Nav Reserve button - teal background */
+.btn-seaworthy-nav {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background-color: var(--color-seaworthy-teal);
+  color: var(--color-secondary);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-seaworthy-teal);
+}
+
+.btn-seaworthy-nav:hover {
+  background-color: var(--color-seaworthy-teal-dark);
+  border-color: var(--color-seaworthy-teal-dark);
+}
+
+/* Decorative divider */
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  height: 1px;
+  width: 4rem;
+  background-color: hsl(45 20% 90% / 0.3);
+}
+
+/* Textured background */
+.bg-seaworthy-textured {
+  background-color: var(--color-seaworthy-teal);
+  position: relative;
+}
+
+.bg-seaworthy-textured::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, hsl(186 20% 35% / 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, hsl(186 25% 18% / 0.4) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text shadow for readability on images */
+.text-shadow {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
