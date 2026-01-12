@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+
 import logo from '../../assets/rubinos.png';
 
 const Navbar = () => {
@@ -23,28 +24,30 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-seaworthy-teal/95 backdrop-blur-sm py-3' : 'bg-transparent py-5'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-[#46616d]/95 backdrop-blur-md shadow-lg py-4' 
+          : 'bg-transparent py-6 lg:py-8'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex-shrink-0">
+          <a href="/" className="flex-shrink-0 transition-transform hover:scale-105 duration-300">
             <img
               src={logo}
               alt="Seaworthy - Oysters & Cocktails"
-              className="h-10 lg:h-12 w-auto"
+              className="h-8 lg:h-10 w-auto opacity-90"
             />
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-10 ">
+          <div className="hidden lg:flex items-center gap-12">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link text-secondary/90 hover:text-secondary "
+                className="nav-link text-secondary/90 hover:text-secondary"
               >
                 {link.label}
               </a>
@@ -74,7 +77,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`lg:hidden fixed inset-0 top-0 bg-seaworthy-teal z-40 transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 top-0 bg-seaworthy-charcoal/95 backdrop-blur-sm z-40 transition-all duration-500 ${
           isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
@@ -111,7 +114,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}
-            className="btn-seaworthy-nav mt-6"
+            className="btn-seaworthy-solid mt-6"
           >
             Reserve Now
           </a>

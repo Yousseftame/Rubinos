@@ -20,11 +20,11 @@ const Dashboard = () => {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 h-full flex flex-col justify-end pb-20 lg:pb-32">
+        <div className="relative z-10 h-full flex flex-col justify-end pb-20 lg:pb-12"> 
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             {/* Large SEAWORTHY Text */}
-            <h1 className="font-display text-[15vw] lg:text-[12vw] text-secondary leading-none tracking-[0.05em] animate-fade-in">
-              Runbino's
+            <h1 className=" font-head text-center text-[15vw] lg:text-[12vw] text-secondary leading-none tracking-[0.05em] animate-fade-in">
+              Rubino's
             </h1>
           </div>
         </div>
