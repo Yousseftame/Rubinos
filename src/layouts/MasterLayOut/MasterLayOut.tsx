@@ -1,11 +1,13 @@
-import Navbar from '../../components/navbar/navbar';
-import Footer from '../../components/footer/footer';
 import { Outlet } from 'react-router-dom';
+import Navbar from '../../components/navbar/Navbar';
+import Footer from '../../components/footer/Footer';
+import ScrollToTop from '../../components/shared/ScrollToTop';
 
 
 const MasterLayout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <ScrollToTop />
       <Navbar />
       <main className="flex-1">
         <Outlet/>

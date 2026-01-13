@@ -6,6 +6,7 @@ import PrivateDining from "../pages/PrivateDining/PrivateDining";
 import Gallery from "../pages/Gallery/Gallery";
 import Contact from "../pages/Contact/Contact";
 import NotFound from "../pages/NotFound/NotFound";
+import MenuDetails from "../pages/Menu/MenuDetails";
 
 
 
@@ -13,7 +14,6 @@ export const routes = createBrowserRouter([
     {
         path : "/",
         element: <MasterLayOut/>,
-
         errorElement: <NotFound/>,
         children: [
             {
@@ -29,6 +29,8 @@ export const routes = createBrowserRouter([
 
             // menu route
             { path : "menu", element: <Menu/>  },
+            { path : "menu/:id", element: <MenuDetails/>  },
+
 
             // private dining route
             { path : "private-dining", element: <PrivateDining/>  },

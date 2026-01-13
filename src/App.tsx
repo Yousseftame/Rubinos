@@ -7,6 +7,7 @@ import AOS from 'aos'
 
 
 
+
 function App() {
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <>
+    
     <RouterProvider   router={routes}/>
 
 
