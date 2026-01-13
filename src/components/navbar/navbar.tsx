@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/rub-transparent.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,12 +31,12 @@ const Navbar = () => {
     { label: 'Contact', to: '/contact' },
   ];
 
-  const handleHashNavigation = (hash: string) => {
-    navigate('/');
-    setTimeout(() => {
-      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-    }, 0);
-  };
+  // const handleHashNavigation = (hash: string) => {
+  //   navigate('/');
+  //   setTimeout(() => {
+  //     document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+  //   }, 0);
+  // };
 
   return (
     <nav
