@@ -23,7 +23,7 @@ const Footer = () => {
 
         {/* Subheading */}
         <p className="text-sm lg:text-base font-serif mb-6" style={{ color: '#d4ccc0' }}>
-          Sign up for news and updates from Seaworthy
+          Sign up for news and updates from Rubinos
         </p>
 
         {/* Email Signup */}
@@ -56,20 +56,20 @@ const Footer = () => {
         {/* Instagram Handle */}
         <div className="mb-4">
           <a
-            href="#"
+            href="https://www.instagram.com/rubinos.eg/?fbclid=IwY2xjawPTNHFleHRuA2FlbQIxMABicmlkETE0aVk5ZExEQjRLamU4NnlDc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHh6RekMP4QEdS5fhEntWrBEHq95LVVFzdAkeHNn0mFRx0ctm3BXUss7gjPDu_aem_WDL_jQcTeBrVOQJqWlq2wA#"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 font-serif text-sm transition-opacity hover:opacity-80"
             style={{ color: '#d4ccc0' }}
           >
             <Instagram size={14} strokeWidth={1.5} />
-            @rebinos.com
+           Rubinos.eg
           </a>
         </div>
 
         {/* Copyright */}
         <p className="font-serif text-xs tracking-wide" style={{ color: '#b8aea0' }}>
-          Seaworthy © {currentYear} / All Rights Reserved
+          Rubinos © {currentYear} / All Rights Reserved
         </p>
       </div>
     </footer>

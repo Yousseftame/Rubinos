@@ -71,7 +71,7 @@ const Navbar = () => {
             >
               <img
                 src={logo}
-                alt="Seaworthy - Oysters & Cocktails"
+                alt="Rubinos"
                 className="h-16 lg:h-16 w-auto opacity-90"
               />
             </Link>
@@ -128,7 +128,7 @@ const Navbar = () => {
             <Link
             to={"/"}
             onClick={()=>{setIsMenuOpen(false)}}>
-            <img src={logo} alt="Seaworthy" className="h-20 sm:h-24 mb-2" />
+            <img src={logo} alt="Rubinos" className="h-20 sm:h-24 mb-2" />
             </Link>
 
             {navLinks.map((link, index) => (

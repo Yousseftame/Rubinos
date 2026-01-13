@@ -7,10 +7,29 @@ import Gallery from "../pages/Gallery/Gallery";
 import Contact from "../pages/Contact/Contact";
 import NotFound from "../pages/NotFound/NotFound";
 import MenuDetails from "../pages/Menu/MenuDetails";
+import AuthLayOut from "../layouts/AuthLayOut/AuthLayOut";
+import Login from "../pages/Auth/Login/Login";
 
 
 
 export const routes = createBrowserRouter([
+    {
+        path : "/login",
+        element : <AuthLayOut/>,
+         errorElement: <NotFound/>,
+         children:[
+            {
+                index : true,
+                element : <Login/>,
+            },
+            {
+                path : "login",
+                element : <Login/>
+            }
+         ]
+    },
+
+
     {
         path : "/",
         element: <MasterLayOut/>,

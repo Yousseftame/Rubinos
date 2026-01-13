@@ -16,7 +16,7 @@ const Dashboard = () => {
         <div className="absolute inset-0">
           <img
             src={interior}
-            alt="Seaworthy Interior"
+            alt="Rubinos Interior"
             className="w-full h-full object-cover"
           />
           {/* Gradient Overlay */}
@@ -66,11 +66,11 @@ const Dashboard = () => {
             {/* Body Text */}
             <div className="space-y-5 font-serif text-sm lg:text-base leading-relaxed animate-fade-in" style={{ color: '#6b7c7e' }}>
               <p>
-                Seaworthy showcases wild-caught, sustainably harvested oysters from American waters—including the Gulf Coast, East Coast, and West Coast—alongside locally sourced fish and game. Named the <u>Best Oyster Happy Hour</u> by <u>Eater</u> and recognized for the <u>Best Raw Oysters in New Orleans</u> by <u>Where Y'at</u>, Seaworthy has become the go-to destination for oyster lovers across the city. The acclaimed beverage program complements the seafood experience with a mix of classic and signature cocktails, as well as a curated selection of beer and wine.
+                Rubinos showcases wild-caught, sustainably harvested oysters from American waters—including the Gulf Coast, East Coast, and West Coast—alongside locally sourced fish and game. Named the <u>Best Oyster Happy Hour</u> by <u>Eater</u> and recognized for the <u>Best Raw Oysters in New Orleans</u> by <u>Where Y'at</u>, Rubinos has become the go-to destination for oyster lovers across the city. The acclaimed beverage program complements the seafood experience with a mix of classic and signature cocktails, as well as a curated selection of beer and wine.
               </p>
 
               <p>
-                Housed in a historic 19th century Creole townhome built in 1832, Seaworthy draws inspiration from the Gulf Coast waters, the timeless traditions of Southern hospitality, and the vibrant spirit of New Orleans.
+                Housed in a historic 19th century Creole townhome built in 1832, Rubinos draws inspiration from the Gulf Coast waters, the timeless traditions of Southern hospitality, and the vibrant spirit of New Orleans.
               </p>
             </div>
 
@@ -123,7 +123,7 @@ const Dashboard = () => {
           <div   data-aos="zoom-in" className="relative w-full overflow-hidden rounded-md shadow-lg">
             <img
               src={ambiance}
-              alt="Private Dining at Seaworthy"
+              alt="Private Dining at Rubinos"
               className="w-full h-auto object-cover block"
             />
           </div>
@@ -139,7 +139,7 @@ const Dashboard = () => {
             {/* Body Text */}
             <div className="space-y-5 font-serif text-sm lg:text-base leading-relaxed animate-fade-in " style={{ color: '#6b7c7e' }}>
               <p>
-                Seaworthy provides a unique setting for intimate gatherings, special celebrations, or corporate dinners. Guests can enjoy a curated menu featuring fresh, wild-caught oysters, locally sourced seafood, and expertly crafted cocktails, all tailored to fit your occasion. The warm, nautical-inspired interiors combined with the charm of Southern hospitality make Seaworthy's private dining space the perfect venue for creating memorable moments with friends, family, or colleagues.
+                Rubinos provides a unique setting for intimate gatherings, special celebrations, or corporate dinners. Guests can enjoy a curated menu featuring fresh, wild-caught oysters, locally sourced seafood, and expertly crafted cocktails, all tailored to fit your occasion. The warm, nautical-inspired interiors combined with the charm of Southern hospitality make Rubinos's private dining space the perfect venue for creating memorable moments with friends, family, or colleagues.
               </p>
             </div>
 
@@ -214,7 +214,7 @@ const Dashboard = () => {
                 className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity"
                 style={{ color: '#e8dfd7' }}
               >
-                info@seaworthynola.com
+                info@Rubinos.com
               </a>
             </div>
           </div>

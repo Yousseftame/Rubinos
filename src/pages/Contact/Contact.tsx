@@ -192,7 +192,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <p className="font-serif text-base" style={{ color: '#6b7c7e' }}>
-                  info@seaworthynola.com
+                  info@Rubinos.com
                 </p>
               </div>
             </div>
@@ -203,8 +203,7 @@ export default function Contact() {
       {/* Google Maps Section */}
       <section className="relative h-[400px] w-full py-3 bg-[#E5E0D9]">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.7586947890277!2d-90.07287492391647!3d29.94407377495684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8620a670e6ba941f%3A0x7d5f2e72dd85e35e!2s630%20Carondelet%20St%2C%20New%20Orleans%2C%20LA%2070130%2C%20USA!5e0!3m2!1sen!2seg!4v1704891234567!5m2!1sen!2seg"
-          width="100%"
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3411.8233873248387!2d29.952710442809703!3d31.225622096352538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c52418831811%3A0xedece04b1f1dbb6e!2zUnViaW5v4oCZcw!5e0!3m2!1sar!2seg!4v1768313978310!5m2!1sar!2seg"          width="100%"
           height="100%"
           style={{ border: 0 }}
           

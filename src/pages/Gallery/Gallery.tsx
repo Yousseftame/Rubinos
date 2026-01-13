@@ -86,14 +86,14 @@ export default function Gallery() {
                 className="font-serif text-base lg:text-lg leading-relaxed"
                 style={{ color: '#6b7c7e' }}
               >
-                Seaworthy's intimate setting in a historic 19th century Creole townhome transports you to another time and place. We invite you to get lost in our thoughtfully curated menu, enjoy the views of passing streetcars, and savor everything this New Orleans oyster bar has to offer.
+               Rubinos's intimate setting in a historic 19th century Creole townhome transports you to another time and place. We invite you to get lost in our thoughtfully curated menu, enjoy the views of passing streetcars, and savor everything this New Orleans oyster bar has to offer.
               </p>
 
               <p
                 className="font-serif text-base lg:text-lg leading-relaxed"
                 style={{ color: '#6b7c7e' }}
               >
-                While we have a hand full of menu mainstays (Shrimp & Grits, Oysters, Caviar, Seaworthy Roll, Boquerones, Parker House Rolls, Frozen Key Lime Pie), many of our menu items are seasonal and feature the freshest ingredients available.
+                While we have a hand full of menu mainstays (Shrimp & Grits, Oysters, Caviar, Rubinos Roll, Boquerones, Parker House Rolls, Frozen Key Lime Pie), many of our menu items are seasonal and feature the freshest ingredients available.
               </p>
             </div>
           </div>
