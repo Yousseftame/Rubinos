@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
+import ScrollToTop from '../../components/shared/ScrollToTop';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
-import ScrollToTop from '../../components/shared/ScrollToTop';
 
 
 const MasterLayout = () => {
