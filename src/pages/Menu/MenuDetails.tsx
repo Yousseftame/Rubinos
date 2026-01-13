@@ -26,7 +26,7 @@ export default function MenuDetails() {
        
        {/* Back Button Bar */}
    <div data-aos="zoom-in" className="relative z-10" style={{ backgroundColor: '#d4ccc0' }}>
-  <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 pt-10">
     <button
       onClick={() => navigate('/menu')}
       className="flex items-center gap-2 font-serif text-base font-semibold transition-all hover:opacity-75 duration-300"

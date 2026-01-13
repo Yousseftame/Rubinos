@@ -51,7 +51,7 @@ const Dashboard = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <div data-aos="fade-right" data-aos-duration="5000" className="flex flex-col justify-start">
+          <div  data-aos="zoom-in"  className="flex flex-col justify-start">
             {/* Oyster Icon */}
             <div className="mb-6 w-12 h-12 opacity-70">
               <img src={mermaid} alt="Mermaid icon" className="w-full h-full" />
@@ -89,7 +89,7 @@ const Dashboard = () => {
           </div>
 
           {/* Right Image */}
-          <div data-aos="fade-left"  className="relative w-full h-auto">
+          <div  data-aos="zoom-in"  className="relative w-full h-auto">
             <div className="overflow-hidden rounded-md shadow-lg">
               <img
                 src={section1}
@@ -120,7 +120,7 @@ const Dashboard = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Image */}
-          <div  data-aos="fade-right" className="relative w-full overflow-hidden rounded-md shadow-lg">
+          <div   data-aos="zoom-in" className="relative w-full overflow-hidden rounded-md shadow-lg">
             <img
               src={ambiance}
               alt="Private Dining at Seaworthy"
@@ -129,7 +129,7 @@ const Dashboard = () => {
           </div>
 
           {/* Right Content */}
-          <div data-aos="fade-left"   className="flex flex-col justify-start">
+          <div  data-aos="zoom-in"   className="flex flex-col justify-start">
             {/* Heading */}
             <h2 className="text-4xl lg:text-4xl font-head font-serif font-bold mb-8 leading-tight animate-fade-in" style={{ color: '#5a7a82' }}>
               The Pearl of Private<br />
