@@ -44,14 +44,7 @@ export default function Menu() {
       },
     ],
     appetizers: [
-      {
-        id: 5,
-        name: 'Oyster Rockefeller',
-        description: 'Baked oysters with herbs and breadcrumb topping',
-        price: '$18',
-        image: section1,
-        fullDescription: 'A classic preparation featuring fresh oysters baked with a rich herb and breadcrumb topping, finished with butter.',
-      },
+     
       {
         id: 6,
         name: 'Shrimp Remoulade',
@@ -78,14 +71,7 @@ export default function Menu() {
       },
     ],
     entrees: [
-      {
-        id: 9,
-        name: 'Grilled Fish of the Day',
-        description: 'Market-fresh catch prepared with simple elegance',
-        price: '$32',
-        image: section1,
-        fullDescription: 'Our chef selects the finest fish available daily and prepares it with simple, elegant technique to highlight its natural flavors.',
-      },
+   
       {
         id: 10,
         name: 'Pan-Seared Scallops',

@@ -26,8 +26,8 @@ const Navbar = () => {
 
   const navLinks = [
     { label: 'Menu', to: '/menu' },
-    { label: 'Private Dining', to: '/private-dining' },
     { label: 'Gallery', to: '/gallery' },
+    { label: 'Private Dining', to: '/private-dining' },
     { label: 'Contact', to: '/contact' },
   ];
 
