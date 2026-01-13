@@ -25,9 +25,9 @@ const Dashboard = () => {
 
         {/* Hero Content */}
         <div className="relative z-10 h-full flex flex-col justify-end pb-20 lg:pb-12"> 
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+          <div  data-aos="fade-up"   className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             {/* Large SEAWORTHY Text */}
-            <h1 className=" font-head text-center text-[15vw] lg:text-[12vw] text-secondary leading-none tracking-[0.05em] animate-fade-in">
+            <h1  className=" font-head text-center text-[15vw] lg:text-[12vw] text-secondary leading-none tracking-[0.05em] ">
               Rubino's
             </h1>
           </div>
@@ -51,14 +51,14 @@ const Dashboard = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <div className="flex flex-col justify-start">
+          <div data-aos="fade-right" data-aos-duration="5000" className="flex flex-col justify-start">
             {/* Oyster Icon */}
             <div className="mb-6 w-12 h-12 opacity-70">
               <img src={mermaid} alt="Mermaid icon" className="w-full h-full" />
             </div>
 
             {/* Heading */}
-            <h2 className="text-4xl lg:text-4xl    font-extrabold font-head mb-8 leading-tight  animate-fade-in " style={{ color: '#5a7a82' }}>
+            <h2  className="text-4xl lg:text-4xl    font-extrabold font-head mb-8 leading-tight  animate-fade-in " style={{ color: '#5a7a82' }}>
               Come For The Oysters,<br />
               Stay For The Everything
             </h2>
@@ -89,7 +89,7 @@ const Dashboard = () => {
           </div>
 
           {/* Right Image */}
-          <div className="relative w-full h-auto">
+          <div data-aos="fade-left"  className="relative w-full h-auto">
             <div className="overflow-hidden rounded-md shadow-lg">
               <img
                 src={section1}
@@ -120,7 +120,7 @@ const Dashboard = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Image */}
-          <div className="relative w-full overflow-hidden rounded-md shadow-lg">
+          <div  data-aos="fade-right" className="relative w-full overflow-hidden rounded-md shadow-lg">
             <img
               src={ambiance}
               alt="Private Dining at Seaworthy"
@@ -129,7 +129,7 @@ const Dashboard = () => {
           </div>
 
           {/* Right Content */}
-          <div className="flex flex-col justify-start">
+          <div data-aos="fade-left"   className="flex flex-col justify-start">
             {/* Heading */}
             <h2 className="text-4xl lg:text-4xl font-head font-serif font-bold mb-8 leading-tight animate-fade-in" style={{ color: '#5a7a82' }}>
               The Pearl of Private<br />
@@ -174,7 +174,7 @@ const Dashboard = () => {
       <div className="grid lg:grid-cols-2 gap-0 min-h-fit">
         {/* Left - Location Info */}
         <div className="flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-20 bg-gradient-to-b from-[#3d5a62]/95 to-[#2d4a52]/95">
-          <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-10 tracking-wide font-head" style={{ color: '#e8dfd7' }}>
+          <h2 data-aos="fade-zoom-in"   data-aos-easing="ease-in-back" data-aos-delay="100"  data-aos-offset="0" className="text-4xl lg:text-5xl font-serif font-bold mb-10 tracking-wide font-head" style={{ color: '#e8dfd7' }}>
             LOCATION
           </h2>
 
@@ -235,14 +235,14 @@ const Dashboard = () => {
 
         {/* Right - Hours & Menu */}
         <div className="flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-20 bg-[#0f1619]/99">
-          <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-10 tracking-wide font-head" style={{ color: '#e8dfd7' }}>
+          <h2  data-aos="fade-zoom-in"   data-aos-easing="ease-in-back" data-aos-delay="100"  data-aos-offset="0" className="text-4xl lg:text-5xl font-serif font-bold mb-10 tracking-wide font-head" style={{ color: '#e8dfd7' }}>
             MENU
           </h2>
 
           <div className="space-y-5">
             {/* Restaurant Hours */}
             <div>
-              <h3 className="text-base lg:text-lg font-serif font-bold mb-3 tracking-widest" style={{ color: '#FFE8C0' }}>
+              <h3 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" className="text-base lg:text-lg font-serif font-bold mb-3 tracking-widest" style={{ color: '#FFE8C0' }}>
                 RESTAURANT HOURS
               </h3>
               <div className="space-y-2 font-serif text-sm lg:text-base" style={{ color: '#b8aea0' }}>
@@ -259,7 +259,7 @@ const Dashboard = () => {
 
             {/* Happy Hour */}
             <div>
-              <h3 className="text-base lg:text-lg font-serif font-bold mb-2 tracking-widest" style={{ color: '#FFE8C0' }}>
+              <h3 data-aos="fade-zoom-in"   data-aos-easing="ease-in-back" data-aos-delay="100"  data-aos-offset="0" className="text-base lg:text-lg font-serif font-bold mb-2 tracking-widest" style={{ color: '#FFE8C0' }}>
                 OYSTER HAPPY HOUR
               </h3>
               <p className="font-serif text-xs lg:text-sm tracking-wide mb-2"   >
