@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Facebook, Instagram, Menu, Twitter, X, XIcon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/rub-transparent.png';
@@ -146,19 +146,36 @@ const Navbar = () => {
               </Link>
             ))}
 
+
+      <div className=' flex gap-5 pt-4'>
             <a
-              href="#"
+              href="https://www.instagram.com/rubinos.eg/?fbclid=IwY2xjawPTNHFleHRuA2FlbQIxMABicmlkETE0aVk5ZExEQjRLamU4NnlDc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHh6RekMP4QEdS5fhEntWrBEHq95LVVFzdAkeHNn0mFRx0ctm3BXUss7gjPDu_aem_WDL_jQcTeBrVOQJqWlq2wA#"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() =>  navigate('/dashbaord')}  
+                
               className="btn-seaworthy-solid mt-4"
               style={{
                 animation: `fadeInUp 0.4s ease-out ${navLinks.length * 0.1}s forwards`,
                 opacity: 0,
               }}
             >
-              Reserve Now
+              <Instagram/>
             </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=100094085240582"
+              target="_blank"
+              rel="noopener noreferrer"
+              
+              className="btn-seaworthy-solid mt-4"
+              style={{
+                animation: `fadeInUp 0.4s ease-out ${navLinks.length * 0.1}s forwards`,
+                opacity: 0,
+              }}
+            >
+              <Facebook/>
+            </a>
+            </div>
+            
           </div>
         </div>
       )}

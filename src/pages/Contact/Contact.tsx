@@ -3,6 +3,9 @@ import contact from '../../assets/contact.jpg';
 
 
 export default function Contact() {
+    
+  const [isLoading, setIsLoading] = useState(true);
+
 
    const [formData, setFormData] = useState({
     name: '',
@@ -15,6 +18,8 @@ export default function Contact() {
     console.log('Form submitted:', formData);
     alert('Thank you for your message! We will get back to you soon.');
   };
+
+  
 
   const handleChange = (e : any) => {
     setFormData({
@@ -170,7 +175,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <p className="font-serif text-base leading-relaxed" style={{ color: '#6b7c7e' }}>
-                  630 Carondelet Street<br />New Orleans, LA 70130
+                 39 saint Gini <br /> kafr abdo, Alexandria, Egypt
                 </p>
               </div>
 
@@ -180,8 +185,8 @@ export default function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                   </svg>
                 </div>
-                <p className="font-serif text-base" style={{ color: '#6b7c7e' }}>
-                  504.930.3071
+                <p className=" text-base" style={{ color: '#6b7c7e' }}>
+                 011 19477764
                 </p>
               </div>
 
@@ -202,6 +207,17 @@ export default function Contact() {
 
       {/* Google Maps Section */}
       <section className="relative h-[400px] w-full py-3 bg-[#E5E0D9]">
+          {isLoading && (
+            <div className="flex items-center justify-center   pt-25">
+              <div className="text-center">
+                <div className="inline-block">
+                  <div className="w-12 h-12 border-4 border-[#a89f97]/30 border-t-[#3d5055] rounded-full animate-spin" />
+                </div>
+                <p className="font-serif text-[#6b7c7e] mt-4">Loading Map...</p>
+              </div>
+            </div>
+
+          )}
         <iframe
 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3411.8233873248387!2d29.952710442809703!3d31.225622096352538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c52418831811%3A0xedece04b1f1dbb6e!2zUnViaW5v4oCZcw!5e0!3m2!1sar!2seg!4v1768313978310!5m2!1sar!2seg"          width="100%"
           height="100%"
@@ -210,7 +226,9 @@ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3411.8233873248387!2d
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Restaurant Location"
+           onLoad={() => setIsLoading(false)}
         ></iframe>
+         
       </section>
     </>
   )

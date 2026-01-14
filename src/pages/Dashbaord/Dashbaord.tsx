@@ -189,8 +189,8 @@ const Dashboard = () => {
                 className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity"
                 style={{ color: '#e8dfd7' }}
               >
-                630 Carondelet Street
-                New Orleans, LA 70130
+                
+                39 saint Gini , Kafr abdo, Alexandria, Egypt
               </a>
             </div>
 
@@ -199,10 +199,10 @@ const Dashboard = () => {
               <Phone className="w-5 h-5 flex-shrink-0" style={{ color: '#b8aea0' }} strokeWidth={1.5} />
               <a
                 href="tel:504-930-3071"
-                className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity"
+                className=" text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity"
                 style={{ color: '#e8dfd7' }}
               >
-                504.930.3071
+                01119477764
               </a>
             </div>
 
