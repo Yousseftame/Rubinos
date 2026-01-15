@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { useAuth } from '../../store/AuthContext/AuthContext';
+import { useMessages } from '../../hooks/Admin/Messages/useMessages';
 
 
 
@@ -20,11 +21,14 @@ const Sidebar = () => {
   const [activeItem, setActiveItem] = useState('dashboard');
   const navigate = useNavigate();
   const {logout} = useAuth();
+  const {messages} = useMessages();
 
   let timerInterval: ReturnType<typeof setInterval>;
 
+    
+  // show unread messages ( with new stauts )
+    const newCount = messages.filter(m => m.status === 'new').length;
 
-  
 
 
    // handle logout 
@@ -66,13 +70,14 @@ const handleLogout = async () => {
   { id: 'categories', label: 'Categories', icon: Dashboard, path: '/admin/categories' },
   { id: 'menu', label: 'Menu Management', icon: MenuBook, path: '/admin/menu' },
   { id: 'gallery', label: 'Gallery', icon: Image, path: '/admin/gallery' },
-  { id: 'contact', label: 'Messages', icon: Mail, path: '/admin/contact' },
+  { id: 'contact', label: 'Messages', icon: Mail, path: '/admin/messages' },
   { id: 'section', label: 'Sections', icon: Settings, path: '/admin/section' },
 ];
 
 
   return (
     <div className="flex h-screen">
+      
       {/* Sidebar */}
       <div 
         className={`text-stone-50 transition-all duration-400 ease-in-out relative ${
@@ -128,7 +133,13 @@ const handleLogout = async () => {
                   }`} 
                   style={{ fontSize: '20px' }}
                 />
+                 {/* 🔴 New Messages Badge collapsed */}
+                {collapsed && item.id === 'contact' && newCount > 0 && (
+  <span className="absolute top-2 right-3 w-2.5 h-2.5 rounded-full bg-red-500"></span>
+)}
+
                 {!collapsed && (
+                   <div className="flex items-center gap-3 ">
                   <span 
                     className={`text-[19px] tracking-wide transition-colors duration-200 whitespace-nowrap overflow-hidden text-ellipsis  ${
                       isActive ? 'text-[#D7CDC1] font-bold' : 'text-[#D7CDC1]/60 group-hover:text-[#D7CDC1]/90'
@@ -137,6 +148,14 @@ const handleLogout = async () => {
                   >
                     {item.label}
                   </span>
+
+                   {/* 🔴 New Messages Badge */}
+                  {item.id === 'contact' && newCount > 0 && (
+      <span className="min-w-[22px] h-[22px] px-2 rounded-full bg-red-500 text-white text-xs font-semibold flex items-center justify-center">
+        {newCount}
+      </span>
+    )}
+                  </div>
                 )}
               </button>
             );

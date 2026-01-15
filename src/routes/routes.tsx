@@ -16,6 +16,7 @@ import AdminLayOut from "../layouts/AdminLayOut/AdminLayOut";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import Categories from "../pages/Admin/Categories/Categories";
 import AuthLayOut from "../layouts/AuthLayOut/AuthLayOut";
+import Messages from "../pages/Admin/Messages/Messages";
 
 
 
@@ -40,6 +41,7 @@ export const routes = createBrowserRouter([
   children: [
     { index: true, element: <AdminPanel /> },
     { path: "categories", element: <Categories/> },
+    { path: "messages", element: <Messages/> },
   ],
 },
 

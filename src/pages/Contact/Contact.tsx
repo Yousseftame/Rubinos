@@ -1,34 +1,66 @@
 import { useState } from 'react';
 import contact from '../../assets/contact.jpg';
-
+import { addMessage } from '../../service/messages/messages.service';
+import { toast } from 'react-hot-toast';
 
 export default function Contact() {
     
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-
-   const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     details: ''
   });
 
-  const handleSubmit = () => {
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
+  const handleSubmit = async () => {
+    // Validation
+    if (!formData.name || !formData.email || !formData.phone || !formData.details) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await addMessage({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        details: formData.details
+      });
+
+      toast.success('Thank you for your message! We will get back to you soon.');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        details: ''
+      });
+    } catch (error) {
+      console.error('Error submitting message:', error);
+      toast.error('Failed to submit message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  
-
-  const handleChange = (e : any) => {
+  const handleChange = (e: any) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
-
 
   return (
     <>
@@ -75,7 +107,7 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <label className="block font-serif text-sm font-semibold mb-3 tracking-wider uppercase" style={{ color: '#3d5055' }}>
-                    Name
+                    Name *
                   </label>
                   <input
                     type="text"
@@ -83,6 +115,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your Name"
+                    required
                     className="w-full px-4 py-3 bg-white/60 border-b-2 border-[#a89f97] focus:border-[#3d5055] focus:outline-none transition-colors font-serif"
                     style={{ color: '#3d5055' }}
                   />
@@ -90,7 +123,7 @@ export default function Contact() {
 
                 <div>
                   <label className="block font-serif text-sm font-semibold mb-3 tracking-wider uppercase" style={{ color: '#3d5055' }}>
-                    Email
+                    Email *
                   </label>
                   <input
                     type="email"
@@ -98,6 +131,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="your.email@example.com"
+                    required
                     className="w-full px-4 py-3 bg-white/60 border-b-2 border-[#a89f97] focus:border-[#3d5055] focus:outline-none transition-colors font-serif"
                     style={{ color: '#3d5055' }}
                   />
@@ -107,7 +141,7 @@ export default function Contact() {
               {/* Phone */}
               <div>
                 <label className="block font-serif text-sm font-semibold mb-3 tracking-wider uppercase" style={{ color: '#3d5055' }}>
-                  Phone
+                  Phone *
                 </label>
                 <input
                   type="tel"
@@ -115,6 +149,7 @@ export default function Contact() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(504) 930-3071"
+                  required
                   className="w-full px-4 py-3 bg-white/60 border-b-2 border-[#a89f97] focus:border-[#3d5055] focus:outline-none transition-colors font-serif"
                   style={{ color: '#3d5055' }}
                 />
@@ -123,14 +158,15 @@ export default function Contact() {
               {/* Additional Details */}
               <div>
                 <label className="block font-serif text-sm font-semibold mb-3 tracking-wider uppercase" style={{ color: '#3d5055' }}>
-                  Additional Details
+                  Additional Details *
                 </label>
                 <textarea
                   name="details"
                   value={formData.details}
                   onChange={handleChange}
                   placeholder="Tell us more about your inquiry..."
-                  
+                  required
+                  rows={5}
                   className="w-full px-4 py-3 bg-white/60 border-b-2 border-[#a89f97] focus:border-[#3d5055] focus:outline-none transition-colors resize-none font-serif"
                   style={{ color: '#3d5055' }}
                 ></textarea>
@@ -140,22 +176,27 @@ export default function Contact() {
               <div className="flex justify-center pt-4">
                 <button
                   onClick={handleSubmit}
-                  className="px-12 py-4 font-serif font-semibold tracking-widest uppercase text-sm transition-all duration-300 border-2 hover:shadow-lg"
+                  disabled={isSubmitting}
+                  className="px-12 py-4 font-serif font-semibold tracking-widest uppercase text-sm transition-all duration-300 border-2 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ 
-                    backgroundColor: '#3d5055',
+                    backgroundColor: isSubmitting ? '#6b7c7e' : '#3d5055',
                     color: '#d4ccc0',
-                    borderColor: '#3d5055'
+                    borderColor: isSubmitting ? '#6b7c7e' : '#3d5055'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = '#3d5055';
+                    if (!isSubmitting) {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#3d5055';
+                    }
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#3d5055';
-                    e.currentTarget.style.color = '#d4ccc0';
+                    if (!isSubmitting) {
+                      e.currentTarget.style.backgroundColor = '#3d5055';
+                      e.currentTarget.style.color = '#d4ccc0';
+                    }
                   }}
                 >
-                  Submit Query
+                  {isSubmitting ? 'Submitting...' : 'Submit Query'}
                 </button>
               </div>
             </div>
@@ -219,7 +260,7 @@ export default function Contact() {
 
           )}
         <iframe
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3411.8233873248387!2d29.952710442809703!3d31.225622096352538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c52418831811%3A0xedece04b1f1dbb6e!2zUnViaW5v4oCZcw!5e0!3m2!1sar!2seg!4v1768313978310!5m2!1sar!2seg"          width="100%"
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!3d3411.8233873248387!2d29.952710442809703!3d31.225622096352538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c52418831811%3A0xedece04b1f1dbb6e!2zUnViaW5v4oCZcw!5e0!3m2!1sar!2seg!4v1768313978310!5m2!1sar!2seg"          width="100%"
           height="100%"
           style={{ border: 0 }}
           
