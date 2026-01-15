@@ -40,7 +40,7 @@ const Categories = () => {
   const currentCategories = filteredCategories.slice(startIndex, endIndex);
 
   return (
-    <div className="w-full max-w-7xl">
+    <div className="w-full ">
       {/* Header Section */}
       <div className="mb-8">
         <h1 className="text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>

@@ -1,82 +1,67 @@
-import { type InputHTMLAttributes, useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import React from 'react';
+import { type LucideIcon } from 'lucide-react';
 
-interface AuthInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface AuthInputProps {
+  id: string;
   label: string;
-  icon?: 'mail' | 'lock' | 'user';
-  error?: string;
-  showPasswordToggle?: boolean;
+  type: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  icon: LucideIcon;
+  required?: boolean;
+  rightIcon?: React.ReactNode;
 }
 
-export const AuthInput = ({
+const AuthInput: React.FC<AuthInputProps> = ({
+  id,
   label,
-  icon,
-  error,
-  showPasswordToggle = false,
-  type = 'text',
-  ...props
-}: AuthInputProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const inputType = showPasswordToggle ? (showPassword ? 'text' : 'password') : type;
-
-  const getIcon = () => {
-    switch (icon) {
-      case 'mail':
-        return <Mail className="w-5 h-5" strokeWidth={1.5} />;
-      case 'lock':
-        return <Lock className="w-5 h-5" strokeWidth={1.5} />;
-      case 'user':
-        return <User className="w-5 h-5" strokeWidth={1.5} />;
-      default:
-        return null;
-    }
-  };
-
+  type,
+  value,
+  onChange,
+  placeholder,
+  icon: Icon,
+  required = false,
+  rightIcon
+}) => {
   return (
-    <div>
-      <label
+    <div className="relative">
+      <label 
         data-aos="fade-right"
+        htmlFor={id} 
         className="block text-sm font-serif font-medium mb-2 tracking-wide"
         style={{ color: '#5a7a82' }}
       >
         {label}
       </label>
       <div className="relative">
-        {icon && (
-          <div
-            className="absolute left-4 top-1/2 -translate-y-1/2"
-            style={{ color: '#6b7c7e' }}
-          >
-            {getIcon()}
+        <Icon 
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" 
+          style={{ color: '#6b7c7e' }}
+          strokeWidth={1.5}
+        />
+        <input
+          required={required}
+          id={id}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          className="w-full pl-12 pr-12 py-3.5 border-2 font-serif text-base transition-all duration-300 focus:outline-none focus:border-opacity-100"
+          style={{ 
+            backgroundColor: '#f5f1ed',
+            borderColor: '#b8aea0',
+            color: '#3d5055'
+          }}
+        />
+        {rightIcon && (
+          <div className="absolute right-4 top-1/2 -translate-y-1/2">
+            {rightIcon}
           </div>
         )}
-        <input
-          type={inputType}
-          className={`w-full py-3.5 border-2 font-serif text-base transition-all duration-300 focus:outline-none ${
-            icon ? 'pl-12' : 'pl-4'
-          } ${showPasswordToggle ? 'pr-12' : 'pr-4'} ${error ? 'border-red-500' : ''}`}
-          style={{
-            backgroundColor: '#f5f1ed',
-            borderColor: error ? '#e53e3e' : '#b8aea0',
-            color: '#3d5055',
-          }}
-          {...props}
-        />
-        {showPasswordToggle && (
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity"
-          >
-            {showPassword ? (
-              <EyeOff className="w-5 h-5" style={{ color: '#6b7c7e' }} strokeWidth={1.5} />
-            ) : (
-              <Eye className="w-5 h-5" style={{ color: '#6b7c7e' }} strokeWidth={1.5} />
-            )}
-          </button>
-        )}
       </div>
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 };
+
+export default AuthInput;

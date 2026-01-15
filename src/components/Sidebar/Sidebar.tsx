@@ -10,12 +10,56 @@ import {
 } from '@mui/icons-material';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
+import { useAuth } from '../../store/AuthContext/AuthContext';
+
 
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState('dashboard');
   const navigate = useNavigate();
+  const {logout} = useAuth();
+
+  let timerInterval: ReturnType<typeof setInterval>;
+
+
+  
+
+
+   // handle logout 
+const handleLogout = async () => {
+  Swal.fire({
+    title: "Logging out...",
+    html: "You will be logged out in <b></b> ms",
+    timer: 1500,
+    timerProgressBar: true,
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+
+      const popup = Swal.getPopup();
+      const timerEl = popup?.querySelector("b");
+
+      timerInterval = setInterval(() => {
+        if (timerEl) {
+          timerEl.textContent = `${Swal.getTimerLeft()}`;
+        }
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    }
+  }).then(async (result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+      await logout();
+      navigate("/register");
+    }
+  });
+};
+
+
+
 
 
  const menuItems = [
@@ -103,6 +147,7 @@ const Sidebar = () => {
         <div className="absolute bottom-0 left-0 right-0 border-t border-[#D7CDC1]/10 overflow-hidden">
           <div className="px-4 py-4">
             <button
+            onClick={handleLogout}
               className={`w-full flex items-center ${collapsed ? 'justify-center px-0' : 'gap-4 px-5'} py-3 rounded-lg hover:bg-[#D7CDC1]/5 transition-all duration-200 group`}
             >
               <Logout 

@@ -1,28 +1,34 @@
-import { type ButtonHTMLAttributes } from 'react';
+import React from 'react';
 
-interface AuthButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface AuthButtonProps {
+  text: string;
   isLoading?: boolean;
-  loadingText?: string;
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
-export const AuthButton = ({
+const AuthButton: React.FC<AuthButtonProps> = ({ 
+  text, 
   isLoading = false,
-  loadingText = 'Loading...',
-  children,
-  disabled,
-  ...props
-}: AuthButtonProps) => {
+  onClick,
+  type = 'submit',
+  disabled = false
+}) => {
   return (
     <button
-      className="w-full py-4 font-serif text-sm font-medium tracking-widest transition-all hover:opacity-85 duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-      style={{
+      type={type}
+      onClick={onClick}
+      className="w-full py-4 font-serif text-sm font-medium tracking-widest transition-all hover:opacity-85 duration-300"
+      style={{ 
         backgroundColor: '#3d5055',
-        color: '#f5f1ed',
+        color: '#f5f1ed'
       }}
-      disabled={disabled || isLoading}
-      {...props}
+      disabled={isLoading || disabled}
     >
-      {isLoading ? loadingText : children}
+      {isLoading ? "Loading..." : text}
     </button>
   );
 };
+
+export default AuthButton;
