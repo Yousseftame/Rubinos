@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   Dashboard,
   MenuBook,
-  CalendarMonth,
   Image,
   Mail,
   Settings,
@@ -12,72 +11,58 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { useAuth } from '../../store/AuthContext/AuthContext';
-import { useMessages } from '../../hooks/Admin/Messages/useMessages';
-
-
+import { useMessagesContext } from '../../store/MessagesContext/MessagesContext';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState('dashboard');
   const navigate = useNavigate();
-  const {logout} = useAuth();
-  const {messages} = useMessages();
+  const { logout } = useAuth();
+  const { newCount } = useMessagesContext();
 
   let timerInterval: ReturnType<typeof setInterval>;
 
-    
-  // show unread messages ( with new stauts )
-    const newCount = messages.filter(m => m.status === 'new').length;
+  // handle logout 
+  const handleLogout = async () => {
+    Swal.fire({
+      title: "Logging out...",
+      html: "You will be logged out in <b></b> ms",
+      timer: 1500,
+      timerProgressBar: true,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
 
+        const popup = Swal.getPopup();
+        const timerEl = popup?.querySelector("b");
 
+        timerInterval = setInterval(() => {
+          if (timerEl) {
+            timerEl.textContent = `${Swal.getTimerLeft()}`;
+          }
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then(async (result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        await logout();
+        navigate("/login");
+      }
+    });
+  };
 
-   // handle logout 
-const handleLogout = async () => {
-  Swal.fire({
-    title: "Logging out...",
-    html: "You will be logged out in <b></b> ms",
-    timer: 1500,
-    timerProgressBar: true,
-    allowOutsideClick: false,
-    didOpen: () => {
-      Swal.showLoading();
-
-      const popup = Swal.getPopup();
-      const timerEl = popup?.querySelector("b");
-
-      timerInterval = setInterval(() => {
-        if (timerEl) {
-          timerEl.textContent = `${Swal.getTimerLeft()}`;
-        }
-      }, 100);
-    },
-    willClose: () => {
-      clearInterval(timerInterval);
-    }
-  }).then(async (result) => {
-    if (result.dismiss === Swal.DismissReason.timer) {
-      await logout();
-      navigate("/register");
-    }
-  });
-};
-
-
-
-
-
- const menuItems = [
-  { id: 'categories', label: 'Categories', icon: Dashboard, path: '/admin/categories' },
-  { id: 'menu', label: 'Menu Management', icon: MenuBook, path: '/admin/menu' },
-  { id: 'gallery', label: 'Gallery', icon: Image, path: '/admin/gallery' },
-  { id: 'contact', label: 'Messages', icon: Mail, path: '/admin/messages' },
-  { id: 'section', label: 'Sections', icon: Settings, path: '/admin/section' },
-];
-
+  const menuItems = [
+    { id: 'categories', label: 'Categories', icon: Dashboard, path: '/admin/categories' },
+    { id: 'menu', label: 'Menu Management', icon: MenuBook, path: '/admin/menu' },
+    { id: 'gallery', label: 'Gallery', icon: Image, path: '/admin/gallery' },
+    { id: 'contact', label: 'Messages', icon: Mail, path: '/admin/messages' },
+    { id: 'section', label: 'Sections', icon: Settings, path: '/admin/section' },
+  ];
 
   return (
     <div className="flex h-screen">
-      
       {/* Sidebar */}
       <div 
         className={`text-stone-50 transition-all duration-400 ease-in-out relative ${
@@ -112,8 +97,7 @@ const handleLogout = async () => {
                 onClick={() => {
                   setActiveItem(item.id);
                   navigate(item.path);
-                }
-                }
+                }}
                 className={`w-full flex items-center ${collapsed ? 'justify-center px-0' : 'gap-4 px-5'} py-3 rounded-lg transition-all duration-200 group relative ${
                   isActive 
                     ? 'bg-[#D7CDC1]/15' 
@@ -125,36 +109,47 @@ const handleLogout = async () => {
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#D7CDC1] rounded-r"></div>
                 )}
                 
-                <Icon 
-                  className={`transition-colors duration-200 flex-shrink-0 ${
-                    isActive 
-                      ? 'text-[#D7CDC1]' 
-                      : 'text-[#D7CDC1]/50 group-hover:text-[#D7CDC1]/80'
-                  }`} 
-                  style={{ fontSize: '20px' }}
-                />
-                 {/* 🔴 New Messages Badge collapsed */}
-                {collapsed && item.id === 'contact' && newCount > 0 && (
-  <span className="absolute top-2 right-3 w-2.5 h-2.5 rounded-full bg-red-500"></span>
-)}
+                <div className="relative flex-shrink-0">
+                  <Icon 
+                    className={`transition-colors duration-200 ${
+                      isActive 
+                        ? 'text-[#D7CDC1]' 
+                        : 'text-[#D7CDC1]/50 group-hover:text-[#D7CDC1]/80'
+                    }`} 
+                    style={{ fontSize: '20px' }}
+                  />
+                  
+                  {/* 🔴 New Messages Badge - Collapsed Mode */}
+                  {collapsed && item.id === 'contact' && newCount > 0 && (
+                    <span 
+                      className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center animate-pulse"
+                      style={{ boxShadow: '0 0 0 2px #3D5257' }}
+                    >
+                      {newCount > 9 ? '9+' : newCount}
+                    </span>
+                  )}
+                </div>
 
                 {!collapsed && (
-                   <div className="flex items-center gap-3 ">
-                  <span 
-                    className={`text-[19px] tracking-wide transition-colors duration-200 whitespace-nowrap overflow-hidden text-ellipsis  ${
-                      isActive ? 'text-[#D7CDC1] font-bold' : 'text-[#D7CDC1]/60 group-hover:text-[#D7CDC1]/90'
-                    }`}
-                    style={{ fontFamily: 'Cinzel, serif' }}
-                  >
-                    {item.label}
-                  </span>
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <span 
+                      className={`text-[19px] tracking-wide transition-colors duration-200 whitespace-nowrap overflow-hidden text-ellipsis ${
+                        isActive ? 'text-[#D7CDC1] font-bold' : 'text-[#D7CDC1]/60 group-hover:text-[#D7CDC1]/90'
+                      }`}
+                      style={{ fontFamily: 'Cinzel, serif' }}
+                    >
+                      {item.label}
+                    </span>
 
-                   {/* 🔴 New Messages Badge */}
-                  {item.id === 'contact' && newCount > 0 && (
-      <span className="min-w-[22px] h-[22px] px-2 rounded-full bg-red-500 text-white text-xs font-semibold flex items-center justify-center">
-        {newCount}
-      </span>
-    )}
+                    {/* 🔴 New Messages Badge - Expanded Mode */}
+                    {item.id === 'contact' && newCount > 0 && (
+                      <span 
+                        className="min-w-[22px] h-[22px] px-2 rounded-full bg-red-500 text-white text-xs font-semibold flex items-center justify-center animate-pulse"
+                        style={{ boxShadow: '0 2px 4px rgba(220, 38, 38, 0.3)' }}
+                      >
+                        {newCount}
+                      </span>
+                    )}
                   </div>
                 )}
               </button>
@@ -166,11 +161,11 @@ const handleLogout = async () => {
         <div className="absolute bottom-0 left-0 right-0 border-t border-[#D7CDC1]/10 overflow-hidden">
           <div className="px-4 py-4">
             <button
-            onClick={handleLogout}
+              onClick={handleLogout}
               className={`w-full flex items-center ${collapsed ? 'justify-center px-0' : 'gap-4 px-5'} py-3 rounded-lg hover:bg-[#D7CDC1]/5 transition-all duration-200 group`}
             >
               <Logout 
-                className={`transition-colors duration-200 flex-shrink-0 text-[#D7CDC1]/50 group-hover:text-red-400/80`} 
+                className="transition-colors duration-200 flex-shrink-0 text-[#D7CDC1]/50 group-hover:text-red-400/80" 
                 style={{ fontSize: '20px' }}
               />
               {!collapsed && (
@@ -197,8 +192,6 @@ const handleLogout = async () => {
           )}
         </button>
       </div>
-
-      
     </div>
   );
 };

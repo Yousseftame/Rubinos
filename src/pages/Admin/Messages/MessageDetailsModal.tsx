@@ -73,33 +73,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
 
         {/* Content */}
         <div className="space-y-6">
-          {/* Status Selector */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <MessageSquare size={18} style={{ color: '#3D525799' }} />
-              <label 
-                className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
-              >
-                STATUS
-              </label>
-            </div>
-            <select
-              value={message.status}
-              onChange={(e) => message.uid && onStatusChange(message.uid, e.target.value as any)}
-              className="pl-6 px-4 py-2 rounded-lg text-sm font-medium capitalize outline-none cursor-pointer border-2 transition-all"
-              style={{
-                backgroundColor: getStatusColor(message.status).bg,
-                color: getStatusColor(message.status).color,
-                borderColor: getStatusColor(message.status).color + '33',
-                fontFamily: 'Inter, sans-serif'
-              }}
-            >
-              <option value="new">New</option>
-              <option value="seen">Seen</option>
-              <option value="replied">Replied</option>
-            </select>
-          </div>
+          
 
           {/* Name */}
           <div>
@@ -138,6 +112,30 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             >
               {message.email}
             </a>
+          </div>
+
+          {/* Status Selector */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <MessageSquare size={18} style={{ color: '#3D525799' }} />
+              <label 
+                className="text-sm font-semibold"
+                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+              >
+                STATUS
+              </label>
+            </div>
+            <label
+              className=" px-4 ml-5 py-2 rounded-lg text-sm font-medium capitalize outline-none  border-2 transition-all "
+              style={{
+                backgroundColor: getStatusColor(message.status).bg,
+                color: getStatusColor(message.status).color,
+                borderColor: getStatusColor(message.status).color + '33',
+                fontFamily: 'Inter, sans-serif'
+              }}
+            >
+              {message.status}
+            </label>
           </div>
 
           {/* Phone */}
@@ -238,6 +236,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
               color: '#D7CDC1',
               fontFamily: 'Inter, sans-serif'
             }}
+            target='_blank'
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2d3f44'}
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D5257'}
           >

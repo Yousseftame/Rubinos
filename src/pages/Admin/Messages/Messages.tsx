@@ -1,4 +1,3 @@
-// src/pages/Admin/Messages/Messages.tsx
 import React, { useState } from 'react';
 import { 
   Visibility,
@@ -9,16 +8,16 @@ import {
   Reply
 } from '@mui/icons-material';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useMessages } from '../../../hooks/Admin/Messages/useMessages';
+import { useMessagesContext } from '../../../store/MessagesContext/MessagesContext';
 import type { Message } from '../../../service/messages/messages.service';
-import DeleteConfirmationModal from './DeleteConfirmationModal';
 import MessageDetailsModal from './MessageDetailsModal';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 const Messages = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState<'all' | 'new' | 'seen' | 'replied'>('all');
-  const itemsPerPage = 8;
+  const itemsPerPage = 5;
 
   // Modal states
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
@@ -26,14 +25,16 @@ const Messages = () => {
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Use the hook
+  // Use the context instead of hook
   const {
     messages,
     loading,
+    newCount,
+    seenCount,
+    repliedCount,
     handleDeleteMessage,
-    handleUpdateStatus,
-    fetchMessages
-  } = useMessages();
+    handleUpdateStatus
+  } = useMessagesContext();
 
   // Filter messages based on search and status
   const filteredMessages = messages.filter(message => {
@@ -53,11 +54,6 @@ const Messages = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentMessages = filteredMessages.slice(startIndex, endIndex);
-
-  // Count by status
-  const newCount = messages.filter(m => m.status === 'new').length;
-  const seenCount = messages.filter(m => m.status === 'seen').length;
-  const repliedCount = messages.filter(m => m.status === 'replied').length;
 
   // Handlers
   const handleOpenDetailsModal = (message: Message) => {
@@ -88,7 +84,6 @@ const Messages = () => {
   const handleStatusChange = async (messageId: string, newStatus: 'new' | 'seen' | 'replied') => {
     try {
       await handleUpdateStatus(messageId, newStatus);
-      await fetchMessages();
     } catch (error) {
       console.error('Status update error:', error);
     }
@@ -107,19 +102,6 @@ const Messages = () => {
       }).format(date);
     } catch {
       return 'Invalid Date';
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'new':
-        return <Email style={{ fontSize: '16px' }} />;
-      case 'seen':
-        return <MarkEmailRead style={{ fontSize: '16px' }} />;
-      case 'replied':
-        return <Reply style={{ fontSize: '16px' }} />;
-      default:
-        return null;
     }
   };
 
@@ -317,7 +299,7 @@ const Messages = () => {
                           <select
                             value={message.status}
                             onChange={(e) => message.uid && handleStatusChange(message.uid, e.target.value as any)}
-                            className="px-3 py-1 rounded-full text-xs font-medium capitalize outline-none cursor-pointer"
+                            className="px-3 py-1 rounded-full text-xs font-medium capitalize outline-none cursor-pointer transition-all"
                             style={{
                               backgroundColor: 
                                 message.status === 'new' ? '#fef3c7' : 
@@ -443,7 +425,6 @@ const Messages = () => {
         onClose={() => {
           setIsDetailsModalOpen(false);
           setSelectedMessage(null);
-          fetchMessages(); // Refresh to update status
         }}
         message={selectedMessage}
         onStatusChange={handleStatusChange}
