@@ -11,8 +11,7 @@ import {
   where,
   orderBy,
   Timestamp,
-  serverTimestamp,
-  writeBatch
+  serverTimestamp, 
 } from 'firebase/firestore';
 import { db } from '../firebase';
 

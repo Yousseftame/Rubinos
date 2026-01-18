@@ -1,6 +1,6 @@
 // src/pages/Admin/AdminGallery/GalleryFormModal.tsx
 import React, { useState, useEffect } from 'react';
-import { X, Upload, Image as ImageIcon } from 'lucide-react';
+import { X, Upload} from 'lucide-react';
 import type { GalleryItem } from '../../../service/gallery/gallery.service';
 
 interface GalleryFormModalProps {

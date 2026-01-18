@@ -37,7 +37,7 @@ export interface MenuItem {
 }
 
 const COLLECTION_NAME = 'menu';
-const CATEGORIES_COLLECTION = 'categories';
+// const CATEGORIES_COLLECTION = 'categories';
 const STORAGE_BASE = 'menu';
 
 // Get all menu items

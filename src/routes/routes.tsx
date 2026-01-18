@@ -10,7 +10,6 @@ import MenuDetails from "../pages/Menu/MenuDetails";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import ForgetPassword from "../pages/Auth/ForgetPassword/ForgetPassword";
-import ResetPassword from "../pages/Auth/ResetPassword/ResetPassword";
 import AdminPanel from "../pages/Admin/AdminPanel/AdminPanel";
 import AdminLayOut from "../layouts/AdminLayOut/AdminLayOut";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";

@@ -4,7 +4,6 @@ import { RouterProvider } from 'react-router-dom'
 import { routes } from './routes/routes'
 import { useEffect } from 'react'
 import AOS from 'aos'
-import { Toaster } from "react-hot-toast";
 import { RubinosToaster } from './components/shared/toastConfig'
 
 

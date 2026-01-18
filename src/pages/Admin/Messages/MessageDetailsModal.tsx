@@ -15,7 +15,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
   isOpen,
   onClose,
   message,
-  onStatusChange
+  
 }) => {
   if (!isOpen || !message) return null;
 

@@ -1,5 +1,5 @@
 // src/pages/Admin/Menus/Menus.tsx
-import React, { useState, useEffect } from 'react';
+import  { useState } from 'react';
 import { 
   Visibility,
   Edit,
@@ -7,10 +7,9 @@ import {
   Search,
   Add,
   AttachMoney,
-  CheckCircle,
-  Cancel
+  
 } from '@mui/icons-material';
-import { ChevronLeft, ChevronRight, TrendingUp, Package, Eye, EyeOff } from 'lucide-react';
+import { ChevronLeft, ChevronRight,  Package, Eye, EyeOff } from 'lucide-react';
 import { useMenusContext } from '../../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../../store/CategoriesContext/CategoriesContext';
 import type { MenuItem } from '../../../service/menus/menus.service';

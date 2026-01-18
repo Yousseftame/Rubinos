@@ -1,5 +1,5 @@
 // src/pages/Admin/AdminGallery/AdminGallery.tsx
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { 
   Visibility,
   Edit,

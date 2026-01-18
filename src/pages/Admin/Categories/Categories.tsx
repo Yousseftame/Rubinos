@@ -1,5 +1,5 @@
 // src/pages/Admin/Categories/Categories.tsx
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { 
   Visibility,
   Edit,
@@ -7,7 +7,7 @@ import {
   Search,
   Add
 } from '@mui/icons-material';
-import { ChevronLeft, ChevronRight, TrendingUp, Layers, Eye, EyeOff } from 'lucide-react';
+import { ChevronLeft, ChevronRight,  Layers, Eye, EyeOff } from 'lucide-react';
 import { useCategoriesContext } from '../../../store/CategoriesContext/CategoriesContext';
 import type { Category } from '../../../service/categories/categories.service';
 import CategoryFormModal from './CategoryFormModal';
