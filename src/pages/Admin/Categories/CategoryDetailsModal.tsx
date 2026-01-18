@@ -1,4 +1,4 @@
-// src/components/Admin/Categories/CategoryDetailsModal.tsx
+// src/pages/Admin/Categories/CategoryDetailsModal.tsx
 import React from 'react';
 import { X, Calendar, Hash, Info } from 'lucide-react';
 import { format } from 'date-fns';
@@ -21,7 +21,7 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
     if (!timestamp) return 'N/A';
     try {
       const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-      return format(date, 'PPpp'); // e.g., "Apr 29, 2024 at 12:34:56 PM"
+      return format(date, 'PPpp');
     } catch {
       return 'Invalid Date';
     }
@@ -112,6 +112,12 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
               style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
             >
               {category.items}
+              <span 
+                className="text-xs ml-2"
+                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+              >
+                (Automatically calculated from menu items)
+              </span>
             </p>
           </div>
 

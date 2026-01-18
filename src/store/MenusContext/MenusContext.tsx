@@ -12,6 +12,7 @@ import {
   type MenuItem 
 } from '../../service/menus/menus.service';
 import { toast } from 'react-hot-toast';
+import { useCategoriesContext } from '../CategoriesContext/CategoriesContext';
 
 interface MenuStatistics {
   totalItems: number;
@@ -50,6 +51,8 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [statistics, setStatistics] = useState<MenuStatistics | null>(null);
+  // Get categories context
+const { refreshCategories } = useCategoriesContext();
 
   // Fetch all menu items
   const fetchMenuItems = async () => {
@@ -106,6 +109,7 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       // Refresh list to get latest data with images
       await fetchMenuItems();
       await fetchStatistics();
+      await refreshCategories();  // ← REFRESH CATEGORIES! ✅
       return newId;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to add menu item';
@@ -142,6 +146,7 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       // Refresh to get images properly
       await fetchMenuItems();
       await fetchStatistics();
+      await refreshCategories();  // ← REFRESH CATEGORIES! ✅
     } catch (err) {
       // Revert on error
       setMenuItems(originalMenuItems);
@@ -163,6 +168,7 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       await deleteMenuItem(id);
       toast.success('Menu item deleted successfully!');
       await fetchStatistics();
+      await refreshCategories();  // ← REFRESH CATEGORIES! ✅
     } catch (err) {
       // Revert on error
       setMenuItems(originalMenuItems);
@@ -189,6 +195,7 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       await toggleMenuItemStatus(id, currentStatus);
       toast.success(`Item status changed to ${newStatus}!`);
       await fetchStatistics();
+      
     } catch (err) {
       // Revert on error
       setMenuItems(originalMenuItems);

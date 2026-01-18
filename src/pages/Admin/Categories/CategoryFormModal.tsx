@@ -1,4 +1,4 @@
-// src/components/Admin/Categories/CategoryFormModal.tsx
+// src/pages/Admin/Categories/CategoryFormModal.tsx
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import type { Category } from '../../../service/categories/categories.service';
@@ -6,7 +6,7 @@ import type { Category } from '../../../service/categories/categories.service';
 interface CategoryFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt'>) => Promise<void>;
+  onSubmit: (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>) => Promise<void>;
   category?: Category | null;
   mode: 'add' | 'edit';
 }
@@ -21,7 +21,6 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    items: 0,
     status: 'active' as 'active' | 'inactive'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,14 +30,12 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
       setFormData({
         name: category.name,
         description: category.description,
-        items: category.items,
         status: category.status
       });
     } else {
       setFormData({
         name: '',
         description: '',
-        items: 0,
         status: 'active'
       });
     }
@@ -46,6 +43,17 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.name.trim()) {
+      alert('Please enter a category name');
+      return;
+    }
+
+    if (!formData.description.trim()) {
+      alert('Please enter a description');
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -147,35 +155,6 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 required
               />
             </div>
-
-            {/* Items Count (only show in edit mode) */}
-            {mode === 'edit' && (
-              <div>
-                <label 
-                  htmlFor="items"
-                  className="block text-sm font-semibold mb-2"
-                  style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
-                >
-                  Number of Items
-                </label>
-                <input
-                  type="number"
-                  id="items"
-                  value={formData.items}
-                  onChange={(e) => setFormData({ ...formData, items: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-200 outline-none"
-                  style={{
-                    borderColor: '#D7CDC133',
-                    backgroundColor: 'white',
-                    color: '#3D5257',
-                    fontFamily: 'Inter, sans-serif'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
-                  onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
-                  min="0"
-                />
-              </div>
-            )}
 
             {/* Status */}
             <div>

@@ -171,7 +171,7 @@ const Menus = () => {
       </div>
 
       {/* Analytics Section */}
-      <div className="mb-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Total Items Card */}
         <div 
           className="rounded-xl p-6 shadow-sm"
@@ -270,7 +270,7 @@ const Menus = () => {
         </div>
 
         {/* Categories Count Card */}
-        <div 
+        {/* <div 
           className="rounded-xl p-6 shadow-sm"
           style={{ 
             backgroundColor: 'white',
@@ -299,7 +299,7 @@ const Menus = () => {
               <TrendingUp size={24} style={{ color: '#3D5257' }} />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Search and Filter Section */}

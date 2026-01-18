@@ -17,10 +17,11 @@ import {
   ref, 
   uploadBytes, 
   deleteObject, 
-  getDownloadURL,
-  listAll
+  getDownloadURL
 } from 'firebase/storage';
 import { db, storage } from '../firebase';
+
+ import { incrementCategoryItemsCount } from '../categories/categories.service';
 
 export interface MenuItem {
   uid?: string;
@@ -28,14 +29,15 @@ export interface MenuItem {
   price: number;
   description: string;
   categoryId: string;
-  categoryName: string; // Store category name for storage path
-  images: string[]; // Array of download URLs
+  categoryName: string;
+  images: string[];
   status: 'active' | 'inactive';
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 }
 
 const COLLECTION_NAME = 'menu';
+const CATEGORIES_COLLECTION = 'categories';
 const STORAGE_BASE = 'menu';
 
 // Get all menu items
@@ -106,7 +108,6 @@ const uploadMenuImage = async (
   try {
     const fileExtension = file.name.split('.').pop();
     const fileName = `${Date.now()}_${index}.${fileExtension}`;
-    // Use category name instead of ID in storage path
     const storagePath = `${STORAGE_BASE}/${menuItemId}/${fileName}`;
     
     const storageRef = ref(storage, storagePath);
@@ -127,7 +128,6 @@ const deleteMenuImage = async (imageUrl: string): Promise<void> => {
     await deleteObject(imageRef);
   } catch (error) {
     console.error('Error deleting image:', error);
-    // Don't throw - image might already be deleted
   }
 };
 
@@ -147,24 +147,19 @@ const moveImagesToNewCategory = async (
 
     for (const imageUrl of images) {
       try {
-        // Extract file name from URL
         const urlPath = new URL(imageUrl).pathname;
         const fileName = urlPath.split('/').pop() || `${Date.now()}.jpg`;
         
-        // Get the image data
         const response = await fetch(imageUrl);
         const blob = await response.blob();
         const file = new File([blob], fileName, { type: blob.type });
 
-        // Upload to new location
         const newUrl = await uploadMenuImage(newCategoryName, menuItemId, file, 0);
         newImageUrls.push(newUrl);
 
-        // Delete from old location
         await deleteMenuImage(imageUrl);
       } catch (error) {
         console.error('Error moving image:', error);
-        // Keep original URL if move fails
         newImageUrls.push(imageUrl);
       }
     }
@@ -182,7 +177,6 @@ export const addMenuItem = async (
   imageFiles: File[]
 ): Promise<string> => {
   try {
-    // First, create the menu item without images
     const menuRef = collection(db, COLLECTION_NAME);
     const docRef = await addDoc(menuRef, {
       ...menuData,
@@ -192,7 +186,6 @@ export const addMenuItem = async (
       updatedAt: serverTimestamp()
     });
 
-    // Upload images and collect URLs
     const imageUrls: string[] = [];
     for (let i = 0; i < imageFiles.length; i++) {
       try {
@@ -208,13 +201,15 @@ export const addMenuItem = async (
       }
     }
 
-    // Update menu item with image URLs
     if (imageUrls.length > 0) {
       await updateDoc(docRef, {
         images: imageUrls,
         updatedAt: serverTimestamp()
       });
     }
+
+    // Increment category items count (FAST - no query)
+    await incrementCategoryItemsCount(menuData.categoryId, 1);
 
     return docRef.id;
   } catch (error) {
@@ -255,7 +250,6 @@ export const updateMenuItem = async (
           console.error('Error deleting image:', error);
         }
       }
-      // Remove deleted images from array
       updatedImages = updatedImages.filter(img => !imagesToDelete.includes(img));
     }
 
@@ -286,6 +280,12 @@ export const updateMenuItem = async (
 
     const menuItemRef = doc(db, COLLECTION_NAME, id);
     await updateDoc(menuItemRef, updateData);
+
+    // Update counts for category change (FAST - no queries)
+    if (menuData.categoryId && menuData.categoryId !== currentItem.categoryId) {
+      await incrementCategoryItemsCount(currentItem.categoryId, -1);
+      await incrementCategoryItemsCount(menuData.categoryId, 1);
+    }
   } catch (error) {
     console.error('Error updating menu item:', error);
     throw new Error('Failed to update menu item');
@@ -312,6 +312,9 @@ export const deleteMenuItem = async (id: string): Promise<void> => {
     // Delete menu item document
     const menuItemRef = doc(db, COLLECTION_NAME, id);
     await deleteDoc(menuItemRef);
+
+    // Decrement category items count (FAST - no query)
+    await incrementCategoryItemsCount(menuItem.categoryId, -1);
   } catch (error) {
     console.error('Error deleting menu item:', error);
     throw new Error('Failed to delete menu item');

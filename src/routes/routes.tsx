@@ -18,6 +18,7 @@ import Categories from "../pages/Admin/Categories/Categories";
 import AuthLayOut from "../layouts/AuthLayOut/AuthLayOut";
 import Messages from "../pages/Admin/Messages/Messages";
 import Menus from "../pages/Admin/Menus/Menus";
+import AdminGallery from "../pages/Admin/AdminGallery/AdminGallery";
 
 
 
@@ -44,6 +45,7 @@ export const routes = createBrowserRouter([
     { path: "categories", element: <Categories/> },
     { path: "messages", element: <Messages/> },
     { path: "menu", element: <Menus/> },
+    { path: "admin-gallery", element: <AdminGallery/> },
 
   ],
 },

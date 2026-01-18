@@ -7,7 +7,7 @@ import {
   Search,
   Add
 } from '@mui/icons-material';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp, Layers, Eye, EyeOff } from 'lucide-react';
 import { useCategoriesContext } from '../../../store/CategoriesContext/CategoriesContext';
 import type { Category } from '../../../service/categories/categories.service';
 import CategoryFormModal from './CategoryFormModal';
@@ -16,6 +16,7 @@ import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 const Categories = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
@@ -26,21 +27,29 @@ const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [formMode, setFormMode] = useState<'add' | 'edit'>('add');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isTogglingStatus, setIsTogglingStatus] = useState(false);
 
   // Use the context
   const {
     categories,
     loading,
+    statistics,
     handleAddCategory,
     handleUpdateCategory,
-    handleDeleteCategory
+    handleDeleteCategory,
+    handleToggleStatus
   } = useCategoriesContext();
 
-  // Filter categories based on search
-  const filteredCategories = categories.filter(category =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    category.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter categories based on search and status
+  const filteredCategories = categories.filter(category => {
+    const matchesSearch = 
+      category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      category.description.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesStatus = statusFilter === 'all' || category.status === statusFilter;
+    
+    return matchesSearch && matchesStatus;
+  });
 
   // Pagination
   const totalPages = Math.ceil(filteredCategories.length / itemsPerPage);
@@ -72,7 +81,7 @@ const Categories = () => {
   };
 
   // Handle form submit for add/edit
-  const handleFormSubmit = async (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt'>) => {
+  const handleFormSubmit = async (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>) => {
     if (formMode === 'add') {
       await handleAddCategory(data);
     } else if (selectedCategory?.uid) {
@@ -98,6 +107,18 @@ const Categories = () => {
     }
   };
 
+  // Handle status toggle
+  const handleStatusToggle = async (category: Category) => {
+    setIsTogglingStatus(true);
+    try {
+      await handleToggleStatus(category.uid || '', category.status);
+    } catch (error) {
+      console.error('Status toggle error:', error);
+    } finally {
+      setIsTogglingStatus(false);
+    }
+  };
+
   return (
     <div className="w-full">
       {/* Header Section */}
@@ -110,10 +131,141 @@ const Categories = () => {
         </p>
       </div>
 
-      {/* Search and Add Section */}
-      <div className="mb-6 flex items-center justify-between gap-4">
+      {/* Analytics Section */}
+      <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Total Categories Card */}
+        <div 
+          className="rounded-xl p-6 shadow-sm"
+          style={{ 
+            backgroundColor: 'white',
+            border: '1px solid #D7CDC122'
+          }}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <p 
+                className="text-sm font-semibold mb-2"
+                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+              >
+                TOTAL CATEGORIES
+              </p>
+              <p 
+                className="text-3xl font-bold"
+                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+              >
+                {statistics?.totalCategories || 0}
+              </p>
+            </div>
+            <div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center"
+              style={{ backgroundColor: '#D7CDC122' }}
+            >
+              <Layers size={24} style={{ color: '#3D5257' }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Active Categories Card */}
+        <div 
+          className="rounded-xl p-6 shadow-sm"
+          style={{ 
+            backgroundColor: 'white',
+            border: '1px solid #D7CDC122'
+          }}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <p 
+                className="text-sm font-semibold mb-2"
+                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+              >
+                ACTIVE CATEGORIES
+              </p>
+              <p 
+                className="text-3xl font-bold"
+                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+              >
+                {statistics?.activeCategories || 0}
+              </p>
+            </div>
+            <div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center"
+              style={{ backgroundColor: '#D7CDC122' }}
+            >
+              <Eye size={24} style={{ color: '#3D5257' }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Inactive Categories Card */}
+        <div 
+          className="rounded-xl p-6 shadow-sm"
+          style={{ 
+            backgroundColor: 'white',
+            border: '1px solid #D7CDC122'
+          }}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <p 
+                className="text-sm font-semibold mb-2"
+                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+              >
+                INACTIVE CATEGORIES
+              </p>
+              <p 
+                className="text-3xl font-bold"
+                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+              >
+                {statistics?.inactiveCategories || 0}
+              </p>
+            </div>
+            <div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center"
+              style={{ backgroundColor: '#D7CDC122' }}
+            >
+              <EyeOff size={24} style={{ color: '#3D5257' }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Total Items Card */}
+        {/* <div 
+          className="rounded-xl p-6 shadow-sm"
+          style={{ 
+            backgroundColor: 'white',
+            border: '1px solid #D7CDC122'
+          }}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <p 
+                className="text-sm font-semibold mb-2"
+                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+              >
+                TOTAL ITEMS
+              </p>
+              <p 
+                className="text-3xl font-bold"
+                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+              >
+                {statistics?.totalItems || 0}
+              </p>
+            </div>
+            <div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center"
+              style={{ backgroundColor: '#D7CDC122' }}
+            >
+              <TrendingUp size={24} style={{ color: '#3D5257' }} />
+            </div>
+          </div>
+        </div> */}
+      </div>
+
+      {/* Search and Filter Section */}
+      <div className="mb-6 flex items-center justify-between gap-4 flex-wrap">
         {/* Search Bar */}
-        <div className="relative flex-1 max-w-md">
+        <div className="relative flex-1 min-w-[200px] max-w-md">
           <Search 
             className="absolute left-4 top-1/2 -translate-y-1/2" 
             style={{ color: '#3D525799', fontSize: '20px' }}
@@ -137,6 +289,28 @@ const Categories = () => {
             onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
           />
         </div>
+
+        {/* Status Filter */}
+        <select
+          value={statusFilter}
+          onChange={(e) => {
+            setStatusFilter(e.target.value as 'all' | 'active' | 'inactive');
+            setCurrentPage(1);
+          }}
+          className="px-4 py-3 rounded-lg border-2 transition-all duration-200 outline-none"
+          style={{
+            borderColor: '#D7CDC133',
+            backgroundColor: 'white',
+            color: '#3D5257',
+            fontFamily: 'Inter, sans-serif'
+          }}
+          onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
+          onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
+        >
+          <option value="all">All Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
 
         {/* Add Button */}
         <button
@@ -201,7 +375,7 @@ const Categories = () => {
                   <tr>
                     <td colSpan={5} className="text-center py-12">
                       <p style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
-                        {searchTerm ? 'No categories found matching your search.' : 'No categories yet. Add your first category!'}
+                        {searchTerm || statusFilter !== 'all' ? 'No categories found matching your criteria.' : 'No categories yet. Add your first category!'}
                       </p>
                     </td>
                   </tr>
@@ -232,17 +406,24 @@ const Categories = () => {
                           {category.items}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-center">
-                        <span
-                          className="inline-block px-3 py-1 rounded-full text-xs font-medium capitalize"
-                          style={{
-                            backgroundColor: category.status === 'active' ? '#D7CDC122' : '#3D525722',
-                            color: category.status === 'active' ? '#3D5257' : '#3D525799',
-                            fontFamily: 'Inter, sans-serif'
-                          }}
-                        >
-                          {category.status}
-                        </span>
+                      <td className="px-6 py-4">
+                        <div className="flex justify-center">
+                          <button
+                            onClick={() => handleStatusToggle(category)}
+                            disabled={isTogglingStatus}
+                            className="px-3 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50"
+                            style={{
+                              backgroundColor: category.status === 'active' ? '#D7CDC122' : '#3D525722',
+                              color: category.status === 'active' ? '#3D5257' : '#3D525799',
+                              fontFamily: 'Inter, sans-serif'
+                            }}
+                            onMouseEnter={(e) => !isTogglingStatus && (e.currentTarget.style.opacity = '0.8')}
+                            onMouseLeave={(e) => !isTogglingStatus && (e.currentTarget.style.opacity = '1')}
+                            title="Click to toggle status"
+                          >
+                            {category.status}
+                          </button>
+                        </div>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
