@@ -8,12 +8,11 @@ import {
   Add
 } from '@mui/icons-material';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useCategories } from '../../../hooks/Admin/Categories/useCategories';
+import { useCategoriesContext } from '../../../store/CategoriesContext/CategoriesContext';
 import type { Category } from '../../../service/categories/categories.service';
 import CategoryFormModal from './CategoryFormModal';
 import CategoryDetailsModal from './CategoryDetailsModal';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
-
 
 const Categories = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,14 +27,14 @@ const Categories = () => {
   const [formMode, setFormMode] = useState<'add' | 'edit'>('add');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Use the hook
+  // Use the context
   const {
     categories,
     loading,
     handleAddCategory,
     handleUpdateCategory,
     handleDeleteCategory
-  } = useCategories();
+  } = useCategoriesContext();
 
   // Filter categories based on search
   const filteredCategories = categories.filter(category =>
@@ -72,8 +71,7 @@ const Categories = () => {
     setIsDeleteModalOpen(true);
   };
 
-
-  // handle form submit for add /edit 
+  // Handle form submit for add/edit
   const handleFormSubmit = async (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt'>) => {
     if (formMode === 'add') {
       await handleAddCategory(data);
@@ -84,8 +82,7 @@ const Categories = () => {
     setSelectedCategory(null);
   };
 
-
-  // handle delete
+  // Handle delete
   const handleDeleteConfirm = async () => {
     if (!selectedCategory?.uid) return;
     
