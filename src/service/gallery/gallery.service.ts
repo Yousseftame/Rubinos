@@ -134,62 +134,59 @@ const getNextPlaceOrder = async (): Promise<number> => {
   }
 };
 
-// Reorder items when a new order is set
-const reorderGalleryItems = async (
-  newItemId: string, 
-  newPlaceOrder: number, 
-  oldPlaceOrder?: number
+// FIXED: Swap items when editing (true swap behavior)
+const swapGalleryItems = async (
+  itemId: string,
+  newPlaceOrder: number,
+  oldPlaceOrder: number
 ): Promise<void> => {
   try {
     const batch = writeBatch(db);
     const items = await getAllGalleryItems();
     
-    // If updating existing item (has oldPlaceOrder)
-    if (oldPlaceOrder !== undefined) {
-      if (newPlaceOrder < oldPlaceOrder) {
-        // Moving up: shift items down
-        items.forEach(item => {
-          if (item.uid !== newItemId && 
-              item.placeOrder >= newPlaceOrder && 
-              item.placeOrder < oldPlaceOrder) {
-            const itemRef = doc(db, COLLECTION_NAME, item.uid!);
-            batch.update(itemRef, { 
-              placeOrder: item.placeOrder + 1,
-              updatedAt: serverTimestamp()
-            });
-          }
-        });
-      } else if (newPlaceOrder > oldPlaceOrder) {
-        // Moving down: shift items up
-        items.forEach(item => {
-          if (item.uid !== newItemId && 
-              item.placeOrder <= newPlaceOrder && 
-              item.placeOrder > oldPlaceOrder) {
-            const itemRef = doc(db, COLLECTION_NAME, item.uid!);
-            batch.update(itemRef, { 
-              placeOrder: item.placeOrder - 1,
-              updatedAt: serverTimestamp()
-            });
-          }
-        });
-      }
-    } else {
-      // New item: shift all items at or after newPlaceOrder down by 1
-      items.forEach(item => {
-        if (item.placeOrder >= newPlaceOrder) {
-          const itemRef = doc(db, COLLECTION_NAME, item.uid!);
-          batch.update(itemRef, { 
-            placeOrder: item.placeOrder + 1,
-            updatedAt: serverTimestamp()
-          });
-        }
+    // Find the item currently at the target position
+    const itemAtTargetPosition = items.find(item => item.placeOrder === newPlaceOrder);
+    
+    if (itemAtTargetPosition && itemAtTargetPosition.uid !== itemId) {
+      // SWAP: Give the target item the old position
+      const targetItemRef = doc(db, COLLECTION_NAME, itemAtTargetPosition.uid!);
+      batch.update(targetItemRef, {
+        placeOrder: oldPlaceOrder,
+        updatedAt: serverTimestamp()
       });
     }
     
     await batch.commit();
   } catch (error) {
-    console.error('Error reordering gallery items:', error);
-    throw new Error('Failed to reorder gallery items');
+    console.error('Error swapping gallery items:', error);
+    throw new Error('Failed to swap gallery items');
+  }
+};
+
+// Insert item at position (for new items only - shifts other items)
+const insertGalleryItemAtPosition = async (
+  newItemId: string,
+  newPlaceOrder: number
+): Promise<void> => {
+  try {
+    const batch = writeBatch(db);
+    const items = await getAllGalleryItems();
+    
+    // Shift all items at or after newPlaceOrder down by 1
+    items.forEach(item => {
+      if (item.uid !== newItemId && item.placeOrder >= newPlaceOrder) {
+        const itemRef = doc(db, COLLECTION_NAME, item.uid!);
+        batch.update(itemRef, {
+          placeOrder: item.placeOrder + 1,
+          updatedAt: serverTimestamp()
+        });
+      }
+    });
+    
+    await batch.commit();
+  } catch (error) {
+    console.error('Error inserting gallery item:', error);
+    throw new Error('Failed to insert gallery item');
   }
 };
 
@@ -215,9 +212,9 @@ export const addGalleryItem = async (
     // Get final place order
     const finalPlaceOrder = placeOrder ?? await getNextPlaceOrder();
     
-    // Reorder other items if necessary
+    // Shift other items if inserting at specific position
     if (placeOrder !== undefined) {
-      await reorderGalleryItems(docRef.id, finalPlaceOrder);
+      await insertGalleryItemAtPosition(docRef.id, finalPlaceOrder);
     }
     
     // Update with final data
@@ -259,9 +256,9 @@ export const updateGalleryItem = async (
       imageUrl = await uploadGalleryImage(newImageFile, id);
     }
 
-    // Handle place order change
+    // Handle place order change - SWAP logic
     if (updates.placeOrder !== undefined && updates.placeOrder !== currentItem.placeOrder) {
-      await reorderGalleryItems(id, updates.placeOrder, currentItem.placeOrder);
+      await swapGalleryItems(id, updates.placeOrder, currentItem.placeOrder);
     }
 
     // Update document
