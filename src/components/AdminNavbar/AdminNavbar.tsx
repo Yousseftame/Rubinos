@@ -1,4 +1,4 @@
-import { LogOut, User } from 'lucide-react';
+import {  User } from 'lucide-react';
 import { useAuth } from '../../store/AuthContext/AuthContext';
 
 const AdminNavbar = () => {

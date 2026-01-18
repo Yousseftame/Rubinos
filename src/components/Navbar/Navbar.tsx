@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Facebook, Instagram, Menu, Twitter, X, XIcon } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Facebook, Instagram, Menu,  X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/rub-transparent.png';
 
@@ -10,7 +10,6 @@ import logo from '../../assets/rub-transparent.png';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
 
 
   useEffect(() => {

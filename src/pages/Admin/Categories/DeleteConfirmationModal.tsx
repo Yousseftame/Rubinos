@@ -1,6 +1,6 @@
 // src/components/Admin/Categories/DeleteConfirmationModal.tsx
 import React from 'react';
-import { AlertTriangle, X } from 'lucide-react';
+import { AlertTriangle} from 'lucide-react';
 
 interface DeleteConfirmationModalProps {
   isOpen: boolean;
