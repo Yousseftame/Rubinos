@@ -362,11 +362,11 @@ const AdminGallery = () => {
                       <button
                         onClick={() => handleStatusToggle(item)}
                         disabled={isTogglingStatus}
-                        className="px-3 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50"
+                        className="px-3 py-1 rounded-full text-md font-medium capitalize transition-all disabled:opacity-50"
                         style={{
-                          backgroundColor: item.status === 'active' ? '#D7CDC122' : '#3D525722',
-                          color: item.status === 'active' ? '#3D5257' : '#3D525799',
-                          fontFamily: 'Inter, sans-serif'
+                          backgroundColor: item.status === 'active' ? '#EDF3EF' : '#FDECEC',
+                          color: item.status === 'active' ? '#8EC693' : '#C0362C',
+                          fontFamily: "font-head"
                         }}
                         onMouseEnter={(e) => !isTogglingStatus && (e.currentTarget.style.opacity = '0.8')}
                         onMouseLeave={(e) => !isTogglingStatus && (e.currentTarget.style.opacity = '1')}
