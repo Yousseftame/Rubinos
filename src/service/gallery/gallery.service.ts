@@ -93,7 +93,7 @@ export const getGalleryItemById = async (id: string): Promise<GalleryItem | null
 };
 
 // Upload image to storage
-const uploadGalleryImage = async (file: File, itemId: string): Promise<string> => {
+const uploadGalleryImage = async (file: File, _itemId: string): Promise<string> => {
   try {
     const fileExtension = file.name.split('.').pop();
     const fileName = `${Date.now()}.${fileExtension}`;

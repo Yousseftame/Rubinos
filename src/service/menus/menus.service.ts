@@ -100,7 +100,7 @@ export const getMenuItemById = async (id: string): Promise<MenuItem | null> => {
 
 // Upload image to storage with category name in path
 const uploadMenuImage = async (
-  categoryName: string,
+  _categoryName: string,
   menuItemId: string,
   file: File,
   index: number
