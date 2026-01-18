@@ -7,6 +7,7 @@ import { AuthProvider } from './store/AuthContext/AuthContext.tsx'
 import { MessagesProvider } from './store/MessagesContext/MessagesContext.tsx'
 import { CategoriesProvider } from './store/CategoriesContext/CategoriesContext.tsx'
 import { MenusProvider } from './store/MenusContext/MenusContext.tsx'
+import { GalleryProvider } from './store/GalleryContext/GalleryContext.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -15,8 +16,9 @@ createRoot(document.getElementById('root')!).render(
       <CategoriesProvider>
         <MenusProvider>
       <MessagesProvider>
+        <GalleryProvider>
     <App />
-
+        </GalleryProvider>
     </MessagesProvider>
     </MenusProvider>
     </CategoriesProvider>
