@@ -37,7 +37,7 @@
 //   }, []);
 
 //   // Add new category
-//   const handleAddCategory = async (categoryData: Omit<Category, 'uid' | 'createdAt' | 'updatedAt'>) => {
+//   const handleAddCategory = async (categoryData: Omit<Category, 'uid' | 'createdAt' | 'P'>) => {
 //     try {
 //       setLoading(true);
 //       const newId = await addCategory(categoryData);
@@ -95,3 +95,28 @@
 //     handleDeleteCategory
 //   };
 // };
+
+
+
+
+
+
+
+
+
+
+// import { useHomeSectionsContext } from '../store/HomeSectionsContext/HomeSectionsContext';
+
+// function MyComponent() {
+//   const { sections, loading } = useHomeSectionsContext();
+  
+//   const aboutSection = sections.find(s => s.type === 'about');
+  
+//   return (
+//     <div>
+//       <h2>{aboutSection?.title}</h2>
+//       <p>{aboutSection?.description}</p>
+//       <img src={aboutSection?.imageUrl} alt="About" />
+//     </div>
+//   );
+// }

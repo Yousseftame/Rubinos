@@ -17,7 +17,7 @@ const Messages = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState<'all' | 'new' | 'seen' | 'replied'>('all');
-  const itemsPerPage = 5;
+  const itemsPerPage = 8;
 
   // Modal states
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);

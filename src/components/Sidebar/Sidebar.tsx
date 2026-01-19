@@ -58,7 +58,7 @@ const Sidebar = () => {
     { id: 'menu', label: 'Menu Management', icon: MenuBook, path: '/admin/menu' },
     { id: 'contact', label: 'Messages', icon: Mail, path: '/admin/messages' },
     { id: 'gallery', label: 'Gallery', icon: Image, path: '/admin/admin-gallery' },
-    { id: 'section', label: 'Sections', icon: Settings, path: '/admin/section' },
+    { id: 'section', label: 'Home Sections', icon: Settings, path: '/admin/home-sections' },
   ];
 
   return (
@@ -88,8 +88,10 @@ const Sidebar = () => {
         {/* Menu Items */}
         <nav className="mt-6 px-4 space-y-1 overflow-hidden">
           {menuItems.map((item) => {
+            
             const Icon = item.icon;
             const isActive = activeItem === item.id;
+            
             
             return (
               <button

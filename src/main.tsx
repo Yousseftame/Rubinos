@@ -8,6 +8,7 @@ import { MessagesProvider } from './store/MessagesContext/MessagesContext.tsx'
 import { CategoriesProvider } from './store/CategoriesContext/CategoriesContext.tsx'
 import { MenusProvider } from './store/MenusContext/MenusContext.tsx'
 import { GalleryProvider } from './store/GalleryContext/GalleryContext.tsx'
+import { HomeSectionsProvider } from './store/HomeSectionsContext/HomeSectionsContext.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -17,7 +18,9 @@ createRoot(document.getElementById('root')!).render(
         <MenusProvider>
       <MessagesProvider>
         <GalleryProvider>
+          <HomeSectionsProvider>
     <App />
+    </HomeSectionsProvider>
         </GalleryProvider>
     </MessagesProvider>
     </MenusProvider>

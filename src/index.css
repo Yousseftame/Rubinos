@@ -308,3 +308,20 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-attachment: fixed;
 }
+
+.btn-invert {
+  background-color: #3d5055;
+  color: #e8dfd7;
+  transition: all 0.3s ease;
+
+}
+
+.btn-invert:hover {
+  background-color: #e8dfd7;
+  color: #3d5055;
+  border-color: #3d5055;
+}
+
+html, body {
+  overflow-x: hidden;
+}

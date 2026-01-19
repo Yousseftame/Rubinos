@@ -346,8 +346,8 @@ const Categories = () => {
           }}
         >
           {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          <div className="overflow-x-auto  ">
+            <table className="  w-full ">
               {/* Table Head */}
               <thead>
                 <tr style={{ backgroundColor: '#3D5257' }}>
@@ -522,7 +522,7 @@ const Categories = () => {
                 {/* Page Numbers */}
                 {[...Array(totalPages)].map((_, index) => (
                   <button
-                    key={index + 1}
+                    key={index }
                     onClick={() => setCurrentPage(index + 1)}
                     className="w-9 h-9 rounded-lg text-sm font-medium transition-all duration-150"
                     style={{

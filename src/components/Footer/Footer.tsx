@@ -1,8 +1,10 @@
 import { Instagram } from 'lucide-react';
 import knotIcon from '../../assets/Seaworthy_favicon_rope-removebg-preview.png';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
 
   return (
     <footer className="relative overflow-hidden" style={{ backgroundColor: '#46616d' }}>
@@ -23,23 +25,25 @@ const Footer = () => {
 
         {/* Subheading */}
         <p className="text-sm lg:text-base font-serif mb-6" style={{ color: '#d4ccc0' }}>
-          Sign up for news and updates from Rubinos
+          Submit a query for news and updates from Rubinos
         </p>
 
         {/* Email Signup */}
         <form className="flex gap-0 max-w-sm mx-auto mb-6">
-          <input
+          {/* <input
+          
             type="email"
             placeholder="Enter your email"
             required
             className="flex-1 px-5 py-3 font-serif text-sm bg-white text-[#5a7a82] placeholder-[#999] focus:outline-none"
-          />
+          /> */}
           <button
-            type="submit"
-            className="px-8 py-3 font-serif text-sm font-medium tracking-widest transition-all hover:opacity-80 duration-300"
-            style={{ backgroundColor: '#3d5055', color: '#e8dfd7' }}
+           onClick={()=>{navigate("/contact")}}
+            type="button"
+            className=" btn-invert flex-1 px-8 py-3 font-serif text-sm font-medium tracking-widest transition-all hover:shadow-lg  duration-300"
+           
           >
-            SIGNUP
+            CONTACT
           </button>
         </form>
 

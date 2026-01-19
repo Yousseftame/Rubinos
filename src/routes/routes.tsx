@@ -18,6 +18,7 @@ import AuthLayOut from "../layouts/AuthLayOut/AuthLayOut";
 import Messages from "../pages/Admin/Messages/Messages";
 import Menus from "../pages/Admin/Menus/Menus";
 import AdminGallery from "../pages/Admin/AdminGallery/AdminGallery";
+import AdminHomeSections from "../pages/Admin/AdminHomeSections/AdminHomeSections";
 
 
 
@@ -45,6 +46,7 @@ export const routes = createBrowserRouter([
     { path: "messages", element: <Messages/> },
     { path: "menu", element: <Menus/> },
     { path: "admin-gallery", element: <AdminGallery/> },
+    { path: "home-sections", element: <AdminHomeSections/> },
 
   ],
 },
