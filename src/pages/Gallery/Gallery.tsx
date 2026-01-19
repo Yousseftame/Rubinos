@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
 import section1 from '../../assets/section1.webp';
 import ambiance from '../../assets/ambiance-1.jpg';
+import { getActiveGalleryItems } from '../../service/gallery/gallery.service';
+
 
 
 export default function Gallery() {
