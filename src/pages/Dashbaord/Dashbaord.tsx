@@ -12,7 +12,8 @@ const Dashboard = () => {
   const [heroSection, setHeroSection] = useState<any>(null);
   const [aboutSection, setAboutSection] = useState<any>(null);
   const [diningSection, setDiningSection] = useState<any>(null);
-  const naviagte = useNavigate();
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (sections.length > 0) {
@@ -21,6 +22,15 @@ const Dashboard = () => {
       setDiningSection(sections.find(s => s.type === 'dining'));
     }
   }, [sections]);
+
+  // Preload hero image for instant display
+  useEffect(() => {
+    if (heroSection?.imageUrl) {
+      const img = new Image();
+      img.src = heroSection.imageUrl;
+      img.onload = () => setHeroImageLoaded(true);
+    }
+  }, [heroSection?.imageUrl]);
 
   // Loading state
   if (sectionsLoading) {
@@ -35,16 +45,29 @@ const Dashboard = () => {
     <>
       {/* Hero Section - Full Screen with Dynamic Image */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Background Image - Dynamic */}
-        <div className="absolute inset-0">
+        {/* Background Image - Dynamic with Priority Loading */}
+        <div className="absolute inset-0 bg-gray-900">
           {heroSection?.imageUrl ? (
-            <img
-              src={heroSection.imageUrl}
-              alt="Rubinos Interior"
-              className="w-full h-full object-cover"
-            />
+            <>
+              {/* Placeholder while loading */}
+              {!heroImageLoaded && (
+                <div className="absolute inset-0 bg-gray-800 animate-pulse" />
+              )}
+              
+              {/* Actual Image */}
+              <img
+                src={heroSection.imageUrl}
+                alt="Rubinos Interior"
+                className={`w-full h-full object-cover transition-opacity duration-500 ${
+                  heroImageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </>
           ) : (
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <div className="w-full h-full bg-gray-800 flex items-center justify-center">
               <span className="text-gray-400">No hero image</span>
             </div>
           )}
@@ -76,7 +99,12 @@ const Dashboard = () => {
             <div data-aos="fade-right" className="flex flex-col justify-start">
               {/* Oyster Icon */}
               <div className="mb-6 w-12 h-12 opacity-70">
-                <img src={mermaid} alt="Mermaid icon" className="w-full h-full" />
+                <img 
+                  src={mermaid} 
+                  alt="Mermaid icon" 
+                  className="w-full h-full"
+                  loading="lazy"
+                />
               </div>
 
               {/* Heading - Dynamic */}
@@ -97,27 +125,29 @@ const Dashboard = () => {
 
               {/* Button */}
               <div className="mt-10">
-                <a
-                  onClick={()=>{naviagte("/menu")}}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-8 py-3 font-serif text-xs lg:text-sm font-medium tracking-wider transition-all hover:opacity-75 duration-300"
+                <button
+                  onClick={() => navigate("/menu")}
+                  className="inline-block px-8 py-3 font-serif text-xs lg:text-sm font-medium tracking-wider transition-all hover:opacity-75 duration-300 cursor-pointer"
                   style={{ backgroundColor: '#3d5055', color: '#f5f1ed' }}
                 >
                   MENU
-                </a>
+                </button>
               </div>
             </div>
 
-            {/* Right Image - Dynamic */}
-            <div data-aos="fade-left" className="relative w-full h-auto">
+            {/* Right Image - Dynamic with Aspect Ratio Preservation */}
+            <div data-aos="fade-left" className="relative w-full">
               <div className="overflow-hidden rounded-md shadow-lg">
                 {aboutSection?.imageUrl ? (
-                  <img
-                    src={aboutSection.imageUrl}
-                    alt="About section"
-                    className="w-full h-auto object-cover block"
-                  />
+                  <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
+                    <img
+                      src={aboutSection.imageUrl}
+                      alt="About section"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                 ) : (
                   <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
                     <span className="text-gray-400">No image</span>
@@ -143,14 +173,18 @@ const Dashboard = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center overflow-hidden">
-            {/* Left Image - Dynamic */}
+            {/* Left Image - Dynamic with Aspect Ratio Preservation */}
             <div data-aos="fade-right" className="relative w-full overflow-hidden rounded-md shadow-lg">
               {diningSection?.imageUrl ? (
-                <img
-                  src={diningSection.imageUrl}
-                  alt="Private Dining at Rubinos"
-                  className="w-full h-auto object-cover block"
-                />
+                <div className="relative w-full" style={{ paddingBottom: '66.67%' }}>
+                  <img
+                    src={diningSection.imageUrl}
+                    alt="Private Dining at Rubinos"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               ) : (
                 <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
                   <span className="text-gray-400">No image</span>
@@ -178,13 +212,13 @@ const Dashboard = () => {
 
               {/* Button */}
               <div className="mt-10">
-                <a
-                  onClick={()=>{naviagte("/contact")}}
-                  className="inline-block px-8 py-3 font-serif text-xs lg:text-sm font-medium tracking-wider transition-all hover:opacity-75 duration-300"
+                <button
+                  onClick={() => navigate("/contact")}
+                  className="inline-block px-8 py-3 font-serif text-xs lg:text-sm font-medium tracking-wider transition-all hover:opacity-75 duration-300 cursor-pointer"
                   style={{ backgroundColor: '#3d5055', color: '#f5f1ed' }}
                 >
                   CONTACT
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -239,7 +273,7 @@ const Dashboard = () => {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0" style={{ color: '#b8aea0' }} strokeWidth={1.5} />
                 <a
-                  href="#"
+                  href="mailto:info@Rubinos.com"
                   className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity"
                   style={{ color: '#e8dfd7' }}
                 >
@@ -251,7 +285,7 @@ const Dashboard = () => {
             {/* Button */}
             <div className="mt-10">
               <a
-                href="#"
+                href="https://www.google.com/maps"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-7 py-3 font-serif text-xs lg:text-sm font-medium tracking-widest transition-all hover:opacity-75 duration-300"
@@ -291,7 +325,7 @@ const Dashboard = () => {
                 <h3 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" className="text-base lg:text-lg font-serif font-bold mb-2 tracking-widest" style={{ color: '#FFE8C0' }}>
                   OYSTER HAPPY HOUR
                 </h3>
-                <p className="font-serif text-xs lg:text-sm tracking-wide mb-2">
+                <p className="font-serif text-xs lg:text-sm tracking-wide mb-2" style={{ color: '#b8aea0' }}>
                   Half-off Shucker's select oysters and drink specials
                 </p>
                 <div className="flex justify-between items-center font-serif text-sm lg:text-base" style={{ color: '#b8aea0' }}>

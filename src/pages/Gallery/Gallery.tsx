@@ -1,28 +1,38 @@
 // Gallery.tsx
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
-import section1 from '../../assets/section1.webp';
 import ambiance from '../../assets/ambiance-1.jpg';
 import { getActiveGalleryItems } from '../../service/gallery/gallery.service';
-
-
+import type { GalleryItem } from '../../service/gallery/gallery.service';
 
 export default function Gallery() {
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [galleryImages, setGalleryImages] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const galleryImages = [
-    { id: 1, image: section1, alt: 'Oyster platter' },
-    { id: 2, image: section1, alt: 'Restaurant interior' },
-    { id: 3, image: section1, alt: 'Seafood dish' },
-    { id: 4, image: section1, alt: 'Cocktail' },
-    { id: 5, image: section1, alt: 'Private dining' },
-    { id: 6, image: section1, alt: 'Caviar service' },
-    { id: 7, image: section1, alt: 'Oyster preparation' },
-    { id: 8, image: section1, alt: 'Wine selection' },
-    { id: 9, image: section1, alt: 'Chef plating' },
-  ];
+  // Fetch gallery images on mount
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const items = await getActiveGalleryItems();
+        setGalleryImages(items);
+      } catch (err) {
+        console.error('Error fetching gallery items:', err);
+        setError('Failed to load gallery images');
+        setGalleryImages([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchGallery();
+  }, []);
+
+  // Lazy load images using Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,7 +51,7 @@ export default function Gallery() {
     images.forEach((img) => observer.observe(img));
 
     return () => observer.disconnect();
-  }, []);
+  }, [galleryImages]); // Re-run when galleryImages changes
 
   return (
     <div>
@@ -74,7 +84,8 @@ export default function Gallery() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12">
           <div className="text-center space-y-8">
-            <h2  data-aos="fade-up"
+            <h2 
+              data-aos="fade-up"
               className="font-head text-5xl lg:text-6xl font-bold leading-tight tracking-wide"
               style={{ color: '#5a7a82' }}
             >
@@ -88,7 +99,7 @@ export default function Gallery() {
                 className="font-serif text-base lg:text-lg leading-relaxed"
                 style={{ color: '#6b7c7e' }}
               >
-               Rubinos's intimate setting in a historic 19th century Creole townhome transports you to another time and place. We invite you to get lost in our thoughtfully curated menu, enjoy the views of passing streetcars, and savor everything this New Orleans oyster bar has to offer.
+                Rubinos's intimate setting in a historic 19th century Creole townhome transports you to another time and place. We invite you to get lost in our thoughtfully curated menu, enjoy the views of passing streetcars, and savor everything this New Orleans oyster bar has to offer.
               </p>
 
               <p
@@ -103,42 +114,70 @@ export default function Gallery() {
       </section>
 
       {/* Gallery Grid */}
-      <section className="relative py-0  pb-10 " style={{ backgroundColor: '#d4ccc0' }}>
+      <section className="relative py-0 pb-10" style={{ backgroundColor: '#d4ccc0' }}>
         <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2  ">
-            {galleryImages.map((item, index) => (
-              <div
-                key={item.id}
-                data-image-id={item.id}
-                onClick={() => setSelectedImageIndex(index)}
-                className="group relative overflow-hidden h-64 lg:h-80 bg-gray-200 cursor-pointer"
-              >
-                {loadedImages.has(item.id) ? (
-                  <>
-                    <img
-                      src={item.image}
-                      alt={item.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    {/* Overlay on Hover */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                      <Maximize2 className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" strokeWidth={1.5} />
+          {/* Loading State */}
+          {loading && (
+            <div className="flex justify-center items-center py-20">
+              <div className="w-12 h-12 border-4 border-[#a89f97]/30 border-t-[#3d5055] rounded-full animate-spin" />
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && !loading && (
+            <div className="text-center py-20">
+              <p className="font-serif text-lg" style={{ color: '#6b7c7e' }}>
+                {error}
+              </p>
+            </div>
+          )}
+
+          {/* Empty State */}
+          {!loading && !error && galleryImages.length === 0 && (
+            <div className="text-center py-20">
+              <p className="font-serif text-lg" style={{ color: '#6b7c7e' }}>
+                No gallery images available yet.
+              </p>
+            </div>
+          )}
+
+          {/* Gallery Grid - Dynamic */}
+          {!loading && !error && galleryImages.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+              {galleryImages.map((item, index) => (
+                <div
+                  key={item.uid || index}
+                  data-image-id={index}
+                  onClick={() => setSelectedImageIndex(index)}
+                  className="group relative overflow-hidden h-64 lg:h-80 bg-gray-200 cursor-pointer"
+                >
+                  {loadedImages.has(index) ? (
+                    <>
+                      <img
+                        src={item.image}
+                        alt={`Gallery image ${item.placeOrder}`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      {/* Overlay on Hover */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                        <Maximize2 className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" strokeWidth={1.5} />
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="w-8 h-8 border-4 border-[#a89f97]/30 border-t-[#3d5055] rounded-full animate-spin" />
                     </div>
-                  </>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-8 h-8 border-4 border-[#a89f97]/30 border-t-[#3d5055] rounded-full animate-spin" />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Lightbox Modal */}
-      {selectedImageIndex !== null && (
+      {selectedImageIndex !== null && galleryImages.length > 0 && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4">
           {/* Close Button */}
           <button
@@ -157,7 +196,7 @@ export default function Gallery() {
           <div className="relative w-full max-w-4xl">
             <img
               src={galleryImages[selectedImageIndex].image}
-              alt={galleryImages[selectedImageIndex].alt}
+              alt={`Gallery image ${galleryImages[selectedImageIndex].placeOrder}`}
               className="w-full h-auto rounded-lg"
             />
           </div>
