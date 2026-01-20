@@ -97,7 +97,7 @@ const Login = () => {
       </form>
 
       {/* Sign Up Link */}
-      <div className="mt-8 text-center">
+      {/* <div className="mt-8 text-center">
         <p className="text-sm font-serif" style={{ color: '#6b7c7e' }}>
           Don't have an account?{' '}
           <Link
@@ -108,7 +108,7 @@ const Login = () => {
             Create one here
           </Link>
         </p>
-      </div>
+      </div> */}
     </>
   );
 };

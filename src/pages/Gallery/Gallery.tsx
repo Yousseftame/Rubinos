@@ -1,7 +1,7 @@
 // Gallery.tsx
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
-import ambiance from '../../assets/ambiance-1.jpg';
+import ambiance from '../../assets/section1.webp';
 import { getActiveGalleryItems } from '../../service/gallery/gallery.service';
 import type { GalleryItem } from '../../service/gallery/gallery.service';
 
@@ -85,29 +85,28 @@ export default function Gallery() {
         <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12">
           <div className="text-center space-y-8">
             <h2 
-              data-aos="fade-up"
+              data-aos="zoom-in"
               className="font-head text-5xl lg:text-6xl font-bold leading-tight tracking-wide"
               style={{ color: '#5a7a82' }}
             >
-              SO MUCH TO SEA.
+              A TASTE OF ITALY.
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-[#b8aea0] to-[#a89f97] mx-auto" />
 
-            <div className="space-y-6">
+            <div  data-aos="zoom-in" className="space-y-6">
               <p
                 className="font-serif text-base lg:text-lg leading-relaxed"
                 style={{ color: '#6b7c7e' }}
               >
-                Rubinos's intimate setting in a historic 19th century Creole townhome transports you to another time and place. We invite you to get lost in our thoughtfully curated menu, enjoy the views of passing streetcars, and savor everything this New Orleans oyster bar has to offer.
-              </p>
+
+Step into Rubinos, where our cozy, authentic Italian restaurant brings the flavors of Italy straight to your table. From our hand-stretched pizzas baked to perfection in our wood-fired oven to our fresh pasta and carefully crafted antipasti, every bite is a journey to the heart of Italy.              </p>
 
               <p
                 className="font-serif text-base lg:text-lg leading-relaxed"
                 style={{ color: '#6b7c7e' }}
               >
-                While we have a hand full of menu mainstays (Shrimp & Grits, Oysters, Caviar, Rubinos Roll, Boquerones, Parker House Rolls, Frozen Key Lime Pie), many of our menu items are seasonal and feature the freshest ingredients available.
-              </p>
+While our menu features beloved classics like Margherita, Quattro Formaggi, and our signature Rubinos Special, many dishes are seasonal and highlight the freshest, locally sourced ingredients, ensuring every visit is a new experience.              </p>
             </div>
           </div>
         </div>

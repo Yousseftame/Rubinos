@@ -285,7 +285,7 @@ const Dashboard = () => {
             {/* Button */}
             <div className="mt-10">
               <a
-                href="https://www.google.com/maps"
+                href="https://www.google.com/maps?ll=31.225588,29.952763&z=16&t=m&hl=ar&gl=EG&mapclient=embed&cid=17144324494741846894"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-7 py-3 font-serif text-xs lg:text-sm font-medium tracking-widest transition-all hover:opacity-75 duration-300"

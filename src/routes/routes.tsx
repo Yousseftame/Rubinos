@@ -8,7 +8,7 @@ import Contact from "../pages/Contact/Contact";
 import NotFound from "../pages/NotFound/NotFound";
 import MenuDetails from "../pages/Menu/MenuDetails";
 import Login from "../pages/Auth/Login/Login";
-import Register from "../pages/Auth/Register/Register";
+// import Register from "../pages/Auth/Register/Register";
 import ForgetPassword from "../pages/Auth/ForgetPassword/ForgetPassword";
 import AdminPanel from "../pages/Admin/AdminPanel/AdminPanel";
 import AdminLayOut from "../layouts/AdminLayOut/AdminLayOut";
@@ -29,7 +29,7 @@ export const routes = createBrowserRouter([
   errorElement: <NotFound />,
   children: [
     { path: "login", element: <Login /> },
-    { path: "register", element: <Register /> },
+    // { path: "register", element: <Register /> },
     { path: "forget-password", element: <ForgetPassword /> },
     // { path: "reset-password", element: <ResetPassword /> },
   ],

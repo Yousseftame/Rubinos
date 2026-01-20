@@ -20,7 +20,7 @@ const Footer = () => {
 
         {/* Heading */}
         <h2 className="text-3xl lg:text-3xl font-head font-serif font-bold mb-3 tracking-wide" style={{ color: '#e8dfd7' }}>
-          Fair Winds and Following Seas
+          Authentic Italian, Right at Your Table
         </h2>
 
         {/* Subheading */}
@@ -49,7 +49,7 @@ const Footer = () => {
 
         {/* Footer Links */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 text-xs font-serif mb-4" style={{ color: '#d4ccc0' }}>
-          <a href="#" className="hover:opacity-80 transition-opacity">
+          <a  href="#" className="hover:opacity-80 transition-opacity">
             Privacy Policy
           </a>
           <a href="#" className="hover:opacity-80 transition-opacity">
@@ -66,8 +66,8 @@ const Footer = () => {
             className="inline-flex items-center gap-2 font-serif text-sm transition-opacity hover:opacity-80"
             style={{ color: '#d4ccc0' }}
           >
-            <Instagram size={14} strokeWidth={1.5} />
            Rubinos.eg
+            <Instagram size={14} strokeWidth={1.5} />
           </a>
         </div>
 

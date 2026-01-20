@@ -96,8 +96,7 @@ export default function Contact() {
               Let's Be In Touch
             </h2>
             <p  data-aos="fade-down" className="font-serif text-base lg:text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: '#6b7c7e' }}>
-              Whether inquiring about our many seafood sustainability efforts, have a question about the New Orleans-inspired menu, or wish to hold an event in our private dining space, we invite you to contact us today.
-            </p>
+Whether you’re curious about our authentic Italian recipes, want to explore our seasonal pizza and pasta creations, or are looking to host a special event in our cozy private dining area, we invite you to reach out to us today.            </p>
           </div>
 
           {/* Contact Form */}

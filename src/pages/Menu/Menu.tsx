@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMenusContext } from '../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../store/CategoriesContext/CategoriesContext';
-import section1 from '../../assets/section1.webp';
+import section1 from '../../assets/ambiance-1.jpg';
 
 // Skeleton Components for Loading States
 const CategorySkeleton = () => (
