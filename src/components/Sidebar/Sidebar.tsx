@@ -54,10 +54,10 @@ const Sidebar = () => {
   };
 
   const menuItems = [
-    { id: 'section', label: 'Home Sections', icon: Settings, path: '/admin/home-sections' },
-    { id: 'gallery', label: 'Gallery', icon: Image, path: '/admin/admin-gallery' },
     { id: 'categories', label: 'Categories', icon: Dashboard, path: '/admin/categories' },
     { id: 'menu', label: 'Menu Management', icon: MenuBook, path: '/admin/menu' },
+    { id: 'gallery', label: 'Gallery', icon: Image, path: '/admin/admin-gallery' },
+    { id: 'section', label: 'Home Sections', icon: Settings, path: '/admin/home-sections' },
     { id: 'contact', label: 'Messages', icon: Mail, path: '/admin/messages' },
   ];
 
