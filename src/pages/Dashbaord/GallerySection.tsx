@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
 import { getActiveGalleryItems } from '../../service/gallery/gallery.service';
-import type { GalleryItem } from '../../service/gallery/gallery.service';
+// import type { GalleryItem } from '../../service/gallery/gallery.service';
 
 export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);

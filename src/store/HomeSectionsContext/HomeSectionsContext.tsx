@@ -1,7 +1,7 @@
 // src/store/HomeSectionsContext/HomeSectionsContext.tsx
 import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { 
-  getSectionByType,
+  
   getAllSections,
   updateSection,
   getSectionMetadata,

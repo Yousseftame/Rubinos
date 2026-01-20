@@ -15,7 +15,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
   isOpen,
   onClose,
   sectionType,
-  mode
+  // mode
 }) => {
   const { sections, handleUpdateSection } = useHomeSectionsContext();
   

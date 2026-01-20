@@ -70,9 +70,10 @@ const Login = () => {
           />
 
           {/* Remember Me & Forgot Password */}
-          <div className="flex items-center justify-between">
-            <label data-aos="fade-right" className="flex items-center cursor-pointer">
+          <div className="flex justify-end">
+            {/* <label data-aos="fade-right" className="flex items-center cursor-pointer">
               <input 
+              disabled
                 type="checkbox" 
                 className="w-4 h-4 border-2 mr-2 cursor-pointer"
                 style={{ accentColor: '#3d5055' }}
@@ -80,7 +81,7 @@ const Login = () => {
               <span className="text-sm font-serif" style={{ color: '#6b7c7e' }}>
                 Remember me
               </span>
-            </label>
+            </label> */}
             <Link 
               to="/forget-password"
               className="text-sm font-serif hover:opacity-70 transition-opacity"

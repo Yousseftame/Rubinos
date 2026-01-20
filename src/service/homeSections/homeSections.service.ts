@@ -1,6 +1,6 @@
 // src/service/homeSections/homeSections.service.ts
 import { 
-  collection, 
+  
   doc, 
   getDoc, 
   updateDoc,
@@ -30,9 +30,9 @@ const COLLECTION_NAME = 'homeSections';
 const STORAGE_BASE = 'homeSections';
 
 // Validate section type
-const isValidSectionType = (type: string): type is SectionType => {
-  return ['about', 'dining', 'heroImage'].includes(type);
-};
+// const isValidSectionType = (type: string): type is SectionType => {
+//   return ['about', 'dining', 'heroImage'].includes(type);
+// };
 
 // Get section by type
 export const getSectionByType = async (type: SectionType): Promise<HomeSection | null> => {

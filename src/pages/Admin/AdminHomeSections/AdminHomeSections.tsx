@@ -29,14 +29,14 @@ const AdminHomeSections = () => {
   };
 
   // Get section type display name
-  const getSectionDisplayName = (type: SectionType): string => {
-    const names: Record<SectionType, string> = {
-      about: 'About Section',
-      dining: 'Private Dining Section',
-      heroImage: 'Hero Image'
-    };
-    return names[type];
-  };
+  // const getSectionDisplayName = (type: SectionType): string => {
+  //   const names: Record<SectionType, string> = {
+  //     about: 'About Section',
+  //     dining: 'Private Dining Section',
+  //     heroImage: 'Hero Image'
+  //   };
+  //   return names[type];
+  // };
 
   // Get section icon color
   const getSectionColor = (type: SectionType): string => {
