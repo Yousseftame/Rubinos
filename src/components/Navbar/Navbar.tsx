@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Facebook, Instagram, Menu,  X } from 'lucide-react';
+import { Facebook, FacebookIcon, Instagram, InstagramIcon, Menu,  X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import logo from '../../assets/rub-transparent.png';
@@ -87,16 +87,28 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {/* Reserve Button */}
+              {/* Reserve Button - social links buttons  */}
              
+             <div>
               <a
-                href="/"
-                target="_blank"
+                 href="https://www.facebook.com/profile.php?id=100094085240582"
+                 target='_blank'
+                
                 rel="noopener noreferrer"
-                className="btn-seaworthy-nav ml-4 "
+                className="btn-seaworthy-nav  "
               >
-                Reserve Now
+                <FacebookIcon/>
               </a>
+
+               <a
+                 href="https://www.instagram.com/rubinos.eg/?fbclid=IwY2xjawPTNHFleHRuA2FlbQIxMABicmlkETE0aVk5ZExEQjRLamU4NnlDc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHh6RekMP4QEdS5fhEntWrBEHq95LVVFzdAkeHNn0mFRx0ctm3BXUss7gjPDu_aem_WDL_jQcTeBrVOQJqWlq2wA#"
+                target='_blank'
+                rel="noopener noreferrer"
+                className="btn-seaworthy-nav  "
+              >
+                <InstagramIcon/>
+              </a>
+              </div>
               
             </div>
 
