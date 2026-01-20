@@ -1,4 +1,5 @@
-import  { useState } from 'react';
+// src/pages/Admin/Messages/Messages.tsx
+import { useState } from 'react';
 import { 
   Visibility,
   Delete,
@@ -25,7 +26,7 @@ const Messages = () => {
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Use the context instead of hook
+  // Use the context
   const {
     messages,
     loading,
@@ -36,7 +37,7 @@ const Messages = () => {
     handleUpdateStatus
   } = useMessagesContext();
 
-  // Filter messages based on search and status
+  // Filter messages
   const filteredMessages = messages.filter(message => {
     const matchesSearch = 
       message.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -106,25 +107,25 @@ const Messages = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
       {/* Header Section */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>
           Messages
         </h1>
-        <p className="text-sm" style={{ color: '#3D525799' }}>
+        <p className="text-xs sm:text-sm" style={{ color: '#3D525799' }}>
           Manage customer inquiries and messages
         </p>
       </div>
 
       {/* Status Filter Chips */}
-      <div className="mb-6 flex items-center gap-3 flex-wrap">
+      <div className="mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 flex-wrap">
         <button
           onClick={() => {
             setStatusFilter('all');
             setCurrentPage(1);
           }}
-          className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+          className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200"
           style={{
             backgroundColor: statusFilter === 'all' ? '#3D5257' : '#D7CDC122',
             color: statusFilter === 'all' ? '#D7CDC1' : '#3D5257',
@@ -138,54 +139,54 @@ const Messages = () => {
             setStatusFilter('new');
             setCurrentPage(1);
           }}
-          className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2"
+          className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 sm:gap-2"
           style={{
             backgroundColor: statusFilter === 'new' ? '#3D5257' : '#D7CDC122',
             color: statusFilter === 'new' ? '#D7CDC1' : '#3D5257',
             fontFamily: 'Inter, sans-serif'
           }}
         >
-          <Email style={{ fontSize: '16px' }} />
-          New ({newCount})
+          <Email style={{ fontSize: '14px' }} className="sm:text-base" />
+          <span className="hidden xs:inline">New</span> ({newCount})
         </button>
         <button
           onClick={() => {
             setStatusFilter('seen');
             setCurrentPage(1);
           }}
-          className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2"
+          className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 sm:gap-2"
           style={{
             backgroundColor: statusFilter === 'seen' ? '#3D5257' : '#D7CDC122',
             color: statusFilter === 'seen' ? '#D7CDC1' : '#3D5257',
             fontFamily: 'Inter, sans-serif'
           }}
         >
-          <MarkEmailRead style={{ fontSize: '16px' }} />
-          Seen ({seenCount})
+          <MarkEmailRead style={{ fontSize: '14px' }} className="sm:text-base" />
+          <span className="hidden xs:inline">Seen</span> ({seenCount})
         </button>
         <button
           onClick={() => {
             setStatusFilter('replied');
             setCurrentPage(1);
           }}
-          className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2"
+          className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 sm:gap-2"
           style={{
             backgroundColor: statusFilter === 'replied' ? '#3D5257' : '#D7CDC122',
             color: statusFilter === 'replied' ? '#D7CDC1' : '#3D5257',
             fontFamily: 'Inter, sans-serif'
           }}
         >
-          <Reply style={{ fontSize: '16px' }} />
-          Replied ({repliedCount})
+          <Reply style={{ fontSize: '14px' }} className="sm:text-base" />
+          <span className="hidden xs:inline">Replied</span> ({repliedCount})
         </button>
       </div>
 
       {/* Search Section */}
-      <div className="mb-6">
-        <div className="relative max-w-md">
+      <div className="mb-4 sm:mb-6">
+        <div className="relative">
           <Search 
-            className="absolute left-4 top-1/2 -translate-y-1/2" 
-            style={{ color: '#3D525799', fontSize: '20px' }}
+            className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" 
+            style={{ color: '#3D525799', fontSize: '18px' }}
           />
           <input
             type="text"
@@ -195,7 +196,7 @@ const Messages = () => {
               setSearchTerm(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full pl-12 pr-4 py-3 rounded-lg border-2 transition-all duration-200 outline-none"
+            className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 rounded-lg border-2 transition-all duration-200 outline-none text-sm"
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
@@ -224,10 +225,9 @@ const Messages = () => {
             border: '1px solid #D7CDC122'
           }}
         >
-          {/* Table */}
-          <div className="overflow-x-auto">
+          {/* Desktop Table */}
+          <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
-              {/* Table Head */}
               <thead>
                 <tr style={{ backgroundColor: '#3D5257' }}>
                   <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
@@ -250,8 +250,6 @@ const Messages = () => {
                   </th>
                 </tr>
               </thead>
-
-              {/* Table Body */}
               <tbody>
                 {currentMessages.length === 0 ? (
                   <tr>
@@ -270,8 +268,6 @@ const Messages = () => {
                         borderColor: '#D7CDC122',
                         backgroundColor: index % 2 === 0 ? 'white' : '#F9F9F9'
                       }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC108'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = index % 2 === 0 ? 'white' : '#F9F9F9'}
                     >
                       <td className="px-6 py-4">
                         <span className="font-medium text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
@@ -320,7 +316,6 @@ const Messages = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          {/* View Button */}
                           <button
                             onClick={() => handleOpenDetailsModal(message)}
                             className="p-2 rounded-lg transition-all duration-150"
@@ -337,8 +332,6 @@ const Messages = () => {
                           >
                             <Visibility style={{ fontSize: '18px' }} />
                           </button>
-
-                          {/* Delete Button */}
                           <button
                             onClick={() => handleOpenDeleteModal(message)}
                             className="p-2 rounded-lg transition-all duration-150"
@@ -364,34 +357,112 @@ const Messages = () => {
             </table>
           </div>
 
+          {/* Mobile Card View */}
+          <div className="lg:hidden">
+            {currentMessages.length === 0 ? (
+              <div className="text-center py-12 px-4">
+                <p className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                  {searchTerm || statusFilter !== 'all' ? 'No messages found matching your criteria.' : 'No messages yet.'}
+                </p>
+              </div>
+            ) : (
+              <div className="divide-y" style={{ borderColor: '#D7CDC122' }}>
+                {currentMessages.map((message) => (
+                  <div key={message.uid} className="p-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-medium text-sm mb-1 truncate" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                          {message.name}
+                        </h3>
+                        <p className="text-xs mb-1" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                          {message.email}
+                        </p>
+                        <p className="text-xs mb-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                          {message.phone}
+                        </p>
+                      </div>
+                      <select
+                        value={message.status}
+                        onChange={(e) => message.uid && handleStatusChange(message.uid, e.target.value as any)}
+                        className="ml-2 px-2 py-1 rounded-full text-xs font-medium capitalize outline-none cursor-pointer flex-shrink-0"
+                        style={{
+                          backgroundColor: 
+                            message.status === 'new' ? '#fef3c7' : 
+                            message.status === 'seen' ? '#dbeafe' : 
+                            '#d1fae5',
+                          color: 
+                            message.status === 'new' ? '#92400e' : 
+                            message.status === 'seen' ? '#1e40af' : 
+                            '#065f46',
+                          fontFamily: 'Inter, sans-serif'
+                        }}
+                      >
+                        <option value="new">New</option>
+                        <option value="seen">Seen</option>
+                        <option value="replied">Replied</option>
+                      </select>
+                    </div>
+                    
+                    <p className="text-xs mb-2 line-clamp-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                      {message.details}
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                        {formatDate(message.createdAt)}
+                      </span>
+                      
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={() => handleOpenDetailsModal(message)}
+                          className="p-2 rounded-lg transition-all"
+                          style={{ color: '#3D525799' }}
+                        >
+                          <Visibility style={{ fontSize: '16px' }} />
+                        </button>
+                        <button
+                          onClick={() => handleOpenDeleteModal(message)}
+                          className="p-2 rounded-lg transition-all"
+                          style={{ color: '#dc2626' }}
+                        >
+                          <Delete style={{ fontSize: '16px' }} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Pagination */}
           {filteredMessages.length > 0 && (
             <div 
-              className="px-6 py-4 flex items-center justify-between border-t flex-wrap gap-4"
+              className="px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between border-t gap-3"
               style={{ borderColor: '#D7CDC122' }}
             >
-              <div className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
-                Showing {startIndex + 1} to {Math.min(endIndex, filteredMessages.length)} of {filteredMessages.length} entries
+              <div className="text-xs sm:text-sm order-2 sm:order-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                Showing {startIndex + 1} to {Math.min(endIndex, filteredMessages.length)} of {filteredMessages.length}
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2 order-1 sm:order-2">
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
-                  className="p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
                     color: '#3D5257',
                     backgroundColor: currentPage === 1 ? 'transparent' : '#D7CDC122'
                   }}
                 >
-                  <ChevronLeft size={18} />
+                  <ChevronLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
 
                 {[...Array(totalPages)].map((_, index) => (
                   <button
                     key={index + 1}
                     onClick={() => setCurrentPage(index + 1)}
-                    className="w-9 h-9 rounded-lg text-sm font-medium transition-all duration-150"
+                    className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg text-xs sm:text-sm font-medium transition-all duration-150"
                     style={{
                       backgroundColor: currentPage === index + 1 ? '#3D5257' : 'transparent',
                       color: currentPage === index + 1 ? '#D7CDC1' : '#3D5257',
@@ -405,13 +476,13 @@ const Messages = () => {
                 <button
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
-                  className="p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
                     color: '#3D5257',
                     backgroundColor: currentPage === totalPages ? 'transparent' : '#D7CDC122'
                   }}
                 >
-                  <ChevronRight size={18} />
+                  <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
               </div>
             </div>
