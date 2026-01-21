@@ -293,6 +293,7 @@ const Menus = () => {
         </div>
 
         {/* Filters and Add Button */}
+        
         <div className="flex flex-col sm:flex-row gap-3">
           {/* Category Filter */}
           <select
@@ -301,7 +302,7 @@ const Menus = () => {
               setCategoryFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="flex-1 sm:flex-none px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 transition-all duration-200 outline-none text-sm"
+    className="w-full sm:w-auto min-w-0 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-[#D7CDC133] text-sm outline-none transition-all duration-200"
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
@@ -326,7 +327,7 @@ const Menus = () => {
               setStatusFilter(e.target.value as 'all' | 'active' | 'inactive');
               setCurrentPage(1);
             }}
-            className="flex-1 sm:flex-none px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 transition-all duration-200 outline-none text-sm"
+    className="w-full sm:w-auto min-w-0 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-[#D7CDC133] text-sm outline-none transition-all duration-200"
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
@@ -344,7 +345,7 @@ const Menus = () => {
           {/* Add Button */}
           <button
             onClick={handleOpenAddModal}
-            className="flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-all duration-200 font-medium text-sm"
+    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm font-medium transition-all duration-200 bg-[#3D5257] text-[#D7CDC1]"
             style={{
               backgroundColor: '#3D5257',
               color: '#D7CDC1',

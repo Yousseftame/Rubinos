@@ -369,7 +369,7 @@ const Messages = () => {
               <div className="divide-y" style={{ borderColor: '#D7CDC122' }}>
                 {currentMessages.map((message) => (
                   <div key={message.uid} className="p-4">
-                    <div className="flex items-start justify-between mb-2">
+                    <div className="flex flex-col sm:flex-row items-start justify-between mb-2">
                       <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-sm mb-1 truncate" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
                           {message.name}
