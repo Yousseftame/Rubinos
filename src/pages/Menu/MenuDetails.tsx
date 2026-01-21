@@ -4,6 +4,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMenusContext } from '../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../store/CategoriesContext/CategoriesContext';
+import noImg from "../../assets/rubinos.png";
+
 
 
 export default function MenuDetails() {
@@ -137,8 +139,9 @@ export default function MenuDetails() {
                       }`}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                    <span className="text-gray-400">No image available</span>
+                  <div className="w-full h-full flex items-center justify-center ">
+                    {/* <span className="text-gray-400">No image available</span> */}
+                    <img className='w-full h-full' src={noImg} alt="rubinos" />
                   </div>
                 )}
 

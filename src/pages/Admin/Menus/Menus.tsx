@@ -49,7 +49,7 @@ const Menus = () => {
   const filteredMenuItems = menuItems.filter(item => {
     const matchesSearch = 
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item?.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.price.toString().includes(searchTerm);
     
     const matchesCategory = categoryFilter === 'all' || item.categoryId === categoryFilter;
@@ -97,7 +97,7 @@ const Menus = () => {
         { 
           name: data.name, 
           price: data.price,
-          description: data.description,
+          description: data.description || "",
           categoryId: data.categoryId,
           categoryName: data.categoryName,
           status: data.status
@@ -110,7 +110,7 @@ const Menus = () => {
         {
           name: data.name,
           price: data.price,
-          description: data.description,
+          description: data.description || "",
           categoryId: data.categoryId,
           categoryName: data.categoryName,
           status: data.status
@@ -604,7 +604,7 @@ const Menus = () => {
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredMenuItems.length)} of {filteredMenuItems.length}
               </div>
 
-              <div className="flex items-center gap-1 sm:gap-2 order-1 sm:order-2">
+              <div className="flex flex-wrap items-center gap-1 sm:gap-2 order-1 sm:order-2">
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}

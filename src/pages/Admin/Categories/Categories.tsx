@@ -7,7 +7,7 @@ import {
   Search,
   Add
 } from '@mui/icons-material';
-import { ChevronLeft, ChevronRight, Layers, Eye, EyeOff } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Layers, Eye, EyeOff, ArrowUpDown } from 'lucide-react';
 import { useCategoriesContext } from '../../../store/CategoriesContext/CategoriesContext';
 import type { Category } from '../../../service/categories/categories.service';
 import CategoryFormModal from './CategoryFormModal';
@@ -44,7 +44,8 @@ const Categories = () => {
   const filteredCategories = categories.filter(category => {
     const matchesSearch = 
       category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      category.description.toLowerCase().includes(searchTerm.toLowerCase());
+      category.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      category.placeOrder.toString().includes(searchTerm);
     
     const matchesStatus = statusFilter === 'all' || category.status === statusFilter;
     
@@ -80,9 +81,12 @@ const Categories = () => {
     setIsDeleteModalOpen(true);
   };
 
-  const handleFormSubmit = async (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>) => {
+  const handleFormSubmit = async (
+    data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>,
+    placeOrder?: number
+  ) => {
     if (formMode === 'add') {
-      await handleAddCategory(data);
+      await handleAddCategory(data, placeOrder);
     } else if (selectedCategory?.uid) {
       await handleUpdateCategory(selectedCategory.uid, data);
     }
@@ -237,7 +241,7 @@ const Categories = () => {
           />
           <input
             type="text"
-            placeholder="Search categories..."
+            placeholder="Search by name, order, description..."
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -256,7 +260,7 @@ const Categories = () => {
         </div>
 
         {/* Filter and Add Button */}
-        <div className="flex gap-3 sm:gap-4">
+        <div className="flex  gap-3 sm:gap-4">
           {/* Status Filter */}
           <select
             value={statusFilter}
@@ -264,7 +268,7 @@ const Categories = () => {
               setStatusFilter(e.target.value as 'all' | 'active' | 'inactive');
               setCurrentPage(1);
             }}
-            className="flex-1 sm:flex-none px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 transition-all duration-200 outline-none text-sm"
+            className="w-full sm:w-auto min-w-0 sm:flex-none px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 transition-all duration-200 outline-none text-sm"
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
@@ -319,6 +323,9 @@ const Categories = () => {
             <table className="w-full">
               <thead>
                 <tr style={{ backgroundColor: '#3D5257' }}>
+                  <th className="text-center px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
+                    ORDER
+                  </th>
                   <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     NAME
                   </th>
@@ -339,7 +346,7 @@ const Categories = () => {
               <tbody>
                 {currentCategories.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="text-center py-12">
+                    <td colSpan={6} className="text-center py-12">
                       <p style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
                         {searchTerm || statusFilter !== 'all' ? 'No categories found matching your criteria.' : 'No categories yet. Add your first category!'}
                       </p>
@@ -355,6 +362,14 @@ const Categories = () => {
                         backgroundColor: index % 2 === 0 ? 'white' : '#F9F9F9'
                       }}
                     >
+                      <td className="px-6 py-4 text-center">
+                        <div className="flex  items-center justify-center gap-2">
+                          <ArrowUpDown size={14} style={{ color: '#3D525799' }} />
+                          <span className="font-bold text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                            #{category.placeOrder}
+                          </span>
+                        </div>
+                      </td>
                       <td className="px-6 py-4">
                         <span className="font-medium text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
                           {category.name}
@@ -362,7 +377,7 @@ const Categories = () => {
                       </td>
                       <td className="px-6 py-4">
                         <span className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
-                          {category.description}
+                          {category.description || '-'}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-center">
@@ -455,64 +470,76 @@ const Categories = () => {
                 </p>
               </div>
             ) : (
-              <div className="divide-y" style={{ borderColor: '#D7CDC122' }}>
-                {currentCategories.map((category) => (
-                  <div key={category.uid} className="p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-sm mb-1 truncate" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
-                          {category.name}
-                        </h3>
-                        <p className="text-xs mb-2 line-clamp-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
-                          {category.description}
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => handleStatusToggle(category)}
-                        disabled={isTogglingStatus}
-                        className="ml-2 px-2.5 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50 flex-shrink-0"
-                        style={{
-                          backgroundColor: category.status === 'active' ? '#D7CDC122' : '#3D525722',
-                          color: category.status === 'active' ? '#3D5257' : '#3D525799',
-                          fontFamily: 'Inter, sans-serif'
-                        }}
-                      >
-                        {category.status}
-                      </button>
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="text-xs" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
-                        <span className="font-medium" style={{ color: '#3D5257' }}>{category.items}</span> items
-                      </div>
-                      
-                      <div className="flex items-center gap-1">
-                        <button
-                          onClick={() => handleOpenDetailsModal(category)}
-                          className="p-2 rounded-lg transition-all"
-                          style={{ color: '#3D525799' }}
-                        >
-                          <Visibility style={{ fontSize: '16px' }} />
-                        </button>
-                        <button
-                          onClick={() => handleOpenEditModal(category)}
-                          className="p-2 rounded-lg transition-all"
-                          style={{ color: '#3D525799' }}
-                        >
-                          <Edit style={{ fontSize: '16px' }} />
-                        </button>
-                        <button
-                          onClick={() => handleOpenDeleteModal(category)}
-                          className="p-2 rounded-lg transition-all"
-                          style={{ color: '#dc2626' }}
-                        >
-                          <Delete style={{ fontSize: '16px' }} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+             <div className="divide-y" style={{ borderColor: '#D7CDC122' }}>
+  {currentCategories.map((category) => (
+    <div key={category.uid} className="p-4">
+      
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span 
+              className="px-2 py-0.5 rounded text-xs font-bold flex-shrink-0"
+              style={{ 
+                backgroundColor: '#3D5257', 
+                color: '#D7CDC1' 
+              }}
+            >
+              #{category.placeOrder}
+            </span>
+            <h3 className="font-medium text-sm " style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+              {category.name}
+            </h3>
+          </div>
+          <p className="text-xs line-clamp-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+            {category.description || 'No description'}
+          </p>
+        </div>
+        <button
+          onClick={() => handleStatusToggle(category)}
+          disabled={isTogglingStatus}
+          className="ml-2 px-2.5 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50 flex-shrink-0"
+          style={{
+            backgroundColor: category.status === 'active' ? '#D7CDC122' : '#3D525722',
+            color: category.status === 'active' ? '#3D5257' : '#3D525799',
+            fontFamily: 'Inter, sans-serif'
+          }}
+        >
+          {category.status}
+        </button>
+      </div>
+      
+      <div className="flex items-center justify-between">
+        <div className="text-xs" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+          <span className="font-medium" style={{ color: '#3D5257' }}>{category.items}</span> items
+        </div>
+        
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => handleOpenDetailsModal(category)}
+            className="p-2 rounded-lg transition-all"
+            style={{ color: '#3D525799' }}
+          >
+            <Visibility style={{ fontSize: '16px' }} />
+          </button>
+          <button
+            onClick={() => handleOpenEditModal(category)}
+            className="p-2 rounded-lg transition-all"
+            style={{ color: '#3D525799' }}
+          >
+            <Edit style={{ fontSize: '16px' }} />
+          </button>
+          <button
+            onClick={() => handleOpenDeleteModal(category)}
+            className="p-2 rounded-lg transition-all"
+            style={{ color: '#dc2626' }}
+          >
+            <Delete style={{ fontSize: '16px' }} />
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
             )}
           </div>
 
@@ -526,7 +553,7 @@ const Categories = () => {
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredCategories.length)} of {filteredCategories.length}
               </div>
 
-              <div className="flex items-center gap-1 sm:gap-2 order-1 sm:order-2">
+              <div className="flex flex-wrap items-center gap-1 sm:gap-2 order-1 sm:order-2">
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
@@ -581,6 +608,7 @@ const Categories = () => {
         onSubmit={handleFormSubmit}
         category={selectedCategory}
         mode={formMode}
+        maxOrder={categories.length}
       />
 
       <CategoryDetailsModal

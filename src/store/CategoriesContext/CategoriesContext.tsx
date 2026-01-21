@@ -24,12 +24,18 @@ interface CategoriesContextType {
   error: string | null;
   statistics: CategoryStatistics | null;
   fetchCategories: () => Promise<void>;
-  handleAddCategory: (categoryData: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>) => Promise<string>;
-  handleUpdateCategory: (id: string, categoryData: Partial<Omit<Category, 'uid' | 'createdAt' | 'items'>>) => Promise<void>;
+  handleAddCategory: (
+    categoryData: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>,
+    placeOrder?: number
+  ) => Promise<string>;
+  handleUpdateCategory: (
+    id: string,
+    categoryData: Partial<Omit<Category, 'uid' | 'createdAt' | 'items'>>
+  ) => Promise<void>;
   handleDeleteCategory: (id: string) => Promise<void>;
   handleToggleStatus: (id: string, currentStatus: 'active' | 'inactive') => Promise<void>;
   fetchStatistics: () => Promise<void>;
-  refreshCategories: () => Promise<void>; // Exposed for menu module to use
+  refreshCategories: () => Promise<void>;
 }
 
 const CategoriesContext = createContext<CategoriesContextType | undefined>(undefined);
@@ -83,10 +89,13 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({ children
     fetchStatistics();
   }, []);
 
-  // Add new category (optimistic update)
-  const handleAddCategory = async (categoryData: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>) => {
+  // Add new category
+  const handleAddCategory = async (
+    categoryData: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>,
+    placeOrder?: number
+  ) => {
     try {
-      const newId = await addCategory(categoryData);
+      const newId = await addCategory(categoryData, placeOrder);
       toast.success('Category added successfully!');
       await fetchCategories();
       await fetchStatistics();
@@ -98,8 +107,11 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({ children
     }
   };
 
-  // Update category (optimistic update)
-  const handleUpdateCategory = async (id: string, categoryData: Partial<Omit<Category, 'uid' | 'createdAt' | 'items'>>) => {
+  // Update category
+  const handleUpdateCategory = async (
+    id: string,
+    categoryData: Partial<Omit<Category, 'uid' | 'createdAt' | 'items'>>
+  ) => {
     const originalCategories = [...categories];
     
     setCategories(prevCategories =>
@@ -111,6 +123,7 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({ children
     try {
       await updateCategory(id, categoryData);
       toast.success('Category updated successfully!');
+      await fetchCategories(); // Refresh to get correct order after swap
     } catch (err) {
       setCategories(originalCategories);
       const errorMessage = err instanceof Error ? err.message : 'Failed to update category';
@@ -119,7 +132,7 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({ children
     }
   };
 
-  // Delete category (optimistic update)
+  // Delete category
   const handleDeleteCategory = async (id: string) => {
     const originalCategories = [...categories];
     
@@ -128,6 +141,7 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({ children
     try {
       await deleteCategory(id);
       toast.success('Category deleted successfully!');
+      await fetchCategories(); // Refresh to get correct order after deletion
       await fetchStatistics();
     } catch (err) {
       setCategories(originalCategories);

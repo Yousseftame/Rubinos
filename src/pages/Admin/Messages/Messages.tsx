@@ -445,7 +445,7 @@ const Messages = () => {
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredMessages.length)} of {filteredMessages.length}
               </div>
 
-              <div className="flex items-center gap-1 sm:gap-2 order-1 sm:order-2">
+              <div className="flex items-center flex-wrap gap-1 sm:gap-2 order-1 sm:order-2">
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}

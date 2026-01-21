@@ -6,9 +6,10 @@ import type { Category } from '../../../service/categories/categories.service';
 interface CategoryFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>) => Promise<void>;
+  onSubmit: (data: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>, placeOrder?: number) => Promise<void>;
   category?: Category | null;
   mode: 'add' | 'edit';
+  maxOrder: number;
 }
 
 const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
@@ -16,12 +17,14 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
   onClose,
   onSubmit,
   category,
-  mode
+  mode,
+  maxOrder
 }) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    status: 'active' as 'active' | 'inactive'
+    status: 'active' as 'active' | 'inactive',
+    placeOrder: maxOrder + 1
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -30,16 +33,18 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
       setFormData({
         name: category.name,
         description: category.description,
-        status: category.status
+        status: category.status,
+        placeOrder: category.placeOrder
       });
     } else {
       setFormData({
         name: '',
         description: '',
-        status: 'active'
+        status: 'active',
+        placeOrder: maxOrder + 1
       });
     }
-  }, [category, mode, isOpen]);
+  }, [category, mode, isOpen, maxOrder]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,15 +54,27 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
       return;
     }
 
-    if (!formData.description.trim()) {
-      alert('Please enter a description');
+    if (mode === 'add' && (formData.placeOrder < 1 || formData.placeOrder > maxOrder + 1)) {
+      alert(`Place order must be between 1 and ${maxOrder + 1}`);
+      return;
+    }
+
+    if (mode === 'edit' && (formData.placeOrder < 1 || formData.placeOrder > maxOrder)) {
+      alert(`Place order must be between 1 and ${maxOrder}`);
       return;
     }
 
     setIsSubmitting(true);
     
     try {
-      await onSubmit(formData);
+      const categoryData = {
+        name: formData.name,
+        description: formData.description,
+        status: formData.status,
+        placeOrder: formData.placeOrder
+      };
+      
+      await onSubmit(categoryData, mode === 'add' ? formData.placeOrder : undefined);
       onClose();
     } catch (error) {
       console.error('Form submission error:', error);
@@ -72,7 +89,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black bg-opacity-100"
+        className="absolute inset-0 bg-black bg-opacity-50"
         onClick={onClose}
       />
 
@@ -135,7 +152,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 className="block text-sm font-semibold mb-2"
                 style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
               >
-                Description *
+                Description
               </label>
               <textarea
                 id="description"
@@ -151,9 +168,42 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
                 onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
-                placeholder="Enter category description"
+                placeholder="Enter category description (optional)"
+              />
+            </div>
+
+            {/* Place Order */}
+            <div>
+              <label 
+                htmlFor="placeOrder"
+                className="block text-sm font-semibold mb-2"
+                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              >
+                Display Order *
+              </label>
+              <input
+                type="number"
+                id="placeOrder"
+                min="1"
+                max={mode === 'add' ? maxOrder + 1 : maxOrder}
+                value={formData.placeOrder}
+                onChange={(e) => setFormData({ ...formData, placeOrder: parseInt(e.target.value) || 1 })}
+                className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-200 outline-none"
+                style={{
+                  borderColor: '#D7CDC133',
+                  backgroundColor: 'white',
+                  color: '#3D5257',
+                  fontFamily: 'Inter, sans-serif'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
+                onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
                 required
               />
+              <p className="text-xs mt-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                {mode === 'add' 
+                  ? `Enter a number between 1 and ${maxOrder + 1} (current max: ${maxOrder})`
+                  : `Enter a number between 1 and ${maxOrder}`}
+              </p>
             </div>
 
             {/* Status */}

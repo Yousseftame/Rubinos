@@ -27,7 +27,7 @@ export interface MenuItem {
   uid?: string;
   name: string;
   price: number;
-  description: string;
+  description?: string;
   categoryId: string;
   categoryName: string;
   images: string[];

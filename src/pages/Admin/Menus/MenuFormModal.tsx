@@ -44,7 +44,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
       setFormData({
         name: menuItem.name,
         price: menuItem.price,
-        description: menuItem.description,
+        description: menuItem.description || "",
         categoryId: menuItem.categoryId,
         categoryName: menuItem.categoryName || category?.name || '',
         status: menuItem.status
@@ -128,10 +128,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
       return;
     }
 
-    if (!formData.description.trim()) {
-      alert('Please enter a description');
-      return;
-    }
+  
 
     if (formData.price <= 0) {
       alert('Please enter a valid price');
@@ -344,8 +341,8 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
                 onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
-                placeholder="Describe the menu item..."
-                required
+                placeholder="Describe the menu item... (optional)"
+                
               />
             </div>
 

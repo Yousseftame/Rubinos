@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMenusContext } from '../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../store/CategoriesContext/CategoriesContext';
 import section1 from '../../assets/ambiance-1.jpg';
+import noImg from "../../assets/rubinos.png";
 
 // Skeleton Components for Loading States
 const CategorySkeleton = () => (
@@ -40,8 +41,6 @@ const MenuItemImage: React.FC<MenuItemImageProps> = ({ images, name }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-
-
   const hasMultipleImages = images && images.length > 1;
   const currentImage = images?.[currentImageIndex] || '';
 
@@ -66,8 +65,8 @@ const MenuItemImage: React.FC<MenuItemImageProps> = ({ images, name }) => {
 
   return (
     <div className="relative flex-shrink-0 w-20 h-20 overflow-hidden rounded-md shadow-md group/image">
-      {/* Skeleton loader while image is loading */}
-      {!imageLoaded && !imageError && (
+      {/* Skeleton loader while image is loading - DON'T show if error */}
+      {!imageLoaded && !imageError && currentImage && (
         <div className="absolute inset-0 bg-gray-300 animate-pulse"></div>
       )}
 
@@ -84,13 +83,14 @@ const MenuItemImage: React.FC<MenuItemImageProps> = ({ images, name }) => {
           }}
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageError(true)}
-          className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-110 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
-
       ) : (
-        <div className="w-full h-full flex items-center justify-center bg-gray-200">
-          <span className="text-xs text-gray-400">No image</span>
+        // No image fallback - static, no animation
+        <div className="w-full h-full flex items-center justify-center bg-gray-100">
+          <img className="h-full " src={noImg} alt="rubinos" />
         </div>
       )}
 
