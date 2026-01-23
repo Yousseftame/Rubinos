@@ -109,7 +109,7 @@ const Dashboard = () => {
 
               {/* Heading - Dynamic */}
               <h2 className="text-4xl lg:text-4xl font-extrabold font-head mb-8 leading-tight animate-fade-in" style={{ color: '#5a7a82' }}>
-                {aboutSection?.title || 'Come For The Oysters, Stay For The Everything'}
+                {aboutSection?.title || 'Come For The pizza, Stay For The Everything'}
               </h2>
 
               {/* Body Text - Dynamic */}
@@ -323,10 +323,10 @@ const Dashboard = () => {
               {/* Happy Hour */}
               <div>
                 <h3 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" className="text-base lg:text-lg font-serif font-bold mb-2 tracking-widest" style={{ color: '#FFE8C0' }}>
-                  OYSTER HAPPY HOUR
+                  HAPPY HOUR AT RUBINOS
                 </h3>
                 <p className="font-serif text-xs lg:text-sm tracking-wide mb-2" style={{ color: '#b8aea0' }}>
-                  Half-off Shucker's select oysters and drink specials
+                  Your favorite flavors and drink specials, every happy hour.
                 </p>
                 <div className="flex justify-between items-center font-serif text-sm lg:text-base" style={{ color: '#b8aea0' }}>
                   <span>7 days a Week</span>
