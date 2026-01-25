@@ -533,7 +533,7 @@ const Menus = () => {
                   <div key={menuItem.uid} className="p-4">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-sm mb-1 truncate" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <h3 className="font-medium text-sm mb-1 " style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
                           {menuItem.name}
                         </h3>
                         <p className="text-xs mb-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
@@ -617,7 +617,7 @@ const Menus = () => {
                   <ChevronLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
 
-                {[...Array(totalPages)].map((_, index) => (
+                {/* {[...Array(totalPages)].map((_, index) => (
                   <button
                     key={index + 1}
                     onClick={() => setCurrentPage(index + 1)}
@@ -630,7 +630,7 @@ const Menus = () => {
                   >
                     {index + 1}
                   </button>
-                ))}
+                ))} */}
 
                 <button
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
