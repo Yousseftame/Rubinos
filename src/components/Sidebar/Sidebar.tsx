@@ -69,7 +69,7 @@ const Sidebar = () => {
           collapsed ? 'w-20' : 'w-72'
         }`}
         style={{
-          backgroundColor: '#3D5257'
+          backgroundColor: '#0E302A'
         }}
       >
         {/* Logo Section */}
@@ -80,7 +80,7 @@ const Sidebar = () => {
             </div>
           ) : (
             <div className="w-full flex items-center justify-center">
-              <span className="text-5xl font-serif text-[#D7CDC1]">R</span>
+              <span className="text-5xl  text-[#D7CDC1]">R</span>
             </div>
           )}
         </div>
@@ -125,7 +125,7 @@ const Sidebar = () => {
                   {collapsed && item.id === 'contact' && newCount > 0 && (
                     <span 
                       className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center animate-pulse"
-                      style={{ boxShadow: '0 0 0 2px #3D5257' }}
+                      style={{ boxShadow: '0 0 0 2px #0E302A' }}
                     >
                       {newCount > 9 ? '9+' : newCount}
                     </span>
@@ -138,7 +138,7 @@ const Sidebar = () => {
                       className={`text-[19px] tracking-wide transition-colors duration-200 whitespace-nowrap overflow-hidden text-ellipsis ${
                         isActive ? 'text-[#D7CDC1] font-bold' : 'text-[#D7CDC1]/60 group-hover:text-[#D7CDC1]/90'
                       }`}
-                      style={{ fontFamily: 'Cinzel, serif' }}
+                      style={{ fontFamily: 'Clash Display,  sans-serif' }}
                     >
                       {item.label}
                     </span>
@@ -173,7 +173,7 @@ const Sidebar = () => {
               {!collapsed && (
                 <span 
                   className="text-[15px] tracking-wide text-[#D7CDC1]/60 group-hover:text-red-400/90 transition-colors duration-200 whitespace-nowrap overflow-hidden text-ellipsis"
-                  style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+                  style={{ fontFamily: 'Clash Display,  sans-serif' }}
                 >
                   Logout
                 </span>
@@ -185,7 +185,7 @@ const Sidebar = () => {
         {/* Toggle Button */}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-28 bg-[#3D5257] border border-[#D7CDC1]/20 rounded-full p-1.5 text-[#D7CDC1]/60 hover:text-[#D7CDC1] hover:border-[#D7CDC1]/40 transition-all duration-200 shadow-lg"
+          className="absolute -right-3 top-28 bg-[#0E302A] border border-[#D7CDC1]/20 rounded-full p-1.5 text-[#D7CDC1]/60 hover:text-[#D7CDC1] hover:border-[#D7CDC1]/40 transition-all duration-200 shadow-lg"
         >
           {collapsed ? (
             <ChevronRight size={16} />

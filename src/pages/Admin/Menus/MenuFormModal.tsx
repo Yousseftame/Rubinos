@@ -180,7 +180,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
         <div className="flex items-center justify-between mb-6">
           <h2 
             className="text-2xl font-serif font-bold"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             {mode === 'add' ? 'Add New Menu Item' : 'Edit Menu Item'}
           </h2>
@@ -188,7 +188,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <X size={20} style={{ color: '#3D5257' }} />
+            <X size={20} style={{ color: '#0E302A' }} />
           </button>
         </div>
 
@@ -200,7 +200,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               <label 
                 htmlFor="name"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Menu Item Name *
               </label>
@@ -213,7 +213,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif'
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -230,7 +230,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 <label 
                   htmlFor="category"
                   className="block text-sm font-semibold mb-2"
-                  style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
                 >
                   Category *
                 </label>
@@ -242,7 +242,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                   style={{
                     borderColor: '#D7CDC133',
                     backgroundColor: 'white',
-                    color: '#3D5257',
+                    color: '#0E302A',
                     fontFamily: 'Inter, sans-serif'
                   }}
                   onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -263,7 +263,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 <label 
                   htmlFor="status"
                   className="block text-sm font-semibold mb-2"
-                  style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
                 >
                   Status *
                 </label>
@@ -275,7 +275,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                   style={{
                     borderColor: '#D7CDC133',
                     backgroundColor: 'white',
-                    color: '#3D5257',
+                    color: '#0E302A',
                     fontFamily: 'Inter, sans-serif'
                   }}
                   onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -293,7 +293,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               <label 
                 htmlFor="price"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Price ($) *
               </label>
@@ -306,7 +306,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif'
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -323,7 +323,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               <label 
                 htmlFor="description"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Description *
               </label>
@@ -335,7 +335,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif',
                   minHeight: '100px'
                 }}
@@ -351,7 +351,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               <div className="flex items-center justify-between mb-2">
                 <label 
                   className="block text-sm font-semibold"
-                  style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
                 >
                   Images ({totalImages})
                 </label>
@@ -363,7 +363,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 style={{ borderColor: '#D7CDC133' }}
                 onDragOver={(e) => {
                   e.preventDefault();
-                  e.currentTarget.style.borderColor = '#3D5257';
+                  e.currentTarget.style.borderColor = '#0E302A';
                   e.currentTarget.style.backgroundColor = '#D7CDC108';
                 }}
                 onDragLeave={(e) => {
@@ -396,8 +396,8 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                   htmlFor="imageInput"
                   className="flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <ImageIcon size={20} style={{ color: '#3D525799' }} />
-                  <span style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                  <ImageIcon size={20} style={{ color: '#0E302A99' }} />
+                  <span style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                     Drag images here or click to select
                   </span>
                 </label>
@@ -406,7 +406,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               {/* Existing Images */}
               {existingImages.length > 0 && (
                 <div className="mb-4">
-                  <p className="text-xs font-semibold mb-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                  <p className="text-xs font-semibold mb-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                     Current Images ({existingImages.length})
                   </p>
                   <div className="grid grid-cols-3 gap-3">
@@ -461,7 +461,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               {/* New Images Preview */}
               {newImages.length > 0 && (
                 <div className="mb-4">
-                  <p className="text-xs font-semibold mb-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                  <p className="text-xs font-semibold mb-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                     New Images ({newImages.length})
                   </p>
                   <div className="grid grid-cols-3 gap-3">
@@ -496,7 +496,7 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2"
               style={{
                 borderColor: '#D7CDC1',
-                color: '#3D5257',
+                color: '#0E302A',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC122'}
@@ -509,12 +509,12 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               disabled={isSubmitting}
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                backgroundColor: '#3D5257',
+                backgroundColor: '#0E302A',
                 color: '#D7CDC1',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#2d3f44')}
-              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#3D5257')}
+              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#0E302A')}
             >
               {isSubmitting ? 'Saving...' : mode === 'add' ? 'Add Item' : 'Update Item'}
             </button>

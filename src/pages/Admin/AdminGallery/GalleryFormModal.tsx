@@ -141,7 +141,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
         <div className="flex items-center justify-between mb-6">
           <h2 
             className="text-2xl font-serif font-bold"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             {mode === 'add' ? 'Add New Image' : 'Edit Image'}
           </h2>
@@ -149,7 +149,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <X size={20} style={{ color: '#3D5257' }} />
+            <X size={20} style={{ color: '#0E302A' }} />
           </button>
         </div>
 
@@ -160,7 +160,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
             <div>
               <label 
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {mode === 'add' ? 'Image *' : replaceImage ? 'New Image *' : 'Current Image'}
               </label>
@@ -206,11 +206,11 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC122'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#D7CDC108'}
                   >
-                    <Upload size={32} style={{ color: '#3D5257', marginBottom: '8px' }} />
-                    <p className="text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                    <Upload size={32} style={{ color: '#0E302A', marginBottom: '8px' }} />
+                    <p className="text-sm" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                       Click to upload image
                     </p>
-                    <p className="text-xs mt-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                    <p className="text-xs mt-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                       Max size: 5MB
                     </p>
                   </label>
@@ -223,7 +223,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
                         setImagePreview(item?.image || null);
                       }}
                       className="mt-2 text-sm"
-                      style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                      style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                     >
                       Cancel replacement
                     </button>
@@ -237,7 +237,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
               <label 
                 htmlFor="placeOrder"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Display Order *
               </label>
@@ -252,14 +252,14 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif'
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
                 onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
                 required
               />
-              <p className="text-xs mt-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+              <p className="text-xs mt-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                 {mode === 'add' 
                   ? `Enter a number between 1 and ${maxOrder + 1} (current max: ${maxOrder})`
                   : `Enter a number between 1 and ${maxOrder}`}
@@ -271,7 +271,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
               <label 
                 htmlFor="status"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Status *
               </label>
@@ -283,7 +283,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif'
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -304,7 +304,7 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2"
               style={{
                 borderColor: '#D7CDC1',
-                color: '#3D5257',
+                color: '#0E302A',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC122'}
@@ -317,12 +317,12 @@ const GalleryFormModal: React.FC<GalleryFormModalProps> = ({
               disabled={isSubmitting || (mode === 'add' && !imageFile)}
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                backgroundColor: '#3D5257',
+                backgroundColor: '#0E302A',
                 color: '#D7CDC1',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#2d3f44')}
-              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#3D5257')}
+              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#0E302A')}
             >
               {isSubmitting ? 'Saving...' : mode === 'add' ? 'Add Image' : 'Update Image'}
             </button>

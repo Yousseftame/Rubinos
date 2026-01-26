@@ -57,8 +57,8 @@ export default function MenuDetails() {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#d4ccc0' }}>
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3d5055] mx-auto mb-4" />
-          <p className="text-xl font-serif" style={{ color: '#3d5055' }}>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0E302A] mx-auto mb-4" />
+          <p className="text-xl font-serif" style={{ color: '#0E302A' }}>
             Loading...
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function MenuDetails() {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#d4ccc0' }}>
         <div className="text-center">
-          <p className="text-xl font-serif mb-4" style={{ color: '#3d5055' }}>
+          <p className="text-xl mb-4" style={{ color: '#0E302A' }}>
             Item not found
           </p>
           <button
@@ -82,8 +82,8 @@ export default function MenuDetails() {
                   : '/menu'
               )
             }
-            className="px-8 py-3 font-serif text-sm font-bold tracking-wider transition-all hover:opacity-85 duration-300 rounded-lg"
-            style={{ backgroundColor: '#3d5055', color: '#f5f1ed' }}
+            className="px-8 py-3 text-sm font-bold tracking-wider transition-all hover:opacity-85 duration-300 rounded-lg"
+            style={{ backgroundColor: '#0E302A', color: '#f5f1ed' }}
           >
             BACK TO MENU
           </button>
@@ -100,9 +100,11 @@ export default function MenuDetails() {
         <div data-aos="zoom-in" className="relative z-10" style={{ backgroundColor: '#d4ccc0' }}>
           <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 pt-10">
             <button
-              onClick={() => navigate(-1)}
-              className="flex items-center gap-2 font-serif text-base font-semibold transition-all hover:opacity-75 duration-300"
-              style={{ color: '#3d5055' }}
+              onClick={() => navigate( categoryFromUrl
+                        ? `/menu?category=${categoryFromUrl}`
+                        : '/menu')}
+              className="flex items-center gap-2 text-base font-semibold transition-all hover:opacity-75 duration-300"
+              style={{ color: '#3A5F58' }}
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Menu
@@ -185,8 +187,8 @@ export default function MenuDetails() {
                         setCurrentImageIndex(index);
                       }}
                       className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${currentImageIndex === index
-                          ? 'border-[#3d5055] scale-105'
-                          : 'border-transparent hover:border-[#3d5055]/50'
+                          ? 'border-[#3A5F58] scale-105'
+                          : 'border-transparent hover:border-[#3A5F58]/50'
                         }`}
                     >
                       <img
@@ -208,7 +210,7 @@ export default function MenuDetails() {
                 <div className="mb-4">
                   <span
                     className="inline-block px-4 py-1 rounded-full text-xs font-semibold tracking-wider"
-                    style={{ backgroundColor: '#3d5055', color: '#f5f1ed' }}
+                    style={{ backgroundColor: '#3A5F58', color: '#f5f1ed' }}
                   >
                     {categoryName.toUpperCase()}
                   </span>
@@ -218,13 +220,13 @@ export default function MenuDetails() {
               {/* Header */}
               <div className="mb-8">
                 <h1
-                  className="font-serif text-4xl lg:text-5xl font-bold mb-4 leading-tight"
-                  style={{ color: '#3d5055' }}
+                  className="text-4xl lg:text-5xl font-bold mb-4 leading-tight"
+                  style={{ color: '#0E302A' }}
                 >
                   {item.name}
                 </h1>
 
-                <p className="font-serif text-3xl font-semibold" style={{ color: '#5a7a82' }}>
+                <p className="text-3xl font-semibold" style={{ color: '#0E302A' }}>
                   ${item.price.toFixed(2)}
                 </p>
               </div>
@@ -234,7 +236,7 @@ export default function MenuDetails() {
 
               {/* Description */}
               <div className="mb-10">
-                <p className="font-serif text-lg leading-relaxed" style={{ color: '#6b7c7e' }}>
+                <p className="text-2xl leading-relaxed" style={{ color: '#3A5F58' }}>
                   {item.description}
                 </p>
               </div>
@@ -249,10 +251,10 @@ export default function MenuDetails() {
                         : '/menu'
                     )
                   }
-                  className="px-8 py-4 font-serif text-sm lg:text-base font-bold tracking-wider transition-all hover:opacity-75 duration-300 rounded-lg border-2"
+                  className="px-8 py-4 text-sm lg:text-base font-bold tracking-wider transition-all hover:opacity-75 duration-300 rounded-lg border-2"
                   style={{
-                    borderColor: '#3d5055',
-                    color: '#3d5055',
+                    borderColor: '#3A5F58',
+                    color: '#3A5F58',
                     backgroundColor: 'transparent',
                   }}
                 >

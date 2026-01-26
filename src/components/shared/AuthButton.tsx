@@ -19,9 +19,9 @@ const AuthButton: React.FC<AuthButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className="w-full py-4 font-serif text-sm font-medium tracking-widest transition-all hover:opacity-85 duration-300"
+      className="w-full py-4  text-sm font-medium tracking-widest transition-all hover:opacity-85 duration-300"
       style={{ 
-        backgroundColor: '#3d5055',
+        backgroundColor: '#3A5F58',
         color: '#f5f1ed'
       }}
       disabled={isLoading || disabled}

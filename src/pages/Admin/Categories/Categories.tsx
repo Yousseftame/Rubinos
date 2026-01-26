@@ -124,10 +124,10 @@ const Categories = () => {
     <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
       {/* Header Section */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif mb-2" style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}>
           Categories
         </h1>
-        <p className="text-xs sm:text-sm" style={{ color: '#3D525799' }}>
+        <p className="text-xs sm:text-sm" style={{ color: '#0E302A99' }}>
           Manage your menu categories
         </p>
       </div>
@@ -146,13 +146,13 @@ const Categories = () => {
             <div>
               <p 
                 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 TOTAL CATEGORIES
               </p>
               <p 
                 className="text-2xl sm:text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.totalCategories || 0}
               </p>
@@ -161,7 +161,7 @@ const Categories = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <Layers size={20} className="sm:w-6 sm:h-6" style={{ color: '#3D5257' }} />
+              <Layers size={20} className="sm:w-6 sm:h-6" style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -178,13 +178,13 @@ const Categories = () => {
             <div>
               <p 
                 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 ACTIVE CATEGORIES
               </p>
               <p 
                 className="text-2xl sm:text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.activeCategories || 0}
               </p>
@@ -193,7 +193,7 @@ const Categories = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <Eye size={20} className="sm:w-6 sm:h-6" style={{ color: '#3D5257' }} />
+              <Eye size={20} className="sm:w-6 sm:h-6" style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -210,13 +210,13 @@ const Categories = () => {
             <div>
               <p 
                 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 INACTIVE CATEGORIES
               </p>
               <p 
                 className="text-2xl sm:text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.inactiveCategories || 0}
               </p>
@@ -225,7 +225,7 @@ const Categories = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <EyeOff size={20} className="sm:w-6 sm:h-6" style={{ color: '#3D5257' }} />
+              <EyeOff size={20} className="sm:w-6 sm:h-6" style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -237,7 +237,7 @@ const Categories = () => {
         <div className="relative flex-1 min-w-0">
           <Search 
             className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" 
-            style={{ color: '#3D525799', fontSize: '18px' }}
+            style={{ color: '#0E302A99', fontSize: '18px' }}
           />
           <input
             type="text"
@@ -251,7 +251,7 @@ const Categories = () => {
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -272,7 +272,7 @@ const Categories = () => {
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -288,12 +288,12 @@ const Categories = () => {
             onClick={handleOpenAddModal}
             className="flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-all duration-200 font-medium flex-shrink-0 text-sm"
             style={{
-              backgroundColor: '#3D5257',
+              backgroundColor: '#0E302A',
               color: '#D7CDC1',
               fontFamily: 'Inter, sans-serif'
             }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2d3f44'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D5257'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0E302A'}
           >
             <Add style={{ fontSize: '18px' }} />
             <span className="hidden sm:inline">Add Category</span>
@@ -305,7 +305,7 @@ const Categories = () => {
       {/* Loading State */}
       {loading && (
         <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#3D5257' }} />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#0E302A' }} />
         </div>
       )}
 
@@ -322,7 +322,7 @@ const Categories = () => {
           <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr style={{ backgroundColor: '#3D5257' }}>
+                <tr style={{ backgroundColor: '#0E302A' }}>
                   <th className="text-center px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     ORDER
                   </th>
@@ -347,7 +347,7 @@ const Categories = () => {
                 {currentCategories.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="text-center py-12">
-                      <p style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                      <p style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                         {searchTerm || statusFilter !== 'all' ? 'No categories found matching your criteria.' : 'No categories yet. Add your first category!'}
                       </p>
                     </td>
@@ -364,24 +364,24 @@ const Categories = () => {
                     >
                       <td className="px-6 py-4 text-center">
                         <div className="flex  items-center justify-center gap-2">
-                          <ArrowUpDown size={14} style={{ color: '#3D525799' }} />
-                          <span className="font-bold text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                          <ArrowUpDown size={14} style={{ color: '#0E302A99' }} />
+                          <span className="font-bold text-sm" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                             #{category.placeOrder}
                           </span>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="font-medium text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="font-medium text-sm" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {category.name}
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {category.description || '-'}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <span className="text-sm font-medium" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="text-sm font-medium" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {category.items}
                         </span>
                       </td>
@@ -392,8 +392,8 @@ const Categories = () => {
                             disabled={isTogglingStatus}
                             className="px-3 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50"
                             style={{
-                              backgroundColor: category.status === 'active' ? '#D7CDC122' : '#3D525722',
-                              color: category.status === 'active' ? '#3D5257' : '#3D525799',
+                              backgroundColor: category.status === 'active' ? '#D7CDC122' : '#0E302A22',
+                              color: category.status === 'active' ? '#0E302A' : '#0E302A99',
                               fontFamily: 'Inter, sans-serif'
                             }}
                             title="Click to toggle status"
@@ -407,14 +407,14 @@ const Categories = () => {
                           <button
                             onClick={() => handleOpenDetailsModal(category)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#D7CDC122';
-                              e.currentTarget.style.color = '#3D5257';
+                              e.currentTarget.style.color = '#0E302A';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="View"
                           >
@@ -423,14 +423,14 @@ const Categories = () => {
                           <button
                             onClick={() => handleOpenEditModal(category)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#D7CDC122';
-                              e.currentTarget.style.color = '#3D5257';
+                              e.currentTarget.style.color = '#0E302A';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="Edit"
                           >
@@ -439,14 +439,14 @@ const Categories = () => {
                           <button
                             onClick={() => handleOpenDeleteModal(category)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#ff000011';
                               e.currentTarget.style.color = '#dc2626';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="Delete"
                           >
@@ -465,7 +465,7 @@ const Categories = () => {
           <div className="lg:hidden">
             {currentCategories.length === 0 ? (
               <div className="text-center py-12 px-4">
-                <p className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                <p className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                   {searchTerm || statusFilter !== 'all' ? 'No categories found matching your criteria.' : 'No categories yet. Add your first category!'}
                 </p>
               </div>
@@ -480,17 +480,17 @@ const Categories = () => {
             <span 
               className="px-2 py-0.5 rounded text-xs font-bold flex-shrink-0"
               style={{ 
-                backgroundColor: '#3D5257', 
+                backgroundColor: '#0E302A', 
                 color: '#D7CDC1' 
               }}
             >
               #{category.placeOrder}
             </span>
-            <h3 className="font-medium text-sm " style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+            <h3 className="font-medium text-sm " style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
               {category.name}
             </h3>
           </div>
-          <p className="text-xs line-clamp-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+          <p className="text-xs line-clamp-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
             {category.description || 'No description'}
           </p>
         </div>
@@ -499,8 +499,8 @@ const Categories = () => {
           disabled={isTogglingStatus}
           className="ml-2 px-2.5 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50 flex-shrink-0"
           style={{
-            backgroundColor: category.status === 'active' ? '#D7CDC122' : '#3D525722',
-            color: category.status === 'active' ? '#3D5257' : '#3D525799',
+            backgroundColor: category.status === 'active' ? '#D7CDC122' : '#0E302A22',
+            color: category.status === 'active' ? '#0E302A' : '#0E302A99',
             fontFamily: 'Inter, sans-serif'
           }}
         >
@@ -509,22 +509,22 @@ const Categories = () => {
       </div>
       
       <div className="flex items-center justify-between">
-        <div className="text-xs" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
-          <span className="font-medium" style={{ color: '#3D5257' }}>{category.items}</span> items
+        <div className="text-xs" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
+          <span className="font-medium" style={{ color: '#0E302A' }}>{category.items}</span> items
         </div>
         
         <div className="flex items-center gap-1">
           <button
             onClick={() => handleOpenDetailsModal(category)}
             className="p-2 rounded-lg transition-all"
-            style={{ color: '#3D525799' }}
+            style={{ color: '#0E302A99' }}
           >
             <Visibility style={{ fontSize: '16px' }} />
           </button>
           <button
             onClick={() => handleOpenEditModal(category)}
             className="p-2 rounded-lg transition-all"
-            style={{ color: '#3D525799' }}
+            style={{ color: '#0E302A99' }}
           >
             <Edit style={{ fontSize: '16px' }} />
           </button>
@@ -549,7 +549,7 @@ const Categories = () => {
               className="px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between border-t gap-3"
               style={{ borderColor: '#D7CDC122' }}
             >
-              <div className="text-xs sm:text-sm order-2 sm:order-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+              <div className="text-xs sm:text-sm order-2 sm:order-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredCategories.length)} of {filteredCategories.length}
               </div>
 
@@ -559,7 +559,7 @@ const Categories = () => {
                   disabled={currentPage === 1}
                   className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === 1 ? 'transparent' : '#D7CDC122'
                   }}
                 >
@@ -572,8 +572,8 @@ const Categories = () => {
                     onClick={() => setCurrentPage(index + 1)}
                     className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg text-xs sm:text-sm font-medium transition-all duration-150"
                     style={{
-                      backgroundColor: currentPage === index + 1 ? '#3D5257' : 'transparent',
-                      color: currentPage === index + 1 ? '#D7CDC1' : '#3D5257',
+                      backgroundColor: currentPage === index + 1 ? '#0E302A' : 'transparent',
+                      color: currentPage === index + 1 ? '#D7CDC1' : '#0E302A',
                       fontFamily: 'Inter, sans-serif'
                     }}
                   >
@@ -586,7 +586,7 @@ const Categories = () => {
                   disabled={currentPage === totalPages}
                   className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === totalPages ? 'transparent' : '#D7CDC122'
                   }}
                 >

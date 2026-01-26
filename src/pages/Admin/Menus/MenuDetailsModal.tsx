@@ -51,7 +51,7 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
         <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: '#D7CDC133' }}>
           <h2 
             className="text-2xl font-serif font-bold"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             Menu Item Details
           </h2>
@@ -59,7 +59,7 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <X size={20} style={{ color: '#3D5257' }} />
+            <X size={20} style={{ color: '#0E302A' }} />
           </button>
         </div>
 
@@ -68,17 +68,17 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
           {/* Name */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Info size={18} style={{ color: '#3D525799' }} />
+              <Info size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 ITEM NAME
               </label>
             </div>
             <p 
               className="text-lg font-medium pl-6"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {menuItem.name}
             </p>
@@ -88,17 +88,17 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
           <div className="grid grid-cols-3 gap-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Info size={18} style={{ color: '#3D525799' }} />
+                <Info size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   CATEGORY
                 </label>
               </div>
               <p 
                 className="text-lg font-medium pl-6"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {getCategoryName(menuItem.categoryId)}
               </p>
@@ -106,17 +106,17 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
 
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <DollarSign size={18} style={{ color: '#3D525799' }} />
+                <DollarSign size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   PRICE
                 </label>
               </div>
               <p 
                 className="text-lg font-medium pl-6"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 ${menuItem.price.toFixed(2)}
               </p>
@@ -124,10 +124,10 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
 
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Info size={18} style={{ color: '#3D525799' }} />
+                <Info size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   STATUS
                 </label>
@@ -136,8 +136,8 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
                 <span
                   className="inline-block px-3 py-1 rounded-full text-xs font-medium capitalize"
                   style={{
-                    backgroundColor: menuItem.status === 'active' ? '#D7CDC122' : '#3D525722',
-                    color: menuItem.status === 'active' ? '#3D5257' : '#3D525799',
+                    backgroundColor: menuItem.status === 'active' ? '#D7CDC122' : '#0E302A22',
+                    color: menuItem.status === 'active' ? '#0E302A' : '#0E302A99',
                     fontFamily: 'Inter, sans-serif'
                   }}
                 >
@@ -150,17 +150,17 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
           {/* Description */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Info size={18} style={{ color: '#3D525799' }} />
+              <Info size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 DESCRIPTION
               </label>
             </div>
             <p 
               className="pl-6 leading-relaxed"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {menuItem.description}
             </p>
@@ -170,10 +170,10 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
           {menuItem.images && menuItem.images.length > 0 && (
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <ImageIcon size={18} style={{ color: '#3D525799' }} />
+                <ImageIcon size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   IMAGES ({menuItem.images.length})
                 </label>
@@ -203,17 +203,17 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
           >
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Calendar size={18} style={{ color: '#3D525799' }} />
+                <Calendar size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   CREATED AT
                 </label>
               </div>
               <p 
                 className="pl-6"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {formatDate(menuItem.createdAt)}
               </p>
@@ -221,17 +221,17 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
 
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Calendar size={18} style={{ color: '#3D525799' }} />
+                <Calendar size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   LAST UPDATED
                 </label>
               </div>
               <p 
                 className="pl-6"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {formatDate(menuItem.updatedAt)}
               </p>
@@ -240,17 +240,17 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
             {menuItem.uid && (
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Hash size={18} style={{ color: '#3D525799' }} />
+                  <Hash size={18} style={{ color: '#0E302A99' }} />
                   <label 
                     className="text-sm font-semibold"
-                    style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                    style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                   >
                     MENU ITEM ID
                   </label>
                 </div>
                 <p 
                   className="pl-6 font-mono text-xs break-all"
-                  style={{ color: '#3D525799', fontFamily: 'monospace' }}
+                  style={{ color: '#0E302A99', fontFamily: 'monospace' }}
                 >
                   {menuItem.uid}
                 </p>
@@ -265,12 +265,12 @@ const MenuDetailsModal: React.FC<MenuDetailsModalProps> = ({
             onClick={onClose}
             className="w-full px-6 py-3 rounded-lg transition-all duration-200 font-medium"
             style={{
-              backgroundColor: '#3D5257',
+              backgroundColor: '#0E302A',
               color: '#D7CDC1',
               fontFamily: 'Inter, sans-serif'
             }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2d3f44'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D5257'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0E302A'}
           >
             Close
           </button>

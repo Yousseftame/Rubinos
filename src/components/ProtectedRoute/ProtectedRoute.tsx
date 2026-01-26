@@ -13,7 +13,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     // While checking auth state, show a loader or empty screen
     return (
         <div  className="  flex min-h-screen items-center justify-center bg-[#D7CDC1]">
-      <div className="flex justify-center items-center h-screen text-xl font-serif text-gray-600">
+      <div className="flex justify-center items-center h-screen text-xl font-serif text-[#0E302A]">
         Loading...
       </div>
       </div>

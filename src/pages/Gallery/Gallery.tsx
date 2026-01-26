@@ -86,8 +86,8 @@ export default function Gallery() {
           <div className="text-center space-y-8">
             <h2 
               data-aos="zoom-in"
-              className="font-head text-5xl lg:text-6xl font-bold leading-tight tracking-wide"
-              style={{ color: '#5a7a82' }}
+              className="font-head title text-5xl lg:text-6xl font-bold leading-tight tracking-wide"
+              style={{ color: '#3A5F58' }}
             >
               A TASTE OF ITALY.
             </h2>
@@ -96,15 +96,15 @@ export default function Gallery() {
 
             <div  data-aos="zoom-in" className="space-y-6">
               <p
-                className="font-serif text-base lg:text-lg leading-relaxed"
-                style={{ color: '#6b7c7e' }}
+                className="text-base lg:text-lg leading-relaxed"
+                style={{ color: '#3A5F58' }}
               >
 
 Step into Rubinos, where our cozy, authentic Italian restaurant brings the flavors of Italy straight to your table. From our hand-stretched pizzas baked to perfection in our wood-fired oven to our fresh pasta and carefully crafted antipasti, every bite is a journey to the heart of Italy.              </p>
 
               <p
-                className="font-serif text-base lg:text-lg leading-relaxed"
-                style={{ color: '#6b7c7e' }}
+                className="text-base lg:text-lg leading-relaxed"
+                style={{ color: '#3A5F58' }}
               >
 While our menu features beloved classics like Margherita, Quattro Formaggi, and our signature Rubinos Special, many dishes are seasonal and highlight the freshest, locally sourced ingredients, ensuring every visit is a new experience.              </p>
             </div>
@@ -125,7 +125,7 @@ While our menu features beloved classics like Margherita, Quattro Formaggi, and 
           {/* Error State */}
           {error && !loading && (
             <div className="text-center py-20">
-              <p className="font-serif text-lg" style={{ color: '#6b7c7e' }}>
+              <p className="text-lg" style={{ color: '#6b7c7e' }}>
                 {error}
               </p>
             </div>
@@ -134,7 +134,7 @@ While our menu features beloved classics like Margherita, Quattro Formaggi, and 
           {/* Empty State */}
           {!loading && !error && galleryImages.length === 0 && (
             <div className="text-center py-20">
-              <p className="font-serif text-lg" style={{ color: '#6b7c7e' }}>
+              <p className="text-lg" style={{ color: '#6b7c7e' }}>
                 No gallery images available yet.
               </p>
             </div>
@@ -187,7 +187,7 @@ While our menu features beloved classics like Margherita, Quattro Formaggi, and 
           </button>
 
           {/* Image Counter */}
-          <div className="absolute top-6 left-6 text-white font-serif text-base">
+          <div className="absolute top-6 left-6 text-white text-base">
             {selectedImageIndex + 1} / {galleryImages.length}
           </div>
 

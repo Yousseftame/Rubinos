@@ -102,7 +102,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
         <div className="flex items-center justify-between mb-6">
           <h2 
             className="text-2xl font-serif font-bold"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             {mode === 'add' ? 'Add New Category' : 'Edit Category'}
           </h2>
@@ -110,7 +110,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <X size={20} style={{ color: '#3D5257' }} />
+            <X size={20} style={{ color: '#0E302A' }} />
           </button>
         </div>
 
@@ -122,7 +122,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
               <label 
                 htmlFor="name"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Category Name *
               </label>
@@ -135,7 +135,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif'
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -150,7 +150,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
               <label 
                 htmlFor="description"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Description
               </label>
@@ -162,7 +162,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif',
                   minHeight: '100px'
                 }}
@@ -177,7 +177,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
               <label 
                 htmlFor="placeOrder"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Display Order *
               </label>
@@ -192,14 +192,14 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif'
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
                 onBlur={(e) => e.target.style.borderColor = '#D7CDC133'}
                 required
               />
-              <p className="text-xs mt-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+              <p className="text-xs mt-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                 {mode === 'add' 
                   ? `Enter a number between 1 and ${maxOrder + 1} (current max: ${maxOrder})`
                   : `Enter a number between 1 and ${maxOrder}`}
@@ -211,7 +211,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
               <label 
                 htmlFor="status"
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 Status *
               </label>
@@ -223,7 +223,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 style={{
                   borderColor: '#D7CDC133',
                   backgroundColor: 'white',
-                  color: '#3D5257',
+                  color: '#0E302A',
                   fontFamily: 'Inter, sans-serif'
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -244,7 +244,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2"
               style={{
                 borderColor: '#D7CDC1',
-                color: '#3D5257',
+                color: '#0E302A',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC122'}
@@ -257,12 +257,12 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
               disabled={isSubmitting}
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                backgroundColor: '#3D5257',
+                backgroundColor: '#0E302A',
                 color: '#D7CDC1',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#2d3f44')}
-              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#3D5257')}
+              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#0E302A')}
             >
               {isSubmitting ? 'Saving...' : mode === 'add' ? 'Add Category' : 'Update Category'}
             </button>

@@ -38,7 +38,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
       case 'replied':
         return { bg: '#d1fae5', color: '#065f46' };
       default:
-        return { bg: '#D7CDC122', color: '#3D5257' };
+        return { bg: '#D7CDC122', color: '#0E302A' };
     }
   };
 
@@ -59,7 +59,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
         <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: '#D7CDC133' }}>
           <h2 
             className="text-2xl font-serif font-bold"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             Message Details
           </h2>
@@ -67,7 +67,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <X size={20} style={{ color: '#3D5257' }} />
+            <X size={20} style={{ color: '#0E302A' }} />
           </button>
         </div>
 
@@ -78,17 +78,17 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
           {/* Name */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <User size={18} style={{ color: '#3D525799' }} />
+              <User size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 NAME
               </label>
             </div>
             <p 
               className="text-lg font-medium pl-6"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {message.name}
             </p>
@@ -97,10 +97,10 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
           {/* Email */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Mail size={18} style={{ color: '#3D525799' }} />
+              <Mail size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 EMAIL
               </label>
@@ -108,7 +108,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             <a 
               href={`mailto:${message.email}`}
               className="pl-6 hover:underline"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {message.email}
             </a>
@@ -117,10 +117,10 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
           {/* Status Selector */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <MessageSquare size={18} style={{ color: '#3D525799' }} />
+              <MessageSquare size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 STATUS
               </label>
@@ -141,10 +141,10 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
           {/* Phone */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Phone size={18} style={{ color: '#3D525799' }} />
+              <Phone size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 PHONE
               </label>
@@ -152,7 +152,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             <a 
               href={`tel:${message.phone}`}
               className="pl-6 hover:underline"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {message.phone}
             </a>
@@ -161,10 +161,10 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
           {/* Message */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <MessageSquare size={18} style={{ color: '#3D525799' }} />
+              <MessageSquare size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 MESSAGE
               </label>
@@ -172,7 +172,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             <div 
               className="pl-6 p-4 rounded-lg leading-relaxed"
               style={{ 
-                color: '#3D5257', 
+                color: '#0E302A', 
                 fontFamily: 'Inter, sans-serif',
                 backgroundColor: '#F9F9F9'
               }}
@@ -188,17 +188,17 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
           >
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Calendar size={18} style={{ color: '#3D525799' }} />
+                <Calendar size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   RECEIVED AT
                 </label>
               </div>
               <p 
                 className="pl-6"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {formatDate(message.createdAt)}
               </p>
@@ -207,17 +207,17 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             {message.uid && (
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Hash size={18} style={{ color: '#3D525799' }} />
+                  <Hash size={18} style={{ color: '#0E302A99' }} />
                   <label 
                     className="text-sm font-semibold"
-                    style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                    style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                   >
                     MESSAGE ID
                   </label>
                 </div>
                 <p 
                   className="pl-6 font-mono text-xs break-all"
-                  style={{ color: '#3D525799', fontFamily: 'monospace' }}
+                  style={{ color: '#0E302A99', fontFamily: 'monospace' }}
                 >
                   {message.uid}
                 </p>
@@ -232,13 +232,13 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             href={`mailto:${message.email}`}
             className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium text-center"
             style={{
-              backgroundColor: '#3D5257',
+              backgroundColor: '#0E302A',
               color: '#D7CDC1',
               fontFamily: 'Inter, sans-serif'
             }}
             target='_blank'
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2d3f44'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D5257'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0E302A'}
           >
             Reply via Email
           </a>
@@ -247,7 +247,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2"
             style={{
               borderColor: '#D7CDC1',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC122'}

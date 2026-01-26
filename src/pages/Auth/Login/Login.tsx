@@ -21,10 +21,10 @@ const Login = () => {
     <>
       {/* Welcome Text */}
       <div className="mb-10">
-        <h1 data-aos="fade-right" className="text-4xl lg:text-5xl font-head font-bold mb-3" style={{ color: '#3d5055' }}>
+        <h1 data-aos="fade-right" className="text-4xl lg:text-5xl font-head font-bold mb-3" style={{ color: '#3A5F58' }}>
           Welcome Back
         </h1>
-        <p className="text-base font-serif" style={{ color: '#6b7c7e' }}>
+        <p className="text-base " style={{ color: '#3A5F58' }}>
           Sign in to access your account
         </p>
       </div>
@@ -61,9 +61,9 @@ const Login = () => {
                 className="hover:opacity-70 transition-opacity"
               >
                 {showPassword ? (
-                  <EyeOff className="w-5 h-5" style={{ color: '#6b7c7e' }} strokeWidth={1.5} />
+                  <EyeOff className="w-5 h-5" style={{ color: '#3A5F58' }} strokeWidth={1.5} />
                 ) : (
-                  <Eye className="w-5 h-5" style={{ color: '#6b7c7e' }} strokeWidth={1.5} />
+                  <Eye className="w-5 h-5" style={{ color: '#3A5F58' }} strokeWidth={1.5} />
                 )}
               </button>
             }
@@ -78,14 +78,14 @@ const Login = () => {
                 className="w-4 h-4 border-2 mr-2 cursor-pointer"
                 style={{ accentColor: '#3d5055' }}
               />
-              <span className="text-sm font-serif" style={{ color: '#6b7c7e' }}>
+              <span className="text-sm " style={{ color: '#6b7c7e' }}>
                 Remember me
               </span>
             </label> */}
             <Link 
               to="/forget-password"
-              className="text-sm font-serif hover:opacity-70 transition-opacity"
-              style={{ color: '#5a7a82' }}
+              className="text-sm  hover:opacity-70 transition-opacity"
+              style={{ color: '#3A5F58' }}
             >
               Forgot password?
             </Link>
@@ -98,7 +98,7 @@ const Login = () => {
 
       {/* Sign Up Link */}
       {/* <div className="mt-8 text-center">
-        <p className="text-sm font-serif" style={{ color: '#6b7c7e' }}>
+        <p className="text-sm " style={{ color: '#6b7c7e' }}>
           Don't have an account?{' '}
           <Link
             to="/register" 

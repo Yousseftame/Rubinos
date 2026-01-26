@@ -54,7 +54,7 @@ export default function GallerySection() {
         {/* Show loading spinner */}
         {loading && (
           <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#3D5257' }} />
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#0E302A' }} />
           </div>
         )}
 

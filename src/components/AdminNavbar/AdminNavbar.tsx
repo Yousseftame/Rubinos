@@ -21,7 +21,7 @@ const AdminNavbar = () => {
         <span
           className="text-sm tracking-wide"
           style={{
-            color: '#3D5257',
+            color: '#0E302A',
             fontFamily: 'Cinzel, serif',
             opacity: 0.75,
           }}
@@ -33,7 +33,7 @@ const AdminNavbar = () => {
         <span
           className="text-lg font-semibold tracking-wide"
           style={{
-            color: '#3D5257',
+            color: '#0E302A',
             fontFamily: 'Inter, system-ui, sans-serif',
           }}
         >
@@ -47,7 +47,7 @@ const AdminNavbar = () => {
           className="w-10 h-10 rounded-full flex items-center justify-center"
           style={{
             backgroundColor: '#D7CDC1',
-            color: '#3D5257',
+            color: '#0E302A',
           }}
         >
           <User size={18} />

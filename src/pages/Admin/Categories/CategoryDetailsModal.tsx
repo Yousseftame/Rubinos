@@ -44,7 +44,7 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
         <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: '#D7CDC133' }}>
           <h2 
             className="text-2xl font-serif font-bold"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             Category Details
           </h2>
@@ -52,7 +52,7 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <X size={20} style={{ color: '#3D5257' }} />
+            <X size={20} style={{ color: '#0E302A' }} />
           </button>
         </div>
 
@@ -61,17 +61,17 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
           {/* Name */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Info size={18} style={{ color: '#3D525799' }} />
+              <Info size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 CATEGORY NAME
               </label>
             </div>
             <p 
               className="text-lg font-medium pl-6"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {category.name}
             </p>
@@ -80,17 +80,17 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
           {/* Description */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Info size={18} style={{ color: '#3D525799' }} />
+              <Info size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 DESCRIPTION
               </label>
             </div>
             <p 
               className="pl-6 leading-relaxed"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {category.description}
             </p>
@@ -99,22 +99,22 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
           {/* Items Count */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Hash size={18} style={{ color: '#3D525799' }} />
+              <Hash size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 NUMBER OF ITEMS
               </label>
             </div>
             <p 
               className="text-lg font-medium pl-6"
-              style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {category.items}
               <span 
                 className="text-xs ml-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 (Automatically calculated from menu items)
               </span>
@@ -124,10 +124,10 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
           {/* Status */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Info size={18} style={{ color: '#3D525799' }} />
+              <Info size={18} style={{ color: '#0E302A99' }} />
               <label 
                 className="text-sm font-semibold"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 STATUS
               </label>
@@ -136,8 +136,8 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
               <span
                 className="inline-block px-4 py-2 rounded-full text-sm font-medium"
                 style={{
-                  backgroundColor: category.status === 'active' ? '#D7CDC122' : '#3D525722',
-                  color: category.status === 'active' ? '#3D5257' : '#3D525799',
+                  backgroundColor: category.status === 'active' ? '#D7CDC122' : '#0E302A22',
+                  color: category.status === 'active' ? '#0E302A' : '#0E302A99',
                   fontFamily: 'Inter, sans-serif'
                 }}
               >
@@ -153,17 +153,17 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
           >
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Calendar size={18} style={{ color: '#3D525799' }} />
+                <Calendar size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   CREATED AT
                 </label>
               </div>
               <p 
                 className="pl-6"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {formatDate(category.createdAt)}
               </p>
@@ -171,17 +171,17 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
 
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Calendar size={18} style={{ color: '#3D525799' }} />
+                <Calendar size={18} style={{ color: '#0E302A99' }} />
                 <label 
                   className="text-sm font-semibold"
-                  style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                 >
                   LAST UPDATED
                 </label>
               </div>
               <p 
                 className="pl-6"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {formatDate(category.updatedAt)}
               </p>
@@ -190,17 +190,17 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
             {category.uid && (
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Hash size={18} style={{ color: '#3D525799' }} />
+                  <Hash size={18} style={{ color: '#0E302A99' }} />
                   <label 
                     className="text-sm font-semibold"
-                    style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                    style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                   >
                     CATEGORY ID
                   </label>
                 </div>
                 <p 
                   className="pl-6 font-mono text-xs break-all"
-                  style={{ color: '#3D525799', fontFamily: 'monospace' }}
+                  style={{ color: '#0E302A99', fontFamily: 'monospace' }}
                 >
                   {category.uid}
                 </p>
@@ -215,12 +215,12 @@ const CategoryDetailsModal: React.FC<CategoryDetailsModalProps> = ({
             onClick={onClose}
             className="w-full px-6 py-3 rounded-lg transition-all duration-200 font-medium"
             style={{
-              backgroundColor: '#3D5257',
+              backgroundColor: '#0E302A',
               color: '#D7CDC1',
               fontFamily: 'Inter, sans-serif'
             }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2d3f44'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D5257'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0E302A'}
           >
             Close
           </button>

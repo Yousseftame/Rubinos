@@ -52,10 +52,10 @@ const AdminHomeSections = () => {
     <div className="w-full">
       {/* Header Section */}
       <div className="mb-8">
-        <h1 className="text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>
+        <h1 className="text-4xl font-serif mb-2" style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}>
           Home Sections
         </h1>
-        <p className="text-sm" style={{ color: '#3D525799' }}>
+        <p className="text-sm" style={{ color: '#0E302A99' }}>
           Manage your homepage sections (About, Dining, Hero Image)
         </p>
       </div>
@@ -63,7 +63,7 @@ const AdminHomeSections = () => {
       {/* Loading State */}
       {loading && (
         <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#3D5257' }} />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#0E302A' }} />
         </div>
       )}
 
@@ -99,7 +99,7 @@ const AdminHomeSections = () => {
                       className="w-full h-full flex items-center justify-center"
                       style={{ backgroundColor: '#D7CDC122' }}
                     >
-                      <span style={{ color: '#3D525799' }}>No image</span>
+                      <span style={{ color: '#0E302A99' }}>No image</span>
                     </div>
                   )}
                   {/* Type Badge */}
@@ -120,7 +120,7 @@ const AdminHomeSections = () => {
                   {/* Title */}
                   <h3 
                     className="text-lg font-semibold mb-2 line-clamp-1"
-                    style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                    style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
                   >
                    {section?.title}
                   </h3>
@@ -129,7 +129,7 @@ const AdminHomeSections = () => {
                   {section?.description && (
                     <p 
                       className="text-sm mb-3 line-clamp-2"
-                      style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                      style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                     >
                       
                       {section.description}
@@ -138,7 +138,7 @@ const AdminHomeSections = () => {
 
                   {/* Last Updated */}
                   {sectionMeta?.lastUpdated && (
-                    <div className="flex items-center gap-2 mb-4 text-xs" style={{ color: '#3D525799' }}>
+                    <div className="flex items-center gap-2 mb-4 text-xs" style={{ color: '#0E302A99' }}>
                       <Calendar size={14} />
                       <span>{sectionMeta.lastUpdated.toLocaleDateString()}</span>
                     </div>
@@ -150,14 +150,14 @@ const AdminHomeSections = () => {
                     <button
                       onClick={() => handleOpenDetailsModal(sectionType)}
                       className="flex-1 p-2 rounded-lg transition-all duration-150 flex items-center justify-center gap-2"
-                      style={{ color: '#3D525799' }}
+                      style={{ color: '#0E302A99' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = '#D7CDC122';
-                        e.currentTarget.style.color = '#3D5257';
+                        e.currentTarget.style.color = '#0E302A';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = '#3D525799';
+                        e.currentTarget.style.color = '#0E302A99';
                       }}
                       title="View details"
                     >
@@ -169,14 +169,14 @@ const AdminHomeSections = () => {
                     <button
                       onClick={() => handleOpenEditModal(sectionType)}
                       className="flex-1 p-2 rounded-lg transition-all duration-150 flex items-center justify-center gap-2"
-                      style={{ color: '#3D525799' }}
+                      style={{ color: '#0E302A99' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = '#D7CDC122';
-                        e.currentTarget.style.color = '#3D5257';
+                        e.currentTarget.style.color = '#0E302A';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = '#3D525799';
+                        e.currentTarget.style.color = '#0E302A99';
                       }}
                       title="Edit"
                     >

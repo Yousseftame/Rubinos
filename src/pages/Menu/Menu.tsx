@@ -239,9 +239,9 @@ export default function Menu() {
                 <button
                   key={category.uid}
                   onClick={() => handleCategoryChange(category.uid || '')}
-                  className={`text-sm lg:text-base font-serif font-semibold tracking-widest transition-all duration-300 pb-2 border-b-2 ${activeCategory === category.uid
-                      ? 'border-b-[#3d5055] text-[#3d5055]'
-                      : 'border-b-transparent text-[#6b7c7e] hover:text-[#3d5055]'
+                  className={`text-sm lg:text-base  font-semibold tracking-widest transition-all duration-300 pb-2 border-b-2 ${activeCategory === category.uid
+                      ? 'border-b-[#3A5F58] text-[#E44131]'
+                      : 'border-b-transparent text-[#0E302A] hover:text-[#E44131]'
                     }`}
                 >
                   {category.name.toUpperCase()}
@@ -261,7 +261,7 @@ export default function Menu() {
           ) : filteredMenuItems.length === 0 ? (
             // Empty state
             <div className="flex items-center justify-center py-20">
-              <p className="font-serif text-lg" style={{ color: '#6b7c7e' }}>
+              <p className="font-serif text-lg" style={{ color: '#0E302A' }}>
                 No items available in this category.
               </p>
             </div>
@@ -272,7 +272,7 @@ export default function Menu() {
                 <div
                   key={item.uid}
                   onClick={() => handleItemClick(item)}
-                  className="group cursor-pointer pb-6 border-b border-[#a89f97]/30 hover:border-[#3d5055] transition-colors duration-300"
+                  className="group cursor-pointer pb-6 border-b border-[#0E302A]/30 hover:border-[#0E302A] transition-colors duration-300"
                 >
                   <div className="flex items-start gap-4 mb-2">
                     {/* Image with Navigation */}
@@ -282,21 +282,21 @@ export default function Menu() {
                     <div className="flex-1">
                       <div className="flex justify-between items-start gap-4 mb-1">
                         <h3
-                          className="font-serif text-lg lg:text-xl font-semibold flex-1"
-                          style={{ color: '#3d5055' }}
+                          className=" text-lg lg:text-xl font-semibold flex-1"
+                          style={{ color: '#0E302A' }}
                         >
                           {item.name}
                         </h3>
                         <span
-                          className="font-serif text-sm lg:text-base font-medium whitespace-nowrap"
-                          style={{ color: '#5a7a82' }}
+                          className=" text-sm lg:text-base font-medium whitespace-nowrap"
+                          style={{ color: '#0E302A' }}
                         >
                           ${item.price.toFixed(2)}
                         </span>
                       </div>
                       <p
-                        className="font-serif text-sm lg:text-base leading-relaxed line-clamp-2"
-                        style={{ color: '#6b7c7e' }}
+                        className=" text-sm lg:text-base leading-relaxed line-clamp-2"
+                        style={{ color: '#3A5F58' }}
                       >
                         {item.description}
                       </p>
@@ -309,7 +309,7 @@ export default function Menu() {
 
           {/* Footer Border */}
           <div className="mt-16 pt-12 border-t border-[#a89f97]/30 text-center">
-            <p className="font-serif text-sm lg:text-base italic" style={{ color: '#6b7c7e' }}>
+            <p className=" text-sm lg:text-base italic" style={{ color: '#3A5F58' }}>
               Menu items and prices subject to change based on seasonal availability and market
               conditions.
             </p>

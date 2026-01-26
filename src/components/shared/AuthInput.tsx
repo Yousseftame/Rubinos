@@ -29,15 +29,15 @@ const AuthInput: React.FC<AuthInputProps> = ({
       <label 
         data-aos="fade-right"
         htmlFor={id} 
-        className="block text-sm font-serif font-medium mb-2 tracking-wide"
-        style={{ color: '#5a7a82' }}
+        className="block text-sm  font-medium mb-2 tracking-wide"
+        style={{ color: '#3A5F58' }}
       >
         {label}
       </label>
       <div className="relative">
         <Icon 
           className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" 
-          style={{ color: '#6b7c7e' }}
+          style={{ color: '#3A5F58' }}
           strokeWidth={1.5}
         />
         <input
@@ -47,7 +47,7 @@ const AuthInput: React.FC<AuthInputProps> = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="w-full pl-12 pr-12 py-3.5 border-2 font-serif text-base transition-all duration-300 focus:outline-none focus:border-opacity-100"
+          className="w-full pl-12 pr-12 py-3.5 border-2  text-base transition-all duration-300 focus:outline-none focus:border-opacity-100"
           style={{ 
             backgroundColor: '#f5f1ed',
             borderColor: '#b8aea0',

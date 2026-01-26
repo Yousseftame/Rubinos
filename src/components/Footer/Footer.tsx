@@ -7,7 +7,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="relative overflow-hidden" style={{ backgroundColor: '#46616d' }}>
+    <footer className="relative overflow-hidden" style={{ backgroundColor: '#0E302A' }}>
       <div className="max-w-3xl mx-auto px-6 lg:px-8 py-6 text-center">
         {/* Knot Icon */}
         <div className="mb-3">
@@ -40,7 +40,7 @@ const Footer = () => {
           <button
            onClick={()=>{navigate("/contact")}}
             type="button"
-            className=" btn-invert flex-1 px-8 py-3 font-serif text-sm font-medium tracking-widest transition-all hover:shadow-lg  duration-300"
+            className=" btn-invert flex-1 px-8 py-3  text-sm font-medium tracking-widest transition-all hover:shadow-lg  duration-300"
            
           >
             CONTACT
@@ -73,7 +73,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <p className="font-serif text-xs tracking-wide" style={{ color: '#b8aea0' }}>
-          Rubinos © {currentYear} / All Rights Reserved
+          Rubinos © 2023 / All Rights Reserved
         </p>
       </div>
     </footer>

@@ -157,10 +157,10 @@ const Menus = () => {
     <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
       {/* Header Section */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif mb-2" style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}>
           Menu Items
         </h1>
-        <p className="text-xs sm:text-sm" style={{ color: '#3D525799' }}>
+        <p className="text-xs sm:text-sm" style={{ color: '#0E302A99' }}>
           Manage your menu items and dishes
         </p>
       </div>
@@ -179,13 +179,13 @@ const Menus = () => {
             <div>
               <p 
                 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 TOTAL ITEMS
               </p>
               <p 
                 className="text-2xl sm:text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.totalItems || 0}
               </p>
@@ -194,7 +194,7 @@ const Menus = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <Package size={20} className="sm:w-6 sm:h-6" style={{ color: '#3D5257' }} />
+              <Package size={20} className="sm:w-6 sm:h-6" style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -211,13 +211,13 @@ const Menus = () => {
             <div>
               <p 
                 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 ACTIVE ITEMS
               </p>
               <p 
                 className="text-2xl sm:text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.activeItems || 0}
               </p>
@@ -226,7 +226,7 @@ const Menus = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <Eye size={20} className="sm:w-6 sm:h-6" style={{ color: '#3D5257' }} />
+              <Eye size={20} className="sm:w-6 sm:h-6" style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -243,13 +243,13 @@ const Menus = () => {
             <div>
               <p 
                 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 INACTIVE ITEMS
               </p>
               <p 
                 className="text-2xl sm:text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.inactiveItems || 0}
               </p>
@@ -258,7 +258,7 @@ const Menus = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <EyeOff size={20} className="sm:w-6 sm:h-6" style={{ color: '#3D5257' }} />
+              <EyeOff size={20} className="sm:w-6 sm:h-6" style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -270,7 +270,7 @@ const Menus = () => {
         <div className="relative">
           <Search 
             className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" 
-            style={{ color: '#3D525799', fontSize: '18px' }}
+            style={{ color: '#0E302A99', fontSize: '18px' }}
           />
           <input
             type="text"
@@ -284,7 +284,7 @@ const Menus = () => {
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -306,7 +306,7 @@ const Menus = () => {
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -331,7 +331,7 @@ const Menus = () => {
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -345,14 +345,14 @@ const Menus = () => {
           {/* Add Button */}
           <button
             onClick={handleOpenAddModal}
-    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm font-medium transition-all duration-200 bg-[#3D5257] text-[#D7CDC1]"
+    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm font-medium transition-all duration-200 bg-[#0E302A] text-[#D7CDC1]"
             style={{
-              backgroundColor: '#3D5257',
+              backgroundColor: '#0E302A',
               color: '#D7CDC1',
               fontFamily: 'Inter, sans-serif'
             }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2d3f44'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D5257'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0E302A'}
           >
             <Add style={{ fontSize: '18px' }} />
             <span className="hidden sm:inline">Add Menu Item</span>
@@ -364,7 +364,7 @@ const Menus = () => {
       {/* Loading State */}
       {loading && (
         <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#3D5257' }} />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#0E302A' }} />
         </div>
       )}
 
@@ -381,7 +381,7 @@ const Menus = () => {
           <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr style={{ backgroundColor: '#3D5257' }}>
+                <tr style={{ backgroundColor: '#0E302A' }}>
                   <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     NAME
                   </th>
@@ -406,7 +406,7 @@ const Menus = () => {
                 {currentMenuItems.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="text-center py-12">
-                      <p style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                      <p style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                         {searchTerm || categoryFilter !== 'all' || statusFilter !== 'all' ? 'No menu items found matching your criteria.' : 'No menu items yet. Add your first item!'}
                       </p>
                     </td>
@@ -422,25 +422,25 @@ const Menus = () => {
                       }}
                     >
                       <td className="px-6 py-4">
-                        <span className="font-medium text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="font-medium text-sm" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {menuItem.name}
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {getCategoryName(menuItem.categoryId)}
                         </span>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-1">
-                          <AttachMoney style={{ fontSize: '16px', color: '#3D5257' }} />
-                          <span className="text-sm font-medium" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                          <AttachMoney style={{ fontSize: '16px', color: '#0E302A' }} />
+                          <span className="text-sm font-medium" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                             {menuItem.price.toFixed(2)}
                           </span>
                         </div>
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <span className="text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="text-sm" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {menuItem.images?.length || 0}
                         </span>
                       </td>
@@ -451,8 +451,8 @@ const Menus = () => {
                             disabled={isTogglingStatus}
                             className="px-3 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50"
                             style={{
-                              backgroundColor: menuItem.status === 'active' ? '#D7CDC122' : '#3D525722',
-                              color: menuItem.status === 'active' ? '#3D5257' : '#3D525799',
+                              backgroundColor: menuItem.status === 'active' ? '#D7CDC122' : '#0E302A22',
+                              color: menuItem.status === 'active' ? '#0E302A' : '#0E302A99',
                               fontFamily: 'Inter, sans-serif'
                             }}
                           >
@@ -465,14 +465,14 @@ const Menus = () => {
                           <button
                             onClick={() => handleOpenDetailsModal(menuItem)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#D7CDC122';
-                              e.currentTarget.style.color = '#3D5257';
+                              e.currentTarget.style.color = '#0E302A';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="View"
                           >
@@ -481,14 +481,14 @@ const Menus = () => {
                           <button
                             onClick={() => handleOpenEditModal(menuItem)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#D7CDC122';
-                              e.currentTarget.style.color = '#3D5257';
+                              e.currentTarget.style.color = '#0E302A';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="Edit"
                           >
@@ -497,14 +497,14 @@ const Menus = () => {
                           <button
                             onClick={() => handleOpenDeleteModal(menuItem)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#ff000011';
                               e.currentTarget.style.color = '#dc2626';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="Delete"
                           >
@@ -523,7 +523,7 @@ const Menus = () => {
           <div className="lg:hidden">
             {currentMenuItems.length === 0 ? (
               <div className="text-center py-12 px-4">
-                <p className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                <p className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                   {searchTerm || categoryFilter !== 'all' || statusFilter !== 'all' ? 'No menu items found matching your criteria.' : 'No menu items yet. Add your first item!'}
                 </p>
               </div>
@@ -533,10 +533,10 @@ const Menus = () => {
                   <div key={menuItem.uid} className="p-4">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-sm mb-1 " style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <h3 className="font-medium text-sm mb-1 " style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {menuItem.name}
                         </h3>
-                        <p className="text-xs mb-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                        <p className="text-xs mb-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {getCategoryName(menuItem.categoryId)}
                         </p>
                       </div>
@@ -545,8 +545,8 @@ const Menus = () => {
                         disabled={isTogglingStatus}
                         className="ml-2 px-2.5 py-1 rounded-full text-xs font-medium capitalize transition-all disabled:opacity-50 flex-shrink-0"
                         style={{
-                          backgroundColor: menuItem.status === 'active' ? '#D7CDC122' : '#3D525722',
-                          color: menuItem.status === 'active' ? '#3D5257' : '#3D525799',
+                          backgroundColor: menuItem.status === 'active' ? '#D7CDC122' : '#0E302A22',
+                          color: menuItem.status === 'active' ? '#0E302A' : '#0E302A99',
                           fontFamily: 'Inter, sans-serif'
                         }}
                       >
@@ -555,10 +555,10 @@ const Menus = () => {
                     </div>
                     
                     <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3 text-xs" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                      <div className="flex items-center gap-3 text-xs" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                         <div className="flex items-center gap-1">
-                          <AttachMoney style={{ fontSize: '14px', color: '#3D5257' }} />
-                          <span className="font-medium" style={{ color: '#3D5257' }}>{menuItem.price.toFixed(2)}</span>
+                          <AttachMoney style={{ fontSize: '14px', color: '#0E302A' }} />
+                          <span className="font-medium" style={{ color: '#0E302A' }}>{menuItem.price.toFixed(2)}</span>
                         </div>
                         <span>•</span>
                         <span>{menuItem.images?.length || 0} images</span>
@@ -569,14 +569,14 @@ const Menus = () => {
                       <button
                         onClick={() => handleOpenDetailsModal(menuItem)}
                         className="p-2 rounded-lg transition-all"
-                        style={{ color: '#3D525799' }}
+                        style={{ color: '#0E302A99' }}
                       >
                         <Visibility style={{ fontSize: '16px' }} />
                       </button>
                       <button
                         onClick={() => handleOpenEditModal(menuItem)}
                         className="p-2 rounded-lg transition-all"
-                        style={{ color: '#3D525799' }}
+                        style={{ color: '#0E302A99' }}
                       >
                         <Edit style={{ fontSize: '16px' }} />
                       </button>
@@ -600,7 +600,7 @@ const Menus = () => {
               className="px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between border-t gap-3"
               style={{ borderColor: '#D7CDC122' }}
             >
-              <div className="text-xs sm:text-sm order-2 sm:order-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+              <div className="text-xs sm:text-sm order-2 sm:order-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredMenuItems.length)} of {filteredMenuItems.length}
               </div>
 
@@ -610,7 +610,7 @@ const Menus = () => {
                   disabled={currentPage === 1}
                   className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === 1 ? 'transparent' : '#D7CDC122'
                   }}
                 >
@@ -623,8 +623,8 @@ const Menus = () => {
                     onClick={() => setCurrentPage(index + 1)}
                     className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg text-xs sm:text-sm font-medium transition-all duration-150"
                     style={{
-                      backgroundColor: currentPage === index + 1 ? '#3D5257' : 'transparent',
-                      color: currentPage === index + 1 ? '#D7CDC1' : '#3D5257',
+                      backgroundColor: currentPage === index + 1 ? '#0E302A' : 'transparent',
+                      color: currentPage === index + 1 ? '#D7CDC1' : '#0E302A',
                       fontFamily: 'Inter, sans-serif'
                     }}
                   >
@@ -637,7 +637,7 @@ const Menus = () => {
                   disabled={currentPage === totalPages}
                   className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === totalPages ? 'transparent' : '#D7CDC122'
                   }}
                 >

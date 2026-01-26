@@ -57,7 +57,7 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-[#46616d]/95 backdrop-blur-md shadow-lg py-4'
+            ? 'bg-[#0E302A]/95 backdrop-blur-md shadow-lg py-4'
             : 'bg-transparent py-8 lg:py-8'
         }`}
       >
@@ -129,7 +129,7 @@ const Navbar = () => {
         <div className="lg:hidden fixed inset-0 z-[60] flex items-center justify-center">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-seaworthy-charcoal/95 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#0E302A]/95 backdrop-blur-sm"
             onClick={() => setIsMenuOpen(false)}
           />
           

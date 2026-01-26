@@ -129,10 +129,10 @@ const AdminGallery = () => {
     <div className="w-full">
       {/* Header Section */}
       <div className="mb-8">
-        <h1 className="text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>
+        <h1 className="text-4xl font-serif mb-2" style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}>
           Gallery
         </h1>
-        <p className="text-sm" style={{ color: '#3D525799' }}>
+        <p className="text-sm" style={{ color: '#0E302A99' }}>
           Manage your restaurant gallery images
         </p>
       </div>
@@ -151,13 +151,13 @@ const AdminGallery = () => {
             <div>
               <p 
                 className="text-sm font-semibold mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 TOTAL IMAGES
               </p>
               <p 
                 className="text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.totalImages || 0}
               </p>
@@ -166,7 +166,7 @@ const AdminGallery = () => {
               className="w-12 h-12 rounded-lg flex items-center justify-center"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <Images size={24} style={{ color: '#3D5257' }} />
+              <Images size={24} style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -183,13 +183,13 @@ const AdminGallery = () => {
             <div>
               <p 
                 className="text-sm font-semibold mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 ACTIVE IMAGES
               </p>
               <p 
                 className="text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.activeImages || 0}
               </p>
@@ -198,7 +198,7 @@ const AdminGallery = () => {
               className="w-12 h-12 rounded-lg flex items-center justify-center"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <Eye size={24} style={{ color: '#3D5257' }} />
+              <Eye size={24} style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -215,13 +215,13 @@ const AdminGallery = () => {
             <div>
               <p 
                 className="text-sm font-semibold mb-2"
-                style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
               >
                 INACTIVE IMAGES
               </p>
               <p 
                 className="text-3xl font-bold"
-                style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
               >
                 {statistics?.inactiveImages || 0}
               </p>
@@ -230,7 +230,7 @@ const AdminGallery = () => {
               className="w-12 h-12 rounded-lg flex items-center justify-center"
               style={{ backgroundColor: '#D7CDC122' }}
             >
-              <EyeOff size={24} style={{ color: '#3D5257' }} />
+              <EyeOff size={24} style={{ color: '#0E302A' }} />
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@ const AdminGallery = () => {
         <div className="relative flex-1 min-w-[200px] max-w-md">
           <Search 
             className="absolute left-4 top-1/2 -translate-y-1/2" 
-            style={{ color: '#3D525799', fontSize: '20px' }}
+            style={{ color: '#0E302A99', fontSize: '20px' }}
           />
           <input
             type="text"
@@ -256,7 +256,7 @@ const AdminGallery = () => {
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -275,7 +275,7 @@ const AdminGallery = () => {
           style={{
             borderColor: '#D7CDC133',
             backgroundColor: 'white',
-            color: '#3D5257',
+            color: '#0E302A',
             fontFamily: 'Inter, sans-serif'
           }}
           onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -291,12 +291,12 @@ const AdminGallery = () => {
           onClick={handleOpenAddModal}
           className="flex items-center gap-2 px-6 py-3 rounded-lg transition-all duration-200 font-medium flex-shrink-0"
           style={{
-            backgroundColor: '#3D5257',
+            backgroundColor: '#0E302A',
             color: '#D7CDC1',
             fontFamily: 'Inter, sans-serif'
           }}
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2d3f44'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D5257'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0E302A'}
         >
           <Add style={{ fontSize: '20px' }} />
           Add Image
@@ -306,7 +306,7 @@ const AdminGallery = () => {
       {/* Loading State */}
       {loading && (
         <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#3D5257' }} />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#0E302A' }} />
         </div>
       )}
 
@@ -321,8 +321,8 @@ const AdminGallery = () => {
                 border: '1px solid #D7CDC122'
               }}
             >
-              <ImageIcon style={{ fontSize: '64px', color: '#3D525733', marginBottom: '16px' }} />
-              <p style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+              <ImageIcon style={{ fontSize: '64px', color: '#0E302A33', marginBottom: '16px' }} />
+              <p style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                 {searchTerm || statusFilter !== 'all' ? 'No images found matching your criteria.' : 'No images yet. Add your first image!'}
               </p>
             </div>
@@ -350,7 +350,7 @@ const AdminGallery = () => {
                     <div 
                       className="absolute top-3 left-3 px-3 py-1 rounded-full text-sm font-bold"
                       style={{
-                        backgroundColor: '#3D5257',
+                        backgroundColor: '#0E302A',
                         color: '#D7CDC1',
                         fontFamily: 'Inter, sans-serif'
                       }}
@@ -383,14 +383,14 @@ const AdminGallery = () => {
                     <button
                       onClick={() => handleOpenDetailsModal(item)}
                       className="p-2 rounded-lg transition-all duration-150"
-                      style={{ color: '#3D525799' }}
+                      style={{ color: '#0E302A99' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = '#D7CDC122';
-                        e.currentTarget.style.color = '#3D5257';
+                        e.currentTarget.style.color = '#0E302A';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = '#3D525799';
+                        e.currentTarget.style.color = '#0E302A99';
                       }}
                       title="View"
                     >
@@ -401,14 +401,14 @@ const AdminGallery = () => {
                     <button
                       onClick={() => handleOpenEditModal(item)}
                       className="p-2 rounded-lg transition-all duration-150"
-                      style={{ color: '#3D525799' }}
+                      style={{ color: '#0E302A99' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = '#D7CDC122';
-                        e.currentTarget.style.color = '#3D5257';
+                        e.currentTarget.style.color = '#0E302A';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = '#3D525799';
+                        e.currentTarget.style.color = '#0E302A99';
                       }}
                       title="Edit"
                     >
@@ -419,14 +419,14 @@ const AdminGallery = () => {
                     <button
                       onClick={() => handleOpenDeleteModal(item)}
                       className="p-2 rounded-lg transition-all duration-150"
-                      style={{ color: '#3D525799' }}
+                      style={{ color: '#0E302A99' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = '#ff000011';
                         e.currentTarget.style.color = '#dc2626';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = '#3D525799';
+                        e.currentTarget.style.color = '#0E302A99';
                       }}
                       title="Delete"
                     >
@@ -447,7 +447,7 @@ const AdminGallery = () => {
                 border: '1px solid #D7CDC122'
               }}
             >
-              <div className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+              <div className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredItems.length)} of {filteredItems.length} entries
               </div>
 
@@ -457,7 +457,7 @@ const AdminGallery = () => {
                   disabled={currentPage === 1}
                   className="p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === 1 ? 'transparent' : '#D7CDC122'
                   }}
                 >
@@ -470,8 +470,8 @@ const AdminGallery = () => {
                     onClick={() => setCurrentPage(index + 1)}
                     className="w-9 h-9 rounded-lg text-sm font-medium transition-all duration-150"
                     style={{
-                      backgroundColor: currentPage === index + 1 ? '#3D5257' : 'transparent',
-                      color: currentPage === index + 1 ? '#D7CDC1' : '#3D5257',
+                      backgroundColor: currentPage === index + 1 ? '#0E302A' : 'transparent',
+                      color: currentPage === index + 1 ? '#D7CDC1' : '#0E302A',
                       fontFamily: 'Inter, sans-serif'
                     }}
                   >
@@ -484,7 +484,7 @@ const AdminGallery = () => {
                   disabled={currentPage === totalPages}
                   className="p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === totalPages ? 'transparent' : '#D7CDC122'
                   }}
                 >

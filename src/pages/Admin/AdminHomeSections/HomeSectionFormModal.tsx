@@ -174,7 +174,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
         <div className="flex items-center justify-between mb-6">
           <h2 
             className="text-2xl font-serif font-bold"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             {config.title}
           </h2>
@@ -182,7 +182,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <X size={20} style={{ color: '#3D5257' }} />
+            <X size={20} style={{ color: '#0E302A' }} />
           </button>
         </div>
 
@@ -195,7 +195,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
                 <label 
                   htmlFor="title"
                   className="block text-sm font-semibold mb-2"
-                  style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
                 >
                   Title *
                 </label>
@@ -208,7 +208,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
                   style={{
                     borderColor: '#D7CDC133',
                     backgroundColor: 'white',
-                    color: '#3D5257',
+                    color: '#0E302A',
                     fontFamily: 'Inter, sans-serif'
                   }}
                   onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -225,7 +225,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
                 <label 
                   htmlFor="description"
                   className="block text-sm font-semibold mb-2"
-                  style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                  style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
                 >
                   Description *
                 </label>
@@ -237,7 +237,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
                   style={{
                     borderColor: '#D7CDC133',
                     backgroundColor: 'white',
-                    color: '#3D5257',
+                    color: '#0E302A',
                     fontFamily: 'Inter, sans-serif',
                     minHeight: '120px'
                   }}
@@ -253,7 +253,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
             <div>
               <label 
                 className="block text-sm font-semibold mb-2"
-                style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+                style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
               >
                 {replaceImage ? 'New Image *' : 'Current Image'}
               </label>
@@ -299,11 +299,11 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC122'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#D7CDC108'}
                   >
-                    <Upload size={32} style={{ color: '#3D5257', marginBottom: '8px' }} />
-                    <p className="text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                    <Upload size={32} style={{ color: '#0E302A', marginBottom: '8px' }} />
+                    <p className="text-sm" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                       Click to upload image
                     </p>
-                    <p className="text-xs mt-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                    <p className="text-xs mt-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                       Max size: 5MB
                     </p>
                   </label>
@@ -316,7 +316,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
                       setImagePreview(section?.imageUrl || null);
                     }}
                     className="mt-2 text-sm"
-                    style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+                    style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
                   >
                     Cancel replacement
                   </button>
@@ -333,7 +333,7 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2"
               style={{
                 borderColor: '#D7CDC1',
-                color: '#3D5257',
+                color: '#0E302A',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#D7CDC122'}
@@ -346,12 +346,12 @@ const HomeSectionFormModal: React.FC<HomeSectionFormModalProps> = ({
               disabled={isSubmitting}
               className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                backgroundColor: '#3D5257',
+                backgroundColor: '#0E302A',
                 color: '#D7CDC1',
                 fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#2d3f44')}
-              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#3D5257')}
+              onMouseLeave={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#0E302A')}
             >
               {isSubmitting ? 'Updating...' : 'Update'}
             </button>

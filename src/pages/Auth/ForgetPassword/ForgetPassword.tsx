@@ -18,10 +18,10 @@ const ForgotPassword = () => {
     <>
       {/* Welcome Text */}
       <div className="mb-6">
-        <h1 data-aos="fade-right" className="text-4xl lg:text-5xl font-head font-bold mb-3" style={{ color: '#3d5055' }}>
+        <h1 data-aos="fade-right" className="text-4xl lg:text-5xl font-head font-bold mb-3" style={{ color: '#3A5F58' }}>
           Forgot Password?
         </h1>
-        <p className="text-base font-serif" style={{ color: '#6b7c7e' }}>
+        <p className="text-base " style={{ color: '#3A5F58' }}>
           Enter your email to receive reset instructions
         </p>
       </div>
@@ -72,12 +72,12 @@ const ForgotPassword = () => {
 
         {/* Login Navigate */}
         <div className="mt-8 text-center">
-          <p className="text-sm font-serif" style={{ color: '#6b7c7e' }}>
+          <p className="text-sm " style={{ color: '#3A5F58' }}>
             Missed Up?{' '}
             <Link
               to="/login" 
               className="font-medium hover:opacity-70 transition-opacity"
-              style={{ color: '#5a7a82' }}
+              style={{ color: '#3A5F58' }}
             >
               Sign In
             </Link>

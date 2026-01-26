@@ -16,8 +16,8 @@ const AuthLayout: React.FC = () => {
             <button
               type='button'
               onClick={() => navigate('/')}
-              className="flex items-center gap-2 font-serif text-base font-semibold transition-all hover:opacity-75 duration-300"
-              style={{ color: '#3d5055' }}
+              className="flex items-center gap-2  text-base font-semibold transition-all hover:opacity-75 duration-300"
+              style={{ color: '#3A5F58' }}
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Site
@@ -29,7 +29,7 @@ const AuthLayout: React.FC = () => {
 
           {/* Decorative Element */}
           <div className="mt-12 pt-8 border-t" style={{ borderColor: '#b8aea0' }}>
-            <p className="text-xs font-serif text-center tracking-wide" style={{ color: '#6b7c7e' }}>
+            <p className="text-xs  text-center tracking-wide" style={{ color: '#3A5F58' }}>
               Nothing beats the classic, From our hands to your plate
             </p>
           </div>
@@ -51,7 +51,7 @@ const AuthLayout: React.FC = () => {
               <p className="text-2xl lg:text-3xl font-head font-bold mb-3 leading-tight">
                 "Come For The Pizza,<br />Stay For The Everything"
               </p>
-              <p className="text-sm font-serif opacity-90">
+              <p className="text-sm  opacity-90">
                 " Rubino's Restaurant
               </p>
             </blockquote>

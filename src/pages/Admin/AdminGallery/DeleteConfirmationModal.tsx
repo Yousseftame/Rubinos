@@ -49,13 +49,13 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
         <div className="text-center mb-6">
           <h2 
             className="text-2xl font-serif font-bold mb-2"
-            style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}
           >
             Delete Gallery Image
           </h2>
           <p 
             className="text-sm"
-            style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+            style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
           >
             This action cannot be undone
           </p>
@@ -68,13 +68,13 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
         >
           <p 
             className="text-center"
-            style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}
+            style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
           >
             Are you sure you want to delete the image at position <span className="font-bold">#{itemOrder}</span>?
           </p>
           <p 
             className="text-center text-sm mt-2"
-            style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}
+            style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
           >
             All images after this position will be reordered automatically.
           </p>
@@ -89,7 +89,7 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
             className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2 disabled:opacity-50 disabled:cursor-not-allowed"
             style={{
               borderColor: '#D7CDC1',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onMouseEnter={(e) => !isDeleting && (e.currentTarget.style.backgroundColor = '#D7CDC122')}

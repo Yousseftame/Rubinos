@@ -110,10 +110,10 @@ const Messages = () => {
     <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
       {/* Header Section */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif mb-2" style={{ color: '#3D5257', fontFamily: 'Cinzel, serif' }}>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif mb-2" style={{ color: '#0E302A', fontFamily: 'Cinzel, serif' }}>
           Messages
         </h1>
-        <p className="text-xs sm:text-sm" style={{ color: '#3D525799' }}>
+        <p className="text-xs sm:text-sm" style={{ color: '#0E302A99' }}>
           Manage customer inquiries and messages
         </p>
       </div>
@@ -127,8 +127,8 @@ const Messages = () => {
           }}
           className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200"
           style={{
-            backgroundColor: statusFilter === 'all' ? '#3D5257' : '#D7CDC122',
-            color: statusFilter === 'all' ? '#D7CDC1' : '#3D5257',
+            backgroundColor: statusFilter === 'all' ? '#0E302A' : '#D7CDC122',
+            color: statusFilter === 'all' ? '#D7CDC1' : '#0E302A',
             fontFamily: 'Inter, sans-serif'
           }}
         >
@@ -141,8 +141,8 @@ const Messages = () => {
           }}
           className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 sm:gap-2"
           style={{
-            backgroundColor: statusFilter === 'new' ? '#3D5257' : '#D7CDC122',
-            color: statusFilter === 'new' ? '#D7CDC1' : '#3D5257',
+            backgroundColor: statusFilter === 'new' ? '#0E302A' : '#D7CDC122',
+            color: statusFilter === 'new' ? '#D7CDC1' : '#0E302A',
             fontFamily: 'Inter, sans-serif'
           }}
         >
@@ -156,8 +156,8 @@ const Messages = () => {
           }}
           className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 sm:gap-2"
           style={{
-            backgroundColor: statusFilter === 'seen' ? '#3D5257' : '#D7CDC122',
-            color: statusFilter === 'seen' ? '#D7CDC1' : '#3D5257',
+            backgroundColor: statusFilter === 'seen' ? '#0E302A' : '#D7CDC122',
+            color: statusFilter === 'seen' ? '#D7CDC1' : '#0E302A',
             fontFamily: 'Inter, sans-serif'
           }}
         >
@@ -171,8 +171,8 @@ const Messages = () => {
           }}
           className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 sm:gap-2"
           style={{
-            backgroundColor: statusFilter === 'replied' ? '#3D5257' : '#D7CDC122',
-            color: statusFilter === 'replied' ? '#D7CDC1' : '#3D5257',
+            backgroundColor: statusFilter === 'replied' ? '#0E302A' : '#D7CDC122',
+            color: statusFilter === 'replied' ? '#D7CDC1' : '#0E302A',
             fontFamily: 'Inter, sans-serif'
           }}
         >
@@ -186,7 +186,7 @@ const Messages = () => {
         <div className="relative">
           <Search 
             className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" 
-            style={{ color: '#3D525799', fontSize: '18px' }}
+            style={{ color: '#0E302A99', fontSize: '18px' }}
           />
           <input
             type="text"
@@ -200,7 +200,7 @@ const Messages = () => {
             style={{
               borderColor: '#D7CDC133',
               backgroundColor: 'white',
-              color: '#3D5257',
+              color: '#0E302A',
               fontFamily: 'Inter, sans-serif'
             }}
             onFocus={(e) => e.target.style.borderColor = '#D7CDC1'}
@@ -212,7 +212,7 @@ const Messages = () => {
       {/* Loading State */}
       {loading && (
         <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#3D5257' }} />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#0E302A' }} />
         </div>
       )}
 
@@ -229,7 +229,7 @@ const Messages = () => {
           <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr style={{ backgroundColor: '#3D5257' }}>
+                <tr style={{ backgroundColor: '#0E302A' }}>
                   <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     NAME
                   </th>
@@ -254,7 +254,7 @@ const Messages = () => {
                 {currentMessages.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="text-center py-12">
-                      <p style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                      <p style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                         {searchTerm || statusFilter !== 'all' ? 'No messages found matching your criteria.' : 'No messages yet.'}
                       </p>
                     </td>
@@ -270,23 +270,23 @@ const Messages = () => {
                       }}
                     >
                       <td className="px-6 py-4">
-                        <span className="font-medium text-sm" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="font-medium text-sm" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {message.name}
                         </span>
                       </td>
                       <td className="px-6 py-4">
                         <div className="text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
-                          <div style={{ color: '#3D5257' }}>{message.email}</div>
-                          <div style={{ color: '#3D525799' }}>{message.phone}</div>
+                          <div style={{ color: '#0E302A' }}>{message.email}</div>
+                          <div style={{ color: '#0E302A99' }}>{message.phone}</div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-sm line-clamp-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="text-sm line-clamp-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {message.details}
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                        <span className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {formatDate(message.createdAt)}
                         </span>
                       </td>
@@ -319,14 +319,14 @@ const Messages = () => {
                           <button
                             onClick={() => handleOpenDetailsModal(message)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#D7CDC122';
-                              e.currentTarget.style.color = '#3D5257';
+                              e.currentTarget.style.color = '#0E302A';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="View"
                           >
@@ -335,14 +335,14 @@ const Messages = () => {
                           <button
                             onClick={() => handleOpenDeleteModal(message)}
                             className="p-2 rounded-lg transition-all duration-150"
-                            style={{ color: '#3D525799' }}
+                            style={{ color: '#0E302A99' }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = '#ff000011';
                               e.currentTarget.style.color = '#dc2626';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.color = '#3D525799';
+                              e.currentTarget.style.color = '#0E302A99';
                             }}
                             title="Delete"
                           >
@@ -361,7 +361,7 @@ const Messages = () => {
           <div className="lg:hidden">
             {currentMessages.length === 0 ? (
               <div className="text-center py-12 px-4">
-                <p className="text-sm" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                <p className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                   {searchTerm || statusFilter !== 'all' ? 'No messages found matching your criteria.' : 'No messages yet.'}
                 </p>
               </div>
@@ -371,13 +371,13 @@ const Messages = () => {
                   <div key={message.uid} className="p-4">
                     <div className="flex flex-col sm:flex-row items-start justify-between mb-2">
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-sm mb-1 truncate" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <h3 className="font-medium text-sm mb-1 truncate" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {message.name}
                         </h3>
-                        <p className="text-xs mb-1" style={{ color: '#3D5257', fontFamily: 'Inter, sans-serif' }}>
+                        <p className="text-xs mb-1" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {message.email}
                         </p>
-                        <p className="text-xs mb-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                        <p className="text-xs mb-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {message.phone}
                         </p>
                       </div>
@@ -403,12 +403,12 @@ const Messages = () => {
                       </select>
                     </div>
                     
-                    <p className="text-xs mb-2 line-clamp-2" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                    <p className="text-xs mb-2 line-clamp-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                       {message.details}
                     </p>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-xs" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+                      <span className="text-xs" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                         {formatDate(message.createdAt)}
                       </span>
                       
@@ -416,7 +416,7 @@ const Messages = () => {
                         <button
                           onClick={() => handleOpenDetailsModal(message)}
                           className="p-2 rounded-lg transition-all"
-                          style={{ color: '#3D525799' }}
+                          style={{ color: '#0E302A99' }}
                         >
                           <Visibility style={{ fontSize: '16px' }} />
                         </button>
@@ -441,7 +441,7 @@ const Messages = () => {
               className="px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between border-t gap-3"
               style={{ borderColor: '#D7CDC122' }}
             >
-              <div className="text-xs sm:text-sm order-2 sm:order-1" style={{ color: '#3D525799', fontFamily: 'Inter, sans-serif' }}>
+              <div className="text-xs sm:text-sm order-2 sm:order-1" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredMessages.length)} of {filteredMessages.length}
               </div>
 
@@ -451,7 +451,7 @@ const Messages = () => {
                   disabled={currentPage === 1}
                   className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === 1 ? 'transparent' : '#D7CDC122'
                   }}
                 >
@@ -464,8 +464,8 @@ const Messages = () => {
                     onClick={() => setCurrentPage(index + 1)}
                     className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg text-xs sm:text-sm font-medium transition-all duration-150"
                     style={{
-                      backgroundColor: currentPage === index + 1 ? '#3D5257' : 'transparent',
-                      color: currentPage === index + 1 ? '#D7CDC1' : '#3D5257',
+                      backgroundColor: currentPage === index + 1 ? '#0E302A' : 'transparent',
+                      color: currentPage === index + 1 ? '#D7CDC1' : '#0E302A',
                       fontFamily: 'Inter, sans-serif'
                     }}
                   >
@@ -478,7 +478,7 @@ const Messages = () => {
                   disabled={currentPage === totalPages}
                   className="p-1.5 sm:p-2 rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ 
-                    color: '#3D5257',
+                    color: '#0E302A',
                     backgroundColor: currentPage === totalPages ? 'transparent' : '#D7CDC122'
                   }}
                 >

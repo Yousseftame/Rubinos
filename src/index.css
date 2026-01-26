@@ -3,8 +3,8 @@
 
 @theme {
   /* Seaworthy Color Palette - Refined */
-  --color-background: hsl(198 15% 25%);
-  --color-foreground: hsl(48 18% 88%);
+  --color-background: #0E302A;
+  --color-foreground: #0E302A;
   --color-card: hsl(198 15% 22%);
   --color-card-foreground: hsl(48 18% 88%);
   --color-popover: hsl(198 15% 22%);
@@ -12,7 +12,7 @@
   --color-primary: hsl(198 17% 30%);
   --color-primary-foreground: hsl(48 18% 92%);
   --color-secondary: hsl(48 18% 88%);
-  --color-secondary-foreground: hsl(198 15% 20%);
+  --color-secondary-foreground: #0E302A;
   --color-muted: hsl(198 15% 20%);
   --color-muted-foreground: hsl(198 10% 60%);
   --color-accent: hsl(35 38% 48%);
@@ -50,8 +50,8 @@
   --radius-xl: 1rem;
 
   /* Fonts */
-  --font-display: 'Cinzel', Sans-serif;
-  --font-body: 'Lato', sans-serif;
+  --font-display: 'Clash Display', sans-serif;
+  --font-body: 'Monteya', sans-serif;
 }
 
 * {
@@ -66,7 +66,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 ,div {
   font-family: var(--font-display);
   letter-spacing: 0.05em;
 }
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation link style - Enhanced */
 .nav-link {
-  font-family: "Cinzel", serif;
+  font-family: 'Monteya', sans-serif;
   letter-spacing: 1px;
    font-weight: 600;
   text-transform: uppercase;
@@ -181,7 +181,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-seaworthy-nav:hover {
-  background-color: hsl(198 20% 28%);
+  background-color: #0E302A;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -309,7 +309,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-invert {
-  background-color: #3d5055;
+  background-color: #3A5F58;
   color: #e8dfd7;
   transition: all 0.3s ease;
 
@@ -317,10 +317,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-invert:hover {
   background-color: #e8dfd7;
-  color: #3d5055;
-  border-color: #3d5055;
+  color: #3A5F58;
+  border-color: #3A5F58;
 }
 
 html, body {
   overflow-x: hidden;
+}
+
+ /*======================== Rubinos GuildLine Fonts ==================== */
+@font-face {
+  font-family: 'Monteya';
+  src: url('/src/assets/fonts/Monteya-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/src/assets/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lol{
+   font-family: 'Monteya', sans-serif;
 }
