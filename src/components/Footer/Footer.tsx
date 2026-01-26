@@ -3,7 +3,7 @@ import knotIcon from '../../assets/Seaworthy_favicon_rope-removebg-preview.png';
 import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
 
   return (

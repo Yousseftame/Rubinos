@@ -1,7 +1,7 @@
 // Gallery.tsx
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
-import ambiance from '../../assets/section1.webp';
+import ambiance from '../../assets/5.jpg';
 import { getActiveGalleryItems } from '../../service/gallery/gallery.service';
 import type { GalleryItem } from '../../service/gallery/gallery.service';
 
