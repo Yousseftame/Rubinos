@@ -320,18 +320,18 @@ h1, h2, h3, h4, h5, h6 ,div {
 }
 
 /* Use fixed background only on larger screens for better performance */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .bg-images {
     background-attachment: fixed;
   }
-}
+} */
 
 /* On mobile, use scroll for better performance */
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .bg-images {
     background-attachment: fixed;
   }
-}
+} */
 
 .btn-invert {
   background-color: #3A5F58;

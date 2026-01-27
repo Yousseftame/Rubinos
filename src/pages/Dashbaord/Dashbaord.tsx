@@ -228,9 +228,7 @@ const Dashboard = () => {
       <section className="relative w-full overflow-hidden">
         <div 
           className="w-full h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[28rem] bg-images bg-cover bg-center bg-fixed"
-          style={{
-            backgroundImage: 'url(/src/assets/ambiance-1.webp)',
-          }}
+         
         />
       </section>
 
