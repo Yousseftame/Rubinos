@@ -71,15 +71,6 @@ h1, h2, h3, h4, h5, h6 ,div {
   letter-spacing: 0.05em;
 }
 
-/* Background image text effect */
-/* .bg-img {
-  background-image: url('./assets/SeaworthyShoot28211.jpg');
-  background-size: cover;
-  background-position: center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
-
 /* Navigation link style - Enhanced */
 .nav-link {
   font-family: 'Monteya', sans-serif;
@@ -225,18 +216,22 @@ h1, h2, h3, h4, h5, h6 ,div {
   pointer-events: none;
 }
 
-/* Animations */
+/* Animations - Enhanced for Splash Screen */
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
+  animation: fadeInUp 1s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
 }
 
 @keyframes fadeInUp {
@@ -248,6 +243,22 @@ h1, h2, h3, h4, h5, h6 ,div {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Elegant fade scale animation for splash */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Text shadow for readability on images */
@@ -290,29 +301,42 @@ h1, h2, h3, h4, h5, h6 ,div {
   font-family: "Cinzel", serif;
   font-weight: 600;
   text-transform: uppercase;
-  
-   
 }
 
 .font-head1{
   font-family: "Cinzel", serif;
   font-weight: 900;
-  
+}
+
+/* OPTIMIZED: Background image with better performance */
+.bg-images {
+  background-image: url('/src/assets/ambiance-1.webp');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  /* will-change: transform; Hint browser for optimization */
 
 }
 
-.bg-images{
-  background-image: url('/src/assets/ambiance-1.webp');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+/* Use fixed background only on larger screens for better performance */
+@media (min-width: 768px) {
+  .bg-images {
+    background-attachment: fixed;
+  }
+}
+
+/* On mobile, use scroll for better performance */
+@media (max-width: 767px) {
+  .bg-images {
+    background-attachment: fixed;
+  }
 }
 
 .btn-invert {
   background-color: #3A5F58;
   color: #e8dfd7;
   transition: all 0.3s ease;
-
 }
 
 .btn-invert:hover {
@@ -331,6 +355,7 @@ html, body {
   src: url('/src/assets/fonts/Monteya-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap; /* OPTIMIZED: Improve font loading performance */
 }
 
 @font-face {
@@ -338,8 +363,31 @@ html, body {
   src: url('/src/assets/fonts/ClashDisplay-Variable.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap; /* OPTIMIZED: Improve font loading performance */
 }
 
 .lol{
    font-family: 'Monteya', sans-serif;
+}
+
+/* PERFORMANCE: Reduce animation on devices that prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Splash Screen specific styles */
+.splash-screen-enter {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.splash-screen-exit {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
 }
