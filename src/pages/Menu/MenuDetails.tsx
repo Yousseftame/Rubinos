@@ -227,7 +227,7 @@ export default function MenuDetails() {
                 </h1>
 
                 <p className="text-3xl font-semibold" style={{ color: '#0E302A' }}>
-                  ${item.price.toFixed(2)}
+                  {item.price.toFixed(2)} EGP
                 </p>
               </div>
 

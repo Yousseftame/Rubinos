@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMenusContext } from '../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../store/CategoriesContext/CategoriesContext';
-import section1 from '../../assets/ambiance-1.jpg';
+import section1 from '../../assets/ambiance-1.webp';
 import noImg from "../../assets/rubinos.png";
 
 // Skeleton Components for Loading States
@@ -291,7 +291,7 @@ export default function Menu() {
                           className=" text-sm lg:text-base font-medium whitespace-nowrap"
                           style={{ color: '#0E302A' }}
                         >
-                          ${item.price.toFixed(2)}
+                          {item.price.toFixed(2)} EGP
                         </span>
                       </div>
                       <p

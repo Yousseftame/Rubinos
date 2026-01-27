@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import loginImg from "../../assets/ambiance-1.jpg";
+import loginImg from '../../assets/4.webp';
 
 const AuthLayout: React.FC = () => {
   const navigate = useNavigate();

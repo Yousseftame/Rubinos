@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import contact from '../../assets/4.jpg';
+import contact from '../../assets/4.webp';
 import { addMessage } from '../../service/messages/messages.service';
 import { toast } from 'react-hot-toast';
 

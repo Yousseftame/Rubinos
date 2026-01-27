@@ -72,13 +72,13 @@ h1, h2, h3, h4, h5, h6 ,div {
 }
 
 /* Background image text effect */
-.bg-img {
+/* .bg-img {
   background-image: url('./assets/SeaworthyShoot28211.jpg');
   background-size: cover;
   background-position: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
 /* Navigation link style - Enhanced */
 .nav-link {
@@ -302,7 +302,7 @@ h1, h2, h3, h4, h5, h6 ,div {
 }
 
 .bg-images{
-  background-image: url('/src/assets/ambiance-1.jpg');
+  background-image: url('/src/assets/ambiance-1.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

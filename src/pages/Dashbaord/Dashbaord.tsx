@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import GallerySection from './GallerySection';
 import { useHomeSectionsContext } from '../../store/HomeSectionsContext/HomeSectionsContext';
-import mapTexture from '../../assets/ambiance-1.jpg';
+// import mapTexture from '../../assets/ambiance-1.webp';
 import mermaid from '../../assets/mermaid.webp';
 import { useNavigate } from 'react-router-dom';
 
@@ -230,14 +230,14 @@ const Dashboard = () => {
         id="contact"
         className="relative overflow-hidden"
         style={{
-          backgroundImage: `url(${mapTexture})`,
+         
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
         <div className="grid lg:grid-cols-2 gap-0 min-h-fit">
           {/* Left - Location Info */}
-          <div className="flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-20 bg-gradient-to-b from-[#0E302A]/95 to-[#0E302A]/95">
+          <div className="flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-20 bg-gradient-to-b from-[#3A5F58]/95 to-[#0E302A]/95">
             <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" className="text-4xl lg:text-5xl font-serif font-bold mb-10 tracking-wide font-head" style={{ color: '#e8dfd7' }}>
               LOCATION
             </h2>
@@ -308,7 +308,7 @@ const Dashboard = () => {
                 <h3 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" className="text-base lg:text-lg font-serif font-bold mb-3 tracking-widest" style={{ color: '#FFE8C0' }}>
                   RESTAURANT HOURS
                 </h3>
-                <div className="space-y-2 font-serif text-sm lg:text-base" style={{ color: '#b8aea0' }}>
+                <div className="space-y-2 font-serif text-sm lg:text-base" style={{ color: '#e8dfd7' }}>
                   <div className="flex justify-between items-center">
                     <span>Sunday - Wednesday</span>
                     <span className="text-right">4PM - 10PM</span>
@@ -325,10 +325,10 @@ const Dashboard = () => {
                 <h3 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" className="text-base lg:text-lg font-serif font-bold mb-2 tracking-widest" style={{ color: '#FFE8C0' }}>
                   HAPPY HOUR AT RUBINOS
                 </h3>
-                <p className="font-serif text-xs lg:text-sm tracking-wide mb-2" style={{ color: '#b8aea0' }}>
+                <p className=" text-xs lg:text-sm tracking-wide mb-2" style={{ color: '#e8dfd7' }}>
                   Your favorite flavors and drink specials, every happy hour.
                 </p>
-                <div className="flex justify-between items-center font-serif text-sm lg:text-base" style={{ color: '#b8aea0' }}>
+                <div className="flex justify-between items-center  text-sm lg:text-base" style={{ color: '#e8dfd7' }}>
                   <span>7 days a Week</span>
                   <span>4PM - 6PM</span>
                 </div>
