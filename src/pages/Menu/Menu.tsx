@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMenusContext } from '../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../store/CategoriesContext/CategoriesContext';
-import section1 from '../../assets/ambiance-1.webp';
 import noImg from "../../assets/rubinos.png";
 
 // Skeleton Components for Loading States
@@ -186,7 +185,7 @@ export default function Menu() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src={section1}
+            src="/ambiance-1.webp"
             alt="Menu"
             className="w-full h-full object-cover"
             loading="eager" // Load hero image immediately
