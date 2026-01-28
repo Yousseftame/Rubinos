@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMenusContext } from '../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../store/CategoriesContext/CategoriesContext';
 import noImg from "../../assets/rubinos.png";
+import menuImg from "../../assets/ambiance-1.webp"
 
 // Skeleton Components for Loading States
 const CategorySkeleton = () => (
@@ -185,7 +186,7 @@ export default function Menu() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/ambiance-1.webp"
+            src={menuImg}
             alt="Menu"
             className="w-full h-full object-cover"
             loading="eager" // Load hero image immediately
