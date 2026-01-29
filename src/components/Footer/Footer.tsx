@@ -19,7 +19,7 @@ const Footer = () => {
         </div>
 
         {/* Heading */}
-        <h2 className="text-3xl lg:text-3xl font-head font-serif font-bold mb-3 tracking-wide" style={{ color: '#e8dfd7' }}>
+        <h2 className="text-3xl lg:text-3xl font-head  font-bold mb-3 tracking-wide" style={{ color: '#e8dfd7' }}>
           Authentic Italian, Right at Your Table
         </h2>
 
@@ -35,7 +35,7 @@ const Footer = () => {
             type="email"
             placeholder="Enter your email"
             required
-            className="flex-1 px-5 py-3 font-serif text-sm bg-white text-[#5a7a82] placeholder-[#999] focus:outline-none"
+            className="flex-1 px-5 py-3  text-sm bg-white text-[#5a7a82] placeholder-[#999] focus:outline-none"
           /> */}
           <button
            onClick={()=>{navigate("/contact")}}
@@ -48,7 +48,7 @@ const Footer = () => {
         </form>
 
         {/* Footer Links */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 text-xs font-serif mb-4" style={{ color: '#d4ccc0' }}>
+        <div className="flex flex-col sm:flex-row justify-center gap-4 text-xs  mb-4" style={{ color: '#d4ccc0' }}>
           <a  href="#" className="hover:opacity-80 transition-opacity">
             Privacy Policy
           </a>
@@ -63,7 +63,7 @@ const Footer = () => {
             href="https://www.instagram.com/rubinos.eg/?fbclid=IwY2xjawPTNHFleHRuA2FlbQIxMABicmlkETE0aVk5ZExEQjRLamU4NnlDc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHh6RekMP4QEdS5fhEntWrBEHq95LVVFzdAkeHNn0mFRx0ctm3BXUss7gjPDu_aem_WDL_jQcTeBrVOQJqWlq2wA#"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-serif text-sm transition-opacity hover:opacity-80"
+            className="inline-flex items-center gap-2  text-sm transition-opacity hover:opacity-80"
             style={{ color: '#d4ccc0' }}
           >
            Rubinos.eg
@@ -72,7 +72,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <p className="font-serif text-xs tracking-wide" style={{ color: '#b8aea0' }}>
+        <p className=" text-xs tracking-wide" style={{ color: '#b8aea0' }}>
           Rubinos © 2023 / All Rights Reserved
         </p>
       </div>
