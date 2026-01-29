@@ -24,7 +24,7 @@ const Footer = () => {
         </h2>
 
         {/* Subheading */}
-        <p className="text-sm lg:text-base font-serif mb-6" style={{ color: '#d4ccc0' }}>
+        <p className="text-sm lg:text-base  mb-6" style={{ color: '#d4ccc0' }}>
           Submit a query for news and updates from Rubinos
         </p>
 
