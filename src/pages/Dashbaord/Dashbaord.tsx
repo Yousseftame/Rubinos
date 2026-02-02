@@ -337,10 +337,11 @@ const Dashboard = () => {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0 text-[#b8aea0]" strokeWidth={1.5} />
                 <a
-                  href="mailto:rubino’s@rubinos-eg.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=rubinospizzeria23@gmail.com"
+                  target="_blank" rel="noopener noreferrer"
                   className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
                 >
-                  rubino’s@rubinos-eg.com
+                  rubinospizzeria23@gmail.com
                 </a>
               </div>
             </div>
