@@ -49,10 +49,10 @@ const Footer = () => {
 
         {/* Footer Links */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 text-xs  mb-4" style={{ color: '#d4ccc0' }}>
-          <a  href="#" className="hover:opacity-80 transition-opacity">
+          <a   className="hover:opacity-80 transition-opacity">
             Privacy Policy
           </a>
-          <a href="#" className="hover:opacity-80 transition-opacity">
+          <a  className="hover:opacity-80 transition-opacity">
             Accessibility Statement
           </a>
         </div>

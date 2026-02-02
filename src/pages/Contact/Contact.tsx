@@ -4,7 +4,7 @@ import { addMessage } from '../../service/messages/messages.service';
 import { toast } from 'react-hot-toast';
 
 export default function Contact() {
-    
+
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -39,7 +39,7 @@ export default function Contact() {
       });
 
       toast.success('Thank you for your message! We will get back to you soon.');
-      
+
       // Reset form
       setFormData({
         name: '',
@@ -64,39 +64,39 @@ export default function Contact() {
 
   return (
     <>
-     {/* Hero Section */}
-          <section className="relative h-screen w-full overflow-hidden">
-            <div className="absolute inset-0">
-              <img
-                src={contact}
-                alt="Gallery"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/30" />
-            </div>
-    
-            <div className="relative z-10 h-full flex flex-col items-center justify-end pb-20 lg:pb-12">
-              <div data-aos="fade-up" className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-                <h1 className="font-head text-center text-[15vw] lg:text-[12vw] text-secondary leading-none tracking-[0.05em]">
-                  CONTACT
-                </h1>
-              </div>
-            </div>
-          </section>
-        
-         {/* Contact Form Section */}
+      {/* Hero Section */}
+      <section className="relative h-screen w-full overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={contact}
+            alt="Gallery"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/30" />
+        </div>
+
+        <div className="relative z-10 h-full flex flex-col items-center justify-end pb-20 lg:pb-12">
+          <div data-aos="fade-up" className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <h1 className="font-head text-center text-[15vw] lg:text-[12vw] text-secondary leading-none tracking-[0.05em]">
+              CONTACT
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
       <section className="relative py-20 lg:py-28" style={{ backgroundColor: '#d4ccc0' }}>
         {/* Texture Overlay */}
-        <div className="absolute inset-0 opacity-20"  />
+        <div className="absolute inset-0 opacity-20" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2  data-aos="fade-down" className="font-head text-4xl lg:text-5xl font-semibold mb-6" style={{ color: '#3A5F58' }}>
+            <h2 data-aos="fade-down" className="font-head text-4xl lg:text-5xl font-semibold mb-6" style={{ color: '#3A5F58' }}>
               Let's Be In Touch
             </h2>
-            <p  data-aos="fade-down" className="text-base lg:text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: '#3A5F58' }}>
-Whether you’re curious about our authentic Italian recipes, want to explore our seasonal pizza and pasta creations, or are looking to host a special event in our cozy private dining area, we invite you to reach out to us today.            </p>
+            <p data-aos="fade-down" className="text-base lg:text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: '#3A5F58' }}>
+              Whether you’re curious about our authentic Italian recipes, want to explore our seasonal pizza and pasta creations, or are looking to host a special event in our cozy private dining area, we invite you to reach out to us today.            </p>
           </div>
 
           {/* Contact Form */}
@@ -177,7 +177,7 @@ Whether you’re curious about our authentic Italian recipes, want to explore ou
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                   className="px-12 py-4 font-semibold tracking-widest uppercase text-sm transition-all duration-300 border-2 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ 
+                  style={{
                     backgroundColor: isSubmitting ? '#0E302A' : '#0E302A',
                     color: '#d4ccc0',
                     borderColor: isSubmitting ? '#6b7c7e' : '#3d5055'
@@ -210,35 +210,39 @@ Whether you’re curious about our authentic Italian recipes, want to explore ou
               <div className="group">
                 <div className="flex justify-center mb-4">
                   <svg className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="#0E302A" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <p className="text-base leading-relaxed" style={{ color: '#3A5F58' }}>
-                 39 saint Gini <br /> kafr abdo, Alexandria, Egypt
-                </p>
+                <a
+                  href="https://www.google.com/maps?ll=31.225588,29.952763&z=16&t=m&hl=ar&gl=EG&mapclient=embed&cid=17144324494741846894"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base leading-relaxed" style={{ color: '#3A5F58' }}>
+                  39 saint Gini <br /> kafr abdo, Alexandria, Egypt
+                </a>
               </div>
 
               <div className="group">
                 <div className="flex justify-center mb-4">
                   <svg className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="#0E302A" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <p className=" text-base" style={{ color: '#3A5F58' }}>
-                 011 19477764
-                </p>
+                <a href="tel:01119477764"  target="_blank" rel="noopener noreferrer" className=" text-base" style={{ color: '#3A5F58' }}>
+                  011 19477764
+                </a>
               </div>
 
               <div className="group">
                 <div className="flex justify-center mb-4 ">
                   <svg className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="#0E302A" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <p className="text-base" style={{ color: '#3A5F58' }}>
+                <a href="mailto:info@Rubinos.com"  target="_blank" rel="noopener noreferrer" className="text-base" style={{ color: '#3A5F58' }}>
                   info@Rubinos.com
-                </p>
+                </a>
               </div>
             </div>
           </div>
@@ -247,28 +251,28 @@ Whether you’re curious about our authentic Italian recipes, want to explore ou
 
       {/* Google Maps Section */}
       <section className="relative h-[400px] w-full py-3 bg-[#E5E0D9]">
-          {isLoading && (
-            <div className="flex items-center justify-center   pt-25">
-              <div className="text-center">
-                <div className="inline-block">
-                  <div className="w-12 h-12 border-4 border-[#a89f97]/30 border-t-[#3d5055] rounded-full animate-spin" />
-                </div>
-                <p className="text-[#6b7c7e] mt-4">Loading Map...</p>
+        {isLoading && (
+          <div className="flex items-center justify-center   pt-25">
+            <div className="text-center">
+              <div className="inline-block">
+                <div className="w-12 h-12 border-4 border-[#a89f97]/30 border-t-[#3d5055] rounded-full animate-spin" />
               </div>
+              <p className="text-[#6b7c7e] mt-4">Loading Map...</p>
             </div>
+          </div>
 
-          )}
+        )}
         <iframe
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!3d3411.8233873248387!2d29.952710442809703!3d31.225622096352538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c52418831811%3A0xedece04b1f1dbb6e!2zUnViaW5v4oCZcw!5e0!3m2!1sar!2seg!4v1768313978310!5m2!1sar!2seg"          width="100%"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!3d3411.8233873248387!2d29.952710442809703!3d31.225622096352538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c52418831811%3A0xedece04b1f1dbb6e!2zUnViaW5v4oCZcw!5e0!3m2!1sar!2seg!4v1768313978310!5m2!1sar!2seg" width="100%"
           height="100%"
           style={{ border: 0 }}
-          
+
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Restaurant Location"
-           onLoad={() => setIsLoading(false)}
+          onLoad={() => setIsLoading(false)}
         ></iframe>
-         
+
       </section>
     </>
   )

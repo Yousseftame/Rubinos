@@ -227,7 +227,7 @@ const Dashboard = () => {
       {/* ========================== Background Attachment Row - FIXED & RESPONSIVE ======================= */}
       <section className="relative w-full overflow-hidden">
         <div 
-          className="w-full h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[28rem] bg-images bg-cover bg-center bg-fixed"
+          className="w-full h-96 sm:h-96 md:h-96 lg:h-96 xl:h-[28rem] bg-images bg-cover bg-center bg-fixed"
          
         />
       </section>
@@ -247,7 +247,7 @@ const Dashboard = () => {
                 <div className="relative w-full pb-[120.67%]">
                   <img
                     src={diningSection.imageUrl}
-                    alt="Private Dining at Rubinos"
+                    alt="Private  at Rubinos"
                     className="absolute inset-0 w-full h-full object-cover object-top"
                     loading="lazy"
                     decoding="async"
@@ -337,10 +337,10 @@ const Dashboard = () => {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0 text-[#b8aea0]" strokeWidth={1.5} />
                 <a
-                  href="mailto:info@Rubinos.com"
+                  href="mailto:rubino’s@rubinos-eg.com"
                   className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
                 >
-                  info@Rubinos.com
+                  rubino’s@rubinos-eg.com
                 </a>
               </div>
             </div>
@@ -385,11 +385,11 @@ const Dashboard = () => {
                 <div className="space-y-2 font-serif text-sm lg:text-base text-[#e8dfd7]">
                   <div className="flex justify-between items-center">
                     <span>Sunday - Wednesday</span>
-                    <span className="text-right">4PM - 10PM</span>
+                    <span className="text-right">12PM - 1AM</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span>Thursday - Saturday</span>
-                    <span className="text-right">4PM - 11PM</span>
+                    <span className="text-right">12PM - 1AM</span>
                   </div>
                 </div>
               </div>
@@ -410,7 +410,7 @@ const Dashboard = () => {
                 </p>
                 <div className="flex justify-between items-center text-sm lg:text-base text-[#e8dfd7]">
                   <span>7 days a Week</span>
-                  <span>4PM - 6PM</span>
+                  <span>12PM - 1AM</span>
                 </div>
               </div>
             </div>
