@@ -316,7 +316,7 @@ const Dashboard = () => {
                   href="https://www.google.com/maps?ll=31.225588,29.952763&z=16&t=m&hl=ar&gl=EG&mapclient=embed&cid=17144324494741846894"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className=" text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
+                  className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
                 >
                   39 saint Gini, Kafr abdo, Alexandria, Egypt
                 </a>
@@ -337,11 +337,10 @@ const Dashboard = () => {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0 text-[#b8aea0]" strokeWidth={1.5} />
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=rubinospizzeria23@gmail.com"
-                  target="_blank" rel="noopener noreferrer"
-                  className=" text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
+                  href="mailto:rubino’s@rubinos-eg.com"
+                  className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
                 >
-                  rubinospizzeria23@gmail.com
+                  rubino’s@rubinos-eg.com
                 </a>
               </div>
             </div>
