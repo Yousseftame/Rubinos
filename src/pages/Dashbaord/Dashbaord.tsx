@@ -316,7 +316,7 @@ const Dashboard = () => {
                   href="https://www.google.com/maps?ll=31.225588,29.952763&z=16&t=m&hl=ar&gl=EG&mapclient=embed&cid=17144324494741846894"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
+                  className=" text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
                 >
                   39 saint Gini, Kafr abdo, Alexandria, Egypt
                 </a>
@@ -339,7 +339,7 @@ const Dashboard = () => {
                 <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=rubinospizzeria23@gmail.com"
                   target="_blank" rel="noopener noreferrer"
-                  className="font-serif text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
+                  className=" text-sm lg:text-base tracking-wide hover:opacity-70 transition-opacity text-[#e8dfd7]"
                 >
                   rubinospizzeria23@gmail.com
                 </a>
