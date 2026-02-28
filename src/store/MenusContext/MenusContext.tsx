@@ -18,6 +18,7 @@ import {
 } from "../../service/menus/menus.service";
 import { toast } from "react-hot-toast";
 import { useCategoriesContext } from "../CategoriesContext/CategoriesContext";
+import { invalidatePublicMenuCache } from "../../hooks/usePublicMenuCache";
 
 interface MenuStatistics {
   totalItems: number;
@@ -125,8 +126,10 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({
       toast.success("Menu item added successfully!");
       // Refresh list to get image URLs from storage
       await fetchMenuItems();
-      // FIX: update category item count locally — replaces refreshCategories() (0 reads)
+      // Update category item count locally — 0 reads
       updateCategoryItemCount(menuData.categoryId, 1);
+      // Invalidate public cache so next visitor gets fresh menu-data.json
+      invalidatePublicMenuCache();
       return newId;
     } catch (err) {
       const errorMessage =
@@ -169,6 +172,8 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({
         updateCategoryItemCount(currentItem.categoryId, -1);
         updateCategoryItemCount(menuData.categoryId, 1);
       }
+      // Invalidate public cache so next visitor gets fresh menu-data.json
+      invalidatePublicMenuCache();
     } catch (err) {
       setItemsAndStats(originalMenuItems);
       const errorMessage =
@@ -190,10 +195,12 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({
     try {
       await deleteMenuItem(id);
       toast.success("Menu item deleted successfully!");
-      // FIX: update category count locally — 0 reads
+      // Update category count locally — 0 reads
       if (itemToDelete) {
         updateCategoryItemCount(itemToDelete.categoryId, -1);
       }
+      // Invalidate public cache
+      invalidatePublicMenuCache();
     } catch (err) {
       setItemsAndStats(originalMenuItems);
       const errorMessage =
@@ -221,6 +228,8 @@ export const MenusProvider: React.FC<{ children: ReactNode }> = ({
     try {
       await toggleMenuItemStatus(id, currentStatus);
       toast.success(`Item status changed to ${newStatus}!`);
+      // Invalidate public cache (toggle changes what's visible on public menu)
+      invalidatePublicMenuCache();
     } catch (err) {
       setItemsAndStats(originalMenuItems);
       const errorMessage =

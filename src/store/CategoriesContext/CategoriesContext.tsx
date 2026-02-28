@@ -16,6 +16,7 @@ import {
   type Category,
 } from "../../service/categories/categories.service";
 import { toast } from "react-hot-toast";
+import { invalidatePublicMenuCache } from "../../hooks/usePublicMenuCache";
 
 interface CategoryStatistics {
   totalCategories: number;
@@ -129,6 +130,7 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({
       );
       setCategoriesAndStats(updatedCategories);
       toast.success("Category added successfully!");
+      invalidatePublicMenuCache();
       return id;
     } catch (err) {
       const errorMessage =
@@ -161,6 +163,7 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({
       );
       setCategoriesAndStats(updatedCategories);
       toast.success("Category updated successfully!");
+      invalidatePublicMenuCache();
     } catch (err) {
       setCategoriesAndStats(originalCategories);
       const errorMessage =
@@ -182,6 +185,7 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({
       const { updatedCategories } = await deleteCategory(id, categories);
       setCategoriesAndStats(updatedCategories);
       toast.success("Category deleted successfully!");
+      invalidatePublicMenuCache();
     } catch (err) {
       setCategoriesAndStats(originalCategories);
       const errorMessage =
@@ -207,6 +211,7 @@ export const CategoriesProvider: React.FC<{ children: ReactNode }> = ({
     try {
       await toggleCategoryStatus(id, currentStatus);
       toast.success(`Category status changed to ${newStatus}!`);
+      invalidatePublicMenuCache();
     } catch (err) {
       setCategoriesAndStats(originalCategories);
       const errorMessage =
