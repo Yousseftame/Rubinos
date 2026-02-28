@@ -20,8 +20,7 @@ import {
   getDownloadURL
 } from 'firebase/storage';
 import { db, storage } from '../firebase';
-
- import { incrementCategoryItemsCount } from '../categories/categories.service';
+import { incrementCategoryItemsCount } from '../categories/categories.service';
 
 export interface MenuItem {
   uid?: string;
@@ -37,7 +36,6 @@ export interface MenuItem {
 }
 
 const COLLECTION_NAME = 'menu';
-// const CATEGORIES_COLLECTION = 'categories';
 const STORAGE_BASE = 'menu';
 
 // Get all menu items
@@ -98,9 +96,8 @@ export const getMenuItemById = async (id: string): Promise<MenuItem | null> => {
   }
 };
 
-// Upload image to storage with category name in path
+// Upload image to storage
 const uploadMenuImage = async (
-  _categoryName: string,
   menuItemId: string,
   file: File,
   index: number
@@ -108,6 +105,7 @@ const uploadMenuImage = async (
   try {
     const fileExtension = file.name.split('.').pop();
     const fileName = `${Date.now()}_${index}.${fileExtension}`;
+    // FIX: simplified path — no category name in path (avoids the "move images" problem)
     const storagePath = `${STORAGE_BASE}/${menuItemId}/${fileName}`;
     
     const storageRef = ref(storage, storagePath);
@@ -127,49 +125,15 @@ const deleteMenuImage = async (imageUrl: string): Promise<void> => {
     const imageRef = ref(storage, imageUrl);
     await deleteObject(imageRef);
   } catch (error) {
-    console.error('Error deleting image:', error);
+    // Don't throw — image might already be deleted or URL might be invalid
+    console.error('Error deleting image (non-fatal):', error);
   }
 };
 
-// Move images to new category folder when category changes
-const moveImagesToNewCategory = async (
-  oldCategoryName: string,
-  newCategoryName: string,
-  menuItemId: string,
-  images: string[]
-): Promise<string[]> => {
-  try {
-    if (oldCategoryName === newCategoryName || images.length === 0) {
-      return images;
-    }
-
-    const newImageUrls: string[] = [];
-
-    for (const imageUrl of images) {
-      try {
-        const urlPath = new URL(imageUrl).pathname;
-        const fileName = urlPath.split('/').pop() || `${Date.now()}.jpg`;
-        
-        const response = await fetch(imageUrl);
-        const blob = await response.blob();
-        const file = new File([blob], fileName, { type: blob.type });
-
-        const newUrl = await uploadMenuImage(newCategoryName, menuItemId, file, 0);
-        newImageUrls.push(newUrl);
-
-        await deleteMenuImage(imageUrl);
-      } catch (error) {
-        console.error('Error moving image:', error);
-        newImageUrls.push(imageUrl);
-      }
-    }
-
-    return newImageUrls;
-  } catch (error) {
-    console.error('Error moving images to new category:', error);
-    return images;
-  }
-};
+// FIX: REMOVED moveImagesToNewCategory entirely.
+// Images stay in their original storage path when category changes.
+// Only the categoryId/categoryName fields in Firestore are updated.
+// This eliminates: fetch(imageUrl) → re-upload → delete old — which was a massive spike.
 
 // Add new menu item with images
 export const addMenuItem = async (
@@ -186,29 +150,25 @@ export const addMenuItem = async (
       updatedAt: serverTimestamp()
     });
 
+    // Upload images (if any) in parallel for speed
     const imageUrls: string[] = [];
-    for (let i = 0; i < imageFiles.length; i++) {
-      try {
-        const imageUrl = await uploadMenuImage(
-          menuData.categoryName,
-          docRef.id,
-          imageFiles[i],
-          i
-        );
-        imageUrls.push(imageUrl);
-      } catch (error) {
-        console.error(`Error uploading image ${i}:`, error);
-      }
-    }
+    if (imageFiles.length > 0) {
+      const uploadPromises = imageFiles.map((file, i) =>
+        uploadMenuImage(docRef.id, file, i).catch(err => {
+          console.error(`Error uploading image ${i}:`, err);
+          return null;
+        })
+      );
+      const results = await Promise.all(uploadPromises);
+      results.forEach(url => { if (url) imageUrls.push(url); });
 
-    if (imageUrls.length > 0) {
       await updateDoc(docRef, {
         images: imageUrls,
         updatedAt: serverTimestamp()
       });
     }
 
-    // Increment category items count (FAST - no query)
+    // Increment category items count
     await incrementCategoryItemsCount(menuData.categoryId, 1);
 
     return docRef.id;
@@ -219,6 +179,7 @@ export const addMenuItem = async (
 };
 
 // Update menu item with images
+// FIX: No more moveImagesToNewCategory — just update Firestore fields
 export const updateMenuItem = async (
   id: string,
   menuData: Partial<Omit<MenuItem, 'uid' | 'createdAt' | 'updatedAt'>>,
@@ -231,47 +192,27 @@ export const updateMenuItem = async (
 
     let updatedImages = [...(currentItem.images || [])];
 
-    // Handle category change - move images to new folder
-    if (menuData.categoryName && menuData.categoryName !== currentItem.categoryName) {
-      updatedImages = await moveImagesToNewCategory(
-        currentItem.categoryName,
-        menuData.categoryName,
-        id,
-        updatedImages
-      );
-    }
+    // FIX: Category change — just update the Firestore fields, don't move storage files
+    // Images stay at their original storage paths. This eliminates the massive HTTP fetch+reupload spike.
 
-    // Delete specific images if needed
+    // Delete specific images if needed (parallel)
     if (imagesToDelete && imagesToDelete.length > 0) {
-      for (const imageUrl of imagesToDelete) {
-        try {
-          await deleteMenuImage(imageUrl);
-        } catch (error) {
-          console.error('Error deleting image:', error);
-        }
-      }
+      await Promise.all(imagesToDelete.map(url => deleteMenuImage(url)));
       updatedImages = updatedImages.filter(img => !imagesToDelete.includes(img));
     }
 
-    // Upload new images and append to existing ones
+    // Upload new images in parallel
     if (imageFiles && imageFiles.length > 0) {
-      const categoryName = menuData.categoryName || currentItem.categoryName;
-      for (let i = 0; i < imageFiles.length; i++) {
-        try {
-          const imageUrl = await uploadMenuImage(
-            categoryName,
-            id,
-            imageFiles[i],
-            i
-          );
-          updatedImages.push(imageUrl);
-        } catch (error) {
-          console.error(`Error uploading image ${i}:`, error);
-        }
-      }
+      const uploadPromises = imageFiles.map((file, i) =>
+        uploadMenuImage(id, file, i).catch(err => {
+          console.error(`Error uploading image ${i}:`, err);
+          return null;
+        })
+      );
+      const results = await Promise.all(uploadPromises);
+      results.forEach(url => { if (url) updatedImages.push(url); });
     }
 
-    // Update menu item
     const updateData: any = {
       ...menuData,
       images: updatedImages,
@@ -281,10 +222,12 @@ export const updateMenuItem = async (
     const menuItemRef = doc(db, COLLECTION_NAME, id);
     await updateDoc(menuItemRef, updateData);
 
-    // Update counts for category change (FAST - no queries)
+    // Update counts for category change
     if (menuData.categoryId && menuData.categoryId !== currentItem.categoryId) {
-      await incrementCategoryItemsCount(currentItem.categoryId, -1);
-      await incrementCategoryItemsCount(menuData.categoryId, 1);
+      await Promise.all([
+        incrementCategoryItemsCount(currentItem.categoryId, -1),
+        incrementCategoryItemsCount(menuData.categoryId, 1),
+      ]);
     }
   } catch (error) {
     console.error('Error updating menu item:', error);
@@ -298,22 +241,16 @@ export const deleteMenuItem = async (id: string): Promise<void> => {
     const menuItem = await getMenuItemById(id);
     if (!menuItem) return;
 
-    // Delete all images from storage
+    // Delete all images from storage in parallel
     if (menuItem.images && menuItem.images.length > 0) {
-      for (const imageUrl of menuItem.images) {
-        try {
-          await deleteMenuImage(imageUrl);
-        } catch (error) {
-          console.error('Error deleting image:', error);
-        }
-      }
+      await Promise.all(menuItem.images.map(url => deleteMenuImage(url)));
     }
 
     // Delete menu item document
     const menuItemRef = doc(db, COLLECTION_NAME, id);
     await deleteDoc(menuItemRef);
 
-    // Decrement category items count (FAST - no query)
+    // Decrement category items count
     await incrementCategoryItemsCount(menuItem.categoryId, -1);
   } catch (error) {
     console.error('Error deleting menu item:', error);
@@ -336,46 +273,34 @@ export const toggleMenuItemStatus = async (id: string, currentStatus: 'active' |
   }
 };
 
-// Get count of items in a category
+// FIX: computeMenuStatistics — compute from already-loaded array (0 extra reads)
+export const computeMenuStatistics = (items: MenuItem[]) => {
+  const totalByCategory: Record<string, number> = {};
+  items.forEach(item => {
+    totalByCategory[item.categoryName] = (totalByCategory[item.categoryName] || 0) + 1;
+  });
+  return {
+    totalItems: items.length,
+    activeItems: items.filter(item => item.status === 'active').length,
+    inactiveItems: items.filter(item => item.status === 'inactive').length,
+    totalByCategory,
+  };
+};
+
+// KEPT for backwards compat
+export const getMenuStatistics = async () => {
+  const items = await getAllMenuItems();
+  return computeMenuStatistics(items);
+};
+
 export const getMenuItemCountByCategory = async (categoryId: string): Promise<number> => {
   try {
     const menuRef = collection(db, COLLECTION_NAME);
     const q = query(menuRef, where('categoryId', '==', categoryId));
     const querySnapshot = await getDocs(q);
-    
     return querySnapshot.size;
   } catch (error) {
     console.error('Error fetching menu item count:', error);
     return 0;
-  }
-};
-
-// Get menu statistics
-export const getMenuStatistics = async (): Promise<{
-  totalItems: number;
-  activeItems: number;
-  inactiveItems: number;
-  totalByCategory: Record<string, number>;
-}> => {
-  try {
-    const menuRef = collection(db, COLLECTION_NAME);
-    const querySnapshot = await getDocs(menuRef);
-    
-    const items = querySnapshot.docs.map(doc => doc.data()) as MenuItem[];
-    
-    const totalByCategory: Record<string, number> = {};
-    items.forEach(item => {
-      totalByCategory[item.categoryName] = (totalByCategory[item.categoryName] || 0) + 1;
-    });
-
-    return {
-      totalItems: items.length,
-      activeItems: items.filter(item => item.status === 'active').length,
-      inactiveItems: items.filter(item => item.status === 'inactive').length,
-      totalByCategory
-    };
-  } catch (error) {
-    console.error('Error fetching menu statistics:', error);
-    throw new Error('Failed to fetch menu statistics');
   }
 };

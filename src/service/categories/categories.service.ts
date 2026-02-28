@@ -21,14 +21,13 @@ export interface Category {
   name: string;
   description: string;
   items: number;
-  placeOrder: number; // NEW: Added placeOrder
+  placeOrder: number;
   status: 'active' | 'inactive';
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 }
 
 const COLLECTION_NAME = 'categories';
-const MENU_COLLECTION = 'menu';
 
 // Get all categories ordered by placeOrder
 export const getAllCategories = async (): Promise<Category[]> => {
@@ -49,32 +48,6 @@ export const getAllCategories = async (): Promise<Category[]> => {
   } catch (error) {
     console.error('Error fetching categories:', error);
     throw new Error('Failed to fetch categories');
-  }
-};
-
-// Get active categories only
-export const getActiveCategories = async (): Promise<Category[]> => {
-  try {
-    const categoriesRef = collection(db, COLLECTION_NAME);
-    const q = query(
-      categoriesRef, 
-      where('status', '==', 'active'),
-      orderBy('placeOrder', 'asc')
-    );
-    const querySnapshot = await getDocs(q);
-    
-    return querySnapshot.docs.map(doc => {
-      const data = doc.data();
-      return {
-        uid: doc.id,
-        ...data,
-        items: data.items || 0,
-        placeOrder: data.placeOrder || 0
-      };
-    }) as Category[];
-  } catch (error) {
-    console.error('Error fetching active categories:', error);
-    throw new Error('Failed to fetch active categories');
   }
 };
 
@@ -101,123 +74,77 @@ export const getCategoryById = async (id: string): Promise<Category | null> => {
   }
 };
 
-// Get menu items count by category ID
-export const getMenuItemsCountByCategory = async (categoryId: string): Promise<number> => {
-  try {
-    const menuRef = collection(db, MENU_COLLECTION);
-    const q = query(menuRef, where('categoryId', '==', categoryId));
-    const querySnapshot = await getDocs(q);
-    
-    return querySnapshot.size;
-  } catch (error) {
-    console.error('Error fetching menu items count:', error);
-    return 0;
-  }
-};
-
-// Get the next available placeOrder
-const getNextPlaceOrder = async (): Promise<number> => {
-  try {
-    const categories = await getAllCategories();
-    if (categories.length === 0) return 1;
-    
-    const maxOrder = Math.max(...categories.map(cat => cat.placeOrder || 0));
-    return maxOrder + 1;
-  } catch (error) {
-    console.error('Error getting next place order:', error);
-    return 1;
-  }
-};
-
-// Swap categories when editing (true swap behavior)
-const swapCategories = async (
-  categoryId: string,
-  newPlaceOrder: number,
-  oldPlaceOrder: number
-): Promise<void> => {
-  try {
-    const batch = writeBatch(db);
-    const categories = await getAllCategories();
-    
-    // Find the category currently at the target position
-    const categoryAtTargetPosition = categories.find(cat => cat.placeOrder === newPlaceOrder);
-    
-    if (categoryAtTargetPosition && categoryAtTargetPosition.uid !== categoryId) {
-      // SWAP: Give the target category the old position
-      const targetCategoryRef = doc(db, COLLECTION_NAME, categoryAtTargetPosition.uid!);
-      batch.update(targetCategoryRef, {
-        placeOrder: oldPlaceOrder,
-        updatedAt: serverTimestamp()
-      });
-    }
-    
-    await batch.commit();
-  } catch (error) {
-    console.error('Error swapping categories:', error);
-    throw new Error('Failed to swap categories');
-  }
-};
-
-// Insert category at position (for new categories - shifts other items)
-const insertCategoryAtPosition = async (
-  newCategoryId: string,
-  newPlaceOrder: number
-): Promise<void> => {
-  try {
-    const batch = writeBatch(db);
-    const categories = await getAllCategories();
-    
-    // Shift all categories at or after newPlaceOrder down by 1
-    categories.forEach(cat => {
-      if (cat.uid !== newCategoryId && cat.placeOrder >= newPlaceOrder) {
-        const categoryRef = doc(db, COLLECTION_NAME, cat.uid!);
-        batch.update(categoryRef, {
-          placeOrder: cat.placeOrder + 1,
-          updatedAt: serverTimestamp()
-        });
-      }
-    });
-    
-    await batch.commit();
-  } catch (error) {
-    console.error('Error inserting category:', error);
-    throw new Error('Failed to insert category');
-  }
+// FIX: Compute statistics from already-loaded categories array (0 extra reads)
+export const computeCategoryStatistics = (categories: Category[]) => {
+  return {
+    totalCategories: categories.length,
+    activeCategories: categories.filter(cat => cat.status === 'active').length,
+    inactiveCategories: categories.filter(cat => cat.status === 'inactive').length,
+    totalItems: categories.reduce((sum, cat) => sum + (cat.items || 0), 0),
+  };
 };
 
 // Add new category
+// FIX: Returns the full updated categories array so context doesn't need a re-fetch
 export const addCategory = async (
   categoryData: Omit<Category, 'uid' | 'createdAt' | 'updatedAt' | 'items'>,
-  placeOrder?: number
-): Promise<string> => {
+  placeOrder?: number,
+  existingCategories?: Category[]
+): Promise<{ id: string; updatedCategories: Category[] }> => {
   try {
-    // Get final place order
-    const finalPlaceOrder = placeOrder ?? await getNextPlaceOrder();
-    
-    // Create document with temporary high placeOrder
+    const allCategories = existingCategories ?? await getAllCategories();
+    const finalPlaceOrder = placeOrder ?? (allCategories.length > 0
+      ? Math.max(...allCategories.map(c => c.placeOrder || 0)) + 1
+      : 1);
+
+    const batch = writeBatch(db);
     const categoriesRef = collection(db, COLLECTION_NAME);
-    const docRef = await addDoc(categoriesRef, {
+
+    // FIX: If inserting at a specific position, shift in the same batch
+    if (placeOrder !== undefined) {
+      allCategories.forEach(cat => {
+        if (cat.placeOrder >= finalPlaceOrder) {
+          const catRef = doc(db, COLLECTION_NAME, cat.uid!);
+          batch.update(catRef, {
+            placeOrder: cat.placeOrder + 1,
+            updatedAt: serverTimestamp()
+          });
+        }
+      });
+    }
+
+    // Add the new doc with correct placeOrder immediately (no temp 999999)
+    const newDocRef = doc(categoriesRef);
+    batch.set(newDocRef, {
       name: categoryData.name,
       description: categoryData.description || '',
       status: categoryData.status || 'active',
       items: 0,
-      placeOrder: 999999, // Temporary high number
+      placeOrder: finalPlaceOrder,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     });
-    
-    // Shift other categories if inserting at specific position
-    if (placeOrder !== undefined) {
-      await insertCategoryAtPosition(docRef.id, finalPlaceOrder);
-    }
-    
-    // Update with final placeOrder
-    await updateDoc(docRef, {
+
+    await batch.commit();
+
+    // Build updated list locally — no extra Firestore read
+    const newCategory: Category = {
+      uid: newDocRef.id,
+      name: categoryData.name,
+      description: categoryData.description || '',
+      status: categoryData.status || 'active',
+      items: 0,
       placeOrder: finalPlaceOrder,
-      updatedAt: serverTimestamp()
-    });
-    
-    return docRef.id;
+    };
+
+    let updatedCategories = allCategories.map(cat =>
+      cat.placeOrder >= finalPlaceOrder && placeOrder !== undefined
+        ? { ...cat, placeOrder: cat.placeOrder + 1 }
+        : cat
+    );
+    updatedCategories = [...updatedCategories, newCategory].sort((a, b) => a.placeOrder - b.placeOrder);
+
+    return { id: newDocRef.id, updatedCategories };
   } catch (error) {
     console.error('Error adding category:', error);
     throw new Error('Failed to add category');
@@ -225,39 +152,56 @@ export const addCategory = async (
 };
 
 // Update category
+// FIX: Returns locally-computed updated list — no re-fetch needed
 export const updateCategory = async (
   id: string,
-  categoryData: Partial<Omit<Category, 'uid' | 'createdAt' | 'items'>>
-): Promise<void> => {
+  categoryData: Partial<Omit<Category, 'uid' | 'createdAt' | 'items'>>,
+  existingCategories?: Category[]
+): Promise<{ updatedCategories: Category[] }> => {
   try {
-    const currentCategory = await getCategoryById(id);
+    const allCategories = existingCategories ?? await getAllCategories();
+    const currentCategory = allCategories.find(c => c.uid === id);
     if (!currentCategory) throw new Error('Category not found');
 
-    // Handle placeOrder change - SWAP logic
+    const batch = writeBatch(db);
+
+    // Handle placeOrder swap in the same batch
     if (categoryData.placeOrder !== undefined && categoryData.placeOrder !== currentCategory.placeOrder) {
-      await swapCategories(id, categoryData.placeOrder, currentCategory.placeOrder);
+      const categoryAtTarget = allCategories.find(cat => cat.placeOrder === categoryData.placeOrder);
+      if (categoryAtTarget && categoryAtTarget.uid !== id) {
+        const targetRef = doc(db, COLLECTION_NAME, categoryAtTarget.uid!);
+        batch.update(targetRef, {
+          placeOrder: currentCategory.placeOrder,
+          updatedAt: serverTimestamp()
+        });
+      }
     }
 
-    // Update document
-    const updateData: any = {
-      updatedAt: serverTimestamp()
-    };
-
-    if (categoryData.name !== undefined) {
-      updateData.name = categoryData.name;
-    }
-    if (categoryData.description !== undefined) {
-      updateData.description = categoryData.description;
-    }
-    if (categoryData.status !== undefined) {
-      updateData.status = categoryData.status;
-    }
-    if (categoryData.placeOrder !== undefined) {
-      updateData.placeOrder = categoryData.placeOrder;
-    }
+    const updateData: any = { updatedAt: serverTimestamp() };
+    if (categoryData.name !== undefined) updateData.name = categoryData.name;
+    if (categoryData.description !== undefined) updateData.description = categoryData.description;
+    if (categoryData.status !== undefined) updateData.status = categoryData.status;
+    if (categoryData.placeOrder !== undefined) updateData.placeOrder = categoryData.placeOrder;
 
     const categoryRef = doc(db, COLLECTION_NAME, id);
-    await updateDoc(categoryRef, updateData);
+    batch.update(categoryRef, updateData);
+    await batch.commit();
+
+    // Build updated list locally
+    let updatedCategories = allCategories.map(cat => {
+      if (cat.uid === id) return { ...cat, ...categoryData };
+      if (
+        categoryData.placeOrder !== undefined &&
+        cat.placeOrder === categoryData.placeOrder &&
+        cat.uid !== id
+      ) {
+        return { ...cat, placeOrder: currentCategory.placeOrder };
+      }
+      return cat;
+    });
+    updatedCategories.sort((a, b) => a.placeOrder - b.placeOrder);
+
+    return { updatedCategories };
   } catch (error) {
     console.error('Error updating category:', error);
     throw new Error('Failed to update category');
@@ -265,30 +209,45 @@ export const updateCategory = async (
 };
 
 // Delete category
-export const deleteCategory = async (id: string): Promise<void> => {
+// FIX: Returns locally-computed updated list — no re-fetch needed
+export const deleteCategory = async (
+  id: string,
+  existingCategories?: Category[]
+): Promise<{ updatedCategories: Category[] }> => {
   try {
-    const category = await getCategoryById(id);
-    if (!category) return;
+    const allCategories = existingCategories ?? await getAllCategories();
+    const category = allCategories.find(c => c.uid === id);
+    if (!category) return { updatedCategories: allCategories };
 
-    // Delete document
-    const categoryRef = doc(db, COLLECTION_NAME, id);
-    await deleteDoc(categoryRef);
-
-    // Reorder remaining categories to fill the gap
     const batch = writeBatch(db);
-    const categories = await getAllCategories();
-    
-    categories.forEach(cat => {
+
+    // Delete the document
+    const categoryRef = doc(db, COLLECTION_NAME, id);
+    batch.delete(categoryRef);
+
+    // Shift remaining items down
+    allCategories.forEach(cat => {
       if (cat.placeOrder > category.placeOrder) {
         const catRef = doc(db, COLLECTION_NAME, cat.uid!);
-        batch.update(catRef, { 
+        batch.update(catRef, {
           placeOrder: cat.placeOrder - 1,
           updatedAt: serverTimestamp()
         });
       }
     });
-    
+
     await batch.commit();
+
+    // Build updated list locally
+    const updatedCategories = allCategories
+      .filter(cat => cat.uid !== id)
+      .map(cat => cat.placeOrder > category.placeOrder
+        ? { ...cat, placeOrder: cat.placeOrder - 1 }
+        : cat
+      )
+      .sort((a, b) => a.placeOrder - b.placeOrder);
+
+    return { updatedCategories };
   } catch (error) {
     console.error('Error deleting category:', error);
     throw new Error('Failed to delete category');
@@ -310,7 +269,7 @@ export const toggleCategoryStatus = async (id: string, currentStatus: 'active' |
   }
 };
 
-// Increment category items count
+// Increment/decrement category items count (called by menus service)
 export const incrementCategoryItemsCount = async (categoryId: string, amount: number = 1): Promise<void> => {
   try {
     const categoryRef = doc(db, COLLECTION_NAME, categoryId);
@@ -328,32 +287,30 @@ export const incrementCategoryItemsCount = async (categoryId: string, amount: nu
   }
 };
 
-// Get category statistics
-export const getCategoryStatistics = async (): Promise<{
-  totalCategories: number;
-  activeCategories: number;
-  inactiveCategories: number;
-  totalItems: number;
-}> => {
+// KEPT for backwards compatibility but use computeCategoryStatistics instead
+export const getCategoryStatistics = async () => {
+  const categories = await getAllCategories();
+  return computeCategoryStatistics(categories);
+};
+
+// KEPT for backwards compat
+export const getActiveCategories = async (): Promise<Category[]> => {
   try {
     const categoriesRef = collection(db, COLLECTION_NAME);
-    const querySnapshot = await getDocs(categoriesRef);
-    
-    const categories = querySnapshot.docs.map(doc => doc.data()) as Category[];
-    
-    let totalItems = 0;
-    categories.forEach(cat => {
-      totalItems += cat.items || 0;
-    });
-
-    return {
-      totalCategories: categories.length,
-      activeCategories: categories.filter(cat => cat.status === 'active').length,
-      inactiveCategories: categories.filter(cat => cat.status === 'inactive').length,
-      totalItems
-    };
+    const q = query(
+      categoriesRef, 
+      where('status', '==', 'active'),
+      orderBy('placeOrder', 'asc')
+    );
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      uid: doc.id,
+      ...doc.data(),
+      items: doc.data().items || 0,
+      placeOrder: doc.data().placeOrder || 0
+    })) as Category[];
   } catch (error) {
-    console.error('Error fetching category statistics:', error);
-    throw new Error('Failed to fetch category statistics');
+    console.error('Error fetching active categories:', error);
+    throw new Error('Failed to fetch active categories');
   }
 };
