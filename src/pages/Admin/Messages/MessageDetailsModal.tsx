@@ -52,7 +52,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
 
       {/* Modal */}
       <div 
-        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl mx-4 p-8"
+        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl mx-4 p-5 sm:p-8"
         style={{ maxHeight: '90vh', overflowY: 'auto' }}
       >
         {/* Header */}
@@ -107,7 +107,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             </div>
             <a 
               href={`mailto:${message.email}`}
-              className="pl-6 hover:underline"
+              className="pl-6 hover:underline break-all block"
               style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {message.email}
@@ -151,7 +151,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
             </div>
             <a 
               href={`tel:${message.phone}`}
-              className="pl-6 hover:underline"
+              className="pl-6 hover:underline break-all block"
               style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
             >
               {message.phone}
@@ -170,7 +170,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
               </label>
             </div>
             <div 
-              className="pl-6 p-4 rounded-lg leading-relaxed"
+              className="pl-6 p-4 rounded-lg leading-relaxed break-words"
               style={{ 
                 color: '#0E302A', 
                 fontFamily: 'Inter, sans-serif',
@@ -227,10 +227,10 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-8 pt-6 border-t flex gap-3" style={{ borderColor: '#D7CDC133' }}>
+        <div className="mt-8 pt-6 border-t flex flex-col sm:flex-row gap-3" style={{ borderColor: '#D7CDC133' }}>
           <a
             href={`mailto:${message.email}`}
-            className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium text-center"
+            className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium text-center text-sm"
             style={{
               backgroundColor: '#0E302A',
               color: '#D7CDC1',
@@ -244,7 +244,7 @@ const MessageDetailsModal: React.FC<MessageDetailsModalProps> = ({
           </a>
           <button
             onClick={onClose}
-            className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2"
+            className="flex-1 px-6 py-3 rounded-lg transition-all duration-200 font-medium border-2 text-sm"
             style={{
               borderColor: '#D7CDC1',
               color: '#0E302A',

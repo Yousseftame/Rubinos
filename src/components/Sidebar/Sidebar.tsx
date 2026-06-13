@@ -1,11 +1,12 @@
 import  { useState } from 'react';
-import { 
+import {
   Dashboard,
   MenuBook,
   Image,
   Mail,
   Settings,
-  Logout
+  Logout,
+  QrCode
 } from '@mui/icons-material';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -15,14 +16,14 @@ import { useMessagesContext } from '../../store/MessagesContext/MessagesContext'
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [activeItem, setActiveItem] = useState('dashboard');
+  const [activeItem, setActiveItem] = useState('qrcode');
   const navigate = useNavigate();
   const { logout } = useAuth();
   const { newCount } = useMessagesContext();
 
   let timerInterval: ReturnType<typeof setInterval>;
 
-  // handle logout 
+  // handle logout
   const handleLogout = async () => {
     Swal.fire({
       title: "Logging out...",
@@ -54,6 +55,7 @@ const Sidebar = () => {
   };
 
   const menuItems = [
+    { id: 'qrcode', label: 'QR Code', icon: QrCode, path: '/admin' },
     { id: 'categories', label: 'Categories', icon: Dashboard, path: '/admin/categories' },
     { id: 'menu', label: 'Menu Management', icon: MenuBook, path: '/admin/menu' },
     { id: 'gallery', label: 'Gallery', icon: Image, path: '/admin/admin-gallery' },
@@ -64,7 +66,7 @@ const Sidebar = () => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <div 
+      <div
         className={`text-stone-50 transition-all duration-400 ease-in-out relative ${
           collapsed ? 'w-20' : 'w-72'
         }`}
@@ -88,11 +90,11 @@ const Sidebar = () => {
         {/* Menu Items */}
         <nav className="mt-6 px-4 space-y-1 overflow-hidden">
           {menuItems.map((item) => {
-            
+
             const Icon = item.icon;
             const isActive = activeItem === item.id;
-            
-            
+
+
             return (
               <button
                 key={item.id}
@@ -110,20 +112,20 @@ const Sidebar = () => {
                 {isActive && !collapsed && (
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#D7CDC1] rounded-r"></div>
                 )}
-                
+
                 <div className="relative flex-shrink-0">
-                  <Icon 
+                  <Icon
                     className={`transition-colors duration-200 ${
                       isActive 
                         ? 'text-[#D7CDC1]' 
                         : 'text-[#D7CDC1]/50 group-hover:text-[#D7CDC1]/80'
-                    }`} 
+                    }`}
                     style={{ fontSize: '20px' }}
                   />
-                  
+
                   {/* 🔴 New Messages Badge - Collapsed Mode */}
                   {collapsed && item.id === 'contact' && newCount > 0 && (
-                    <span 
+                    <span
                       className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center animate-pulse"
                       style={{ boxShadow: '0 0 0 2px #0E302A' }}
                     >
@@ -134,7 +136,7 @@ const Sidebar = () => {
 
                 {!collapsed && (
                   <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <span 
+                    <span
                       className={`text-[19px] tracking-wide transition-colors duration-200 whitespace-nowrap overflow-hidden text-ellipsis ${
                         isActive ? 'text-[#D7CDC1] font-bold' : 'text-[#D7CDC1]/60 group-hover:text-[#D7CDC1]/90'
                       }`}
@@ -145,7 +147,7 @@ const Sidebar = () => {
 
                     {/* 🔴 New Messages Badge - Expanded Mode */}
                     {item.id === 'contact' && newCount > 0 && (
-                      <span 
+                      <span
                         className="min-w-[22px] h-[22px] px-2 rounded-full bg-red-500 text-white text-xs font-semibold flex items-center justify-center animate-pulse"
                         style={{ boxShadow: '0 2px 4px rgba(220, 38, 38, 0.3)' }}
                       >
@@ -166,12 +168,12 @@ const Sidebar = () => {
               onClick={handleLogout}
               className={`w-full flex items-center ${collapsed ? 'justify-center px-0' : 'gap-4 px-5'} py-3 rounded-lg hover:bg-[#D7CDC1]/5 transition-all duration-200 group`}
             >
-              <Logout 
-                className="transition-colors duration-200 flex-shrink-0 text-[#D7CDC1]/50 group-hover:text-red-400/80" 
+              <Logout
+                className="transition-colors duration-200 flex-shrink-0 text-[#D7CDC1]/50 group-hover:text-red-400/80"
                 style={{ fontSize: '20px' }}
               />
               {!collapsed && (
-                <span 
+                <span
                   className="text-[15px] tracking-wide text-[#D7CDC1]/60 group-hover:text-red-400/90 transition-colors duration-200 whitespace-nowrap overflow-hidden text-ellipsis"
                   style={{ fontFamily: 'Clash Display,  sans-serif' }}
                 >

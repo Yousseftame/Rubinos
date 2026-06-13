@@ -33,7 +33,7 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
 
       {/* Modal */}
       <div 
-        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-8"
+        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-5 sm:p-8"
       >
         {/* Icon */}
         <div className="flex justify-center mb-4">
@@ -70,12 +70,12 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
             className="text-center"
             style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
           >
-            Are you sure you want to delete the message from <span className="font-bold">"{messageName}"</span>?
+            Are you sure you want to delete the message from <span className="font-bold break-all">"{messageName}"</span>?
           </p>
         </div>
 
         {/* Actions */}
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <button
             type="button"
             onClick={onClose}

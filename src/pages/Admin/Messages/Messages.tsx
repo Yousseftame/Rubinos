@@ -147,7 +147,7 @@ const Messages = () => {
           }}
         >
           <Email style={{ fontSize: '14px' }} className="sm:text-base" />
-          <span className="hidden xs:inline">New</span> ({newCount})
+          <span>New</span> ({newCount})
         </button>
         <button
           onClick={() => {
@@ -162,7 +162,7 @@ const Messages = () => {
           }}
         >
           <MarkEmailRead style={{ fontSize: '14px' }} className="sm:text-base" />
-          <span className="hidden xs:inline">Seen</span> ({seenCount})
+          <span>Seen</span> ({seenCount})
         </button>
         <button
           onClick={() => {
@@ -177,7 +177,7 @@ const Messages = () => {
           }}
         >
           <Reply style={{ fontSize: '14px' }} className="sm:text-base" />
-          <span className="hidden xs:inline">Replied</span> ({repliedCount})
+          <span>Replied</span> ({repliedCount})
         </button>
       </div>
 
@@ -230,22 +230,22 @@ const Messages = () => {
             <table className="w-full">
               <thead>
                 <tr style={{ backgroundColor: '#0E302A' }}>
-                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
+                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide min-w-[150px]" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     NAME
                   </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
+                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide min-w-[220px]" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     CONTACT
                   </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
+                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide min-w-[250px]" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     MESSAGE
                   </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
+                  <th className="text-left px-6 py-4 text-sm font-semibold tracking-wide min-w-[180px]" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     DATE
                   </th>
-                  <th className="text-center px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
+                  <th className="text-center px-6 py-4 text-sm font-semibold tracking-wide min-w-[110px]" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     STATUS
                   </th>
-                  <th className="text-center px-6 py-4 text-sm font-semibold tracking-wide" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
+                  <th className="text-center px-6 py-4 text-sm font-semibold tracking-wide min-w-[100px]" style={{ color: '#D7CDC1', fontFamily: 'Cinzel, serif' }}>
                     ACTIONS
                   </th>
                 </tr>
@@ -280,12 +280,12 @@ const Messages = () => {
                           <div style={{ color: '#0E302A99' }}>{message.phone}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
-                        <span className="text-sm line-clamp-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
+                      <td className="px-6 py-4 max-w-xs">
+                        <span className="text-sm line-clamp-2 break-words" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {message.details}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 whitespace-nowrap">
                         <span className="text-sm" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
                           {formatDate(message.createdAt)}
                         </span>
@@ -374,7 +374,7 @@ const Messages = () => {
                         <h3 className="font-medium text-sm mb-1 truncate" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {message.name}
                         </h3>
-                        <p className="text-xs mb-1" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
+                        <p className="text-xs mb-1 break-all" style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}>
                           {message.email}
                         </p>
                         <p className="text-xs mb-2" style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}>
@@ -384,7 +384,7 @@ const Messages = () => {
                       <select
                         value={message.status}
                         onChange={(e) => message.uid && handleStatusChange(message.uid, e.target.value as any)}
-                        className="ml-2 px-2 py-1 rounded-full text-xs font-medium capitalize outline-none cursor-pointer flex-shrink-0"
+                        className="mt-2 sm:mt-0 sm:ml-2 px-2 py-1 rounded-full text-xs font-medium capitalize outline-none cursor-pointer flex-shrink-0"
                         style={{
                           backgroundColor: 
                             message.status === 'new' ? '#fef3c7' : 
