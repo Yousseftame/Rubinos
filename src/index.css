@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+@import "tailwindcss";
 
 @theme {
   /* Seaworthy Color Palette - Refined */
@@ -352,7 +352,7 @@ html, body {
  /*======================== Rubinos GuildLine Fonts ==================== */
 @font-face {
   font-family: 'Monteya';
-  src: url('/src/assets/fonts/Monteya-Regular.ttf') format('truetype');
+  src: url('./assets/fonts/Monteya.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap; /* OPTIMIZED: Improve font loading performance */
@@ -360,7 +360,7 @@ html, body {
 
 @font-face {
   font-family: 'Clash Display';
-  src: url('/src/assets/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  src: url('./assets/fonts/ClashDisplay-Variable.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap; /* OPTIMIZED: Improve font loading performance */

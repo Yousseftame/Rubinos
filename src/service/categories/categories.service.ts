@@ -4,9 +4,13 @@ import {
   doc, 
   getDocs, 
   getDoc, 
+<<<<<<< HEAD
    
   updateDoc, 
  
+=======
+  updateDoc, 
+>>>>>>> 4ef6da26e3fa7edcac48ecc50ac0919cb17165be
   query,
   where,
   orderBy,
