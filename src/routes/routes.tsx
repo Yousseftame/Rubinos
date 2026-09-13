@@ -36,7 +36,7 @@ export const routes = createBrowserRouter([
 },
 
 
-    {
+    { 
   path: "/admin",
   element: 
   [<ProtectedRoute> <AdminLayOut/> </ProtectedRoute>] ,
