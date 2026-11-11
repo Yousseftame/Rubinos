@@ -92,6 +92,13 @@ const Menus = () => {
     imageFiles?: File[],
     imagesToDelete?: string[]
   ) => {
+    // null clears optional fields in Firestore when removed on edit
+    const optionalFields = {
+      calories: data.calories ?? null,
+      calorieBreakdown: data.calorieBreakdown ?? null,
+      allergens: data.allergens?.length ? data.allergens : null,
+    };
+
     if (formMode === 'add') {
       await handleAddMenuItem(
         { 
@@ -100,7 +107,12 @@ const Menus = () => {
           description: data.description || "",
           categoryId: data.categoryId,
           categoryName: data.categoryName,
-          status: data.status
+          status: data.status,
+          ...(data.calories != null ? { calories: data.calories } : {}),
+          ...(data.calorieBreakdown?.length
+            ? { calorieBreakdown: data.calorieBreakdown }
+            : {}),
+          ...(data.allergens?.length ? { allergens: data.allergens } : {}),
         },
         imageFiles || []
       );
@@ -113,8 +125,9 @@ const Menus = () => {
           description: data.description || "",
           categoryId: data.categoryId,
           categoryName: data.categoryName,
-          status: data.status
-        },
+          status: data.status,
+          ...optionalFields,
+        } as Partial<Omit<MenuItem, 'uid' | 'createdAt' | 'updatedAt'>>,
         imageFiles,
         imagesToDelete
       );

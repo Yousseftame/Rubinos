@@ -22,6 +22,31 @@ import {
 import { db, storage } from '../firebase';
 import { incrementCategoryItemsCount } from '../categories/categories.service';
 
+export interface CalorieBreakdownItem {
+  name: string;
+  calories: number;
+}
+
+/** Standard 14 major food allergens (selectable in admin, shown on product details) */
+export const FOOD_ALLERGENS = [
+  'Celery',
+  'Gluten',
+  'Crustaceans',
+  'Eggs',
+  'Fish',
+  'Lupin',
+  'Milk',
+  'Molluscs',
+  'Mustard',
+  'Nuts',
+  'Peanuts',
+  'Sesame',
+  'Soya',
+  'Sulphites',
+] as const;
+
+export type FoodAllergen = (typeof FOOD_ALLERGENS)[number];
+
 export interface MenuItem {
   uid?: string;
   name: string;
@@ -31,6 +56,12 @@ export interface MenuItem {
   categoryName: string;
   images: string[];
   status: 'active' | 'inactive';
+  /** Optional total calories for the dish (shown on product details only) */
+  calories?: number;
+  /** Optional per-ingredient calorie breakdown (expandable on product details) */
+  calorieBreakdown?: CalorieBreakdownItem[];
+  /** Optional food allergens for the dish (shown on product details only) */
+  allergens?: FoodAllergen[];
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 }

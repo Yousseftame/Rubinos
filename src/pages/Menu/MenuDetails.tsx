@@ -1,7 +1,7 @@
 // src/pages/Menu/MenuDetails.tsx
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMenusContext } from '../../store/MenusContext/MenusContext';
 import { useCategoriesContext } from '../../store/CategoriesContext/CategoriesContext';
 import noImg from "../../assets/rubinos.png";
@@ -22,6 +22,7 @@ export default function MenuDetails() {
   const [item, setItem] = useState(location.state?.item || null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [caloriesOpen, setCaloriesOpen] = useState(false);
 
   // If item not in state, fetch from context
   useEffect(() => {
@@ -41,6 +42,18 @@ export default function MenuDetails() {
   const images = item?.images || [];
   const hasMultipleImages = images.length > 1;
   const currentImage = images[currentImageIndex];
+  const hasCalories = typeof item?.calories === 'number' && item.calories >= 0;
+  const calorieBreakdown = Array.isArray(item?.calorieBreakdown)
+    ? item.calorieBreakdown.filter(
+        (row: { name?: string; calories?: number }) =>
+          row?.name && typeof row.calories === 'number'
+      )
+    : [];
+  const hasCalorieBreakdown = calorieBreakdown.length > 0;
+  const allergens = Array.isArray(item?.allergens)
+    ? item.allergens.filter((a: unknown): a is string => typeof a === 'string' && a.trim().length > 0)
+    : [];
+  const hasAllergens = allergens.length > 0;
 
   const handlePrevImage = () => {
     setImageLoaded(false);
@@ -229,17 +242,121 @@ export default function MenuDetails() {
                 <p className="text-3xl font-semibold" style={{ color: '#0E302A' }}>
                   {item.price.toFixed(2)} EGP
                 </p>
+
+                {hasCalories && (
+                  <div className="mt-3">
+                    {hasCalorieBreakdown ? (
+                      <button
+                        type="button"
+                        onClick={() => setCaloriesOpen((open) => !open)}
+                        className="inline-flex items-center gap-1.5 text-left transition-opacity hover:opacity-75"
+                        aria-expanded={caloriesOpen}
+                      >
+                        <span
+                          className="text-base sm:text-lg"
+                          style={{ color: '#3A5F58' }}
+                        >
+                          {item.calories} calories
+                        </span>
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-300 ${
+                            caloriesOpen ? 'rotate-180' : ''
+                          }`}
+                          style={{ color: '#3A5F58' }}
+                        />
+                      </button>
+                    ) : (
+                      <p className="text-base sm:text-lg" style={{ color: '#3A5F58' }}>
+                        {item.calories} calories
+                      </p>
+                    )}
+
+                    {hasCalorieBreakdown && (
+                      <p
+                        className="text-xs sm:text-sm mt-1"
+                        style={{ color: '#3A5F58', opacity: 0.75 }}
+                      >
+                        tap for ingredients
+                      </p>
+                    )}
+
+                    {hasCalorieBreakdown && (
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-out ${
+                          caloriesOpen
+                            ? 'max-h-96 opacity-100 mt-3'
+                            : 'max-h-0 opacity-0 mt-0'
+                        }`}
+                      >
+                        <ul className="space-y-2 border-l-2 pl-4" style={{ borderColor: '#b8aea0' }}>
+                          {calorieBreakdown.map(
+                            (
+                              row: { name: string; calories: number },
+                              index: number
+                            ) => (
+                              <li
+                                key={`${row.name}-${index}`}
+                                className="flex items-baseline justify-between gap-4 text-sm sm:text-base"
+                                style={{ color: '#0E302A' }}
+                              >
+                                <span className="min-w-0 break-words">{row.name}</span>
+                                <span
+                                  className="shrink-0 tabular-nums"
+                                  style={{ color: '#3A5F58' }}
+                                >
+                                  {row.calories} cal
+                                </span>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Divider */}
               <div className="h-1 w-16 mb-8 bg-gradient-to-r from-[#b8aea0] to-[#a89f97]" />
 
               {/* Description */}
-              <div className="mb-10">
+              <div className={hasAllergens ? 'mb-8' : 'mb-10'}>
                 <p className="text-2xl leading-relaxed" style={{ color: '#3A5F58' }}>
                   {item.description}
                 </p>
               </div>
+
+              {hasAllergens && (
+                <div className="mb-10">
+                  <p
+                    className="text-sm sm:text-base font-medium mb-3"
+                    style={{ color: '#0E302A' }}
+                  >
+                    Food Allergens
+                  </p>
+                  <div className="flex flex-wrap gap-2 sm:gap-2.5">
+                    {allergens.map((allergen: string) => (
+                      <span
+                        key={allergen}
+                        className="inline-flex items-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base border"
+                        style={{
+                          borderColor: '#3A5F58',
+                          color: '#0E302A',
+                          backgroundColor: 'rgba(58, 95, 88, 0.08)',
+                        }}
+                      >
+                        {allergen}
+                      </span>
+                    ))}
+                  </div>
+                  <p
+                    className="text-xs sm:text-sm mt-3"
+                    style={{ color: '#3A5F58', opacity: 0.75 }}
+                  >
+                    May contain the allergens listed above
+                  </p>
+                </div>
+              )}
 
               {/* Call to Action */}
               <div className="flex flex-col sm:flex-row gap-4 pt-12">

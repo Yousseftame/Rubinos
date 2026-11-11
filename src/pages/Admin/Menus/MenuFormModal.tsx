@@ -1,8 +1,13 @@
 // src/pages/Admin/Menus/MenuFormModal.tsx
 import React, { useState, useEffect } from 'react';
-import { X, Image as ImageIcon, Trash2 } from 'lucide-react';
+import { X, Image as ImageIcon, Trash2, Plus, Flame } from 'lucide-react';
 import { useCategoriesContext } from '../../../store/CategoriesContext/CategoriesContext';
-import type { MenuItem } from '../../../service/menus/menus.service';
+import {
+  FOOD_ALLERGENS,
+  type CalorieBreakdownItem,
+  type FoodAllergen,
+  type MenuItem,
+} from '../../../service/menus/menus.service';
 
 interface MenuFormModalProps {
   isOpen: boolean;
@@ -15,6 +20,8 @@ interface MenuFormModalProps {
   menuItem?: MenuItem | null;
   mode: 'add' | 'edit';
 }
+
+const emptyBreakdownRow = (): CalorieBreakdownItem => ({ name: '', calories: 0 });
 
 const MenuFormModal: React.FC<MenuFormModalProps> = ({
   isOpen,
@@ -30,8 +37,11 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
     description: '',
     categoryId: '',
     categoryName: '',
-    status: 'active' as 'active' | 'inactive'
+    status: 'active' as 'active' | 'inactive',
+    calories: '' as string | number,
   });
+  const [calorieBreakdown, setCalorieBreakdown] = useState<CalorieBreakdownItem[]>([]);
+  const [selectedAllergens, setSelectedAllergens] = useState<FoodAllergen[]>([]);
   const [newImages, setNewImages] = useState<File[]>([]);
   const [existingImages, setExistingImages] = useState<string[]>([]);
   const [imagesToDelete, setImagesToDelete] = useState<string[]>([]);
@@ -47,8 +57,21 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
         description: menuItem.description || "",
         categoryId: menuItem.categoryId,
         categoryName: menuItem.categoryName || category?.name || '',
-        status: menuItem.status
+        status: menuItem.status,
+        calories: menuItem.calories ?? '',
       });
+      setCalorieBreakdown(
+        menuItem.calorieBreakdown?.length
+          ? menuItem.calorieBreakdown.map((row) => ({ ...row }))
+          : []
+      );
+      setSelectedAllergens(
+        Array.isArray(menuItem.allergens)
+          ? menuItem.allergens.filter((a): a is FoodAllergen =>
+              (FOOD_ALLERGENS as readonly string[]).includes(a)
+            )
+          : []
+      );
       setExistingImages(menuItem.images || []);
       setNewImages([]);
       setImagesToDelete([]);
@@ -61,8 +84,11 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
         description: '',
         categoryId: defaultCategory?.uid || '',
         categoryName: defaultCategory?.name || '',
-        status: 'active'
+        status: 'active',
+        calories: '',
       });
+      setCalorieBreakdown([]);
+      setSelectedAllergens([]);
       setExistingImages([]);
       setNewImages([]);
       setImagesToDelete([]);
@@ -115,6 +141,42 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
     setImagesToDelete(prev => prev.filter(img => img !== imageUrl));
   };
 
+  const handleAddBreakdownRow = () => {
+    setCalorieBreakdown((prev) => [...prev, emptyBreakdownRow()]);
+  };
+
+  const handleBreakdownChange = (
+    index: number,
+    field: keyof CalorieBreakdownItem,
+    value: string
+  ) => {
+    setCalorieBreakdown((prev) =>
+      prev.map((row, i) => {
+        if (i !== index) return row;
+        if (field === 'calories') {
+          return { ...row, calories: Math.max(0, parseFloat(value) || 0) };
+        }
+        return { ...row, name: value };
+      })
+    );
+  };
+
+  const handleRemoveBreakdownRow = (index: number) => {
+    setCalorieBreakdown((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleToggleAllergen = (allergen: FoodAllergen) => {
+    setSelectedAllergens((prev) =>
+      prev.includes(allergen)
+        ? prev.filter((item) => item !== allergen)
+        : [...prev, allergen]
+    );
+  };
+
+  const handleRemoveAllergen = (allergen: FoodAllergen) => {
+    setSelectedAllergens((prev) => prev.filter((item) => item !== allergen));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -135,6 +197,31 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
       return;
     }
 
+    const parsedCalories =
+      formData.calories === '' || formData.calories === null || formData.calories === undefined
+        ? undefined
+        : Number(formData.calories);
+
+    if (parsedCalories !== undefined && (Number.isNaN(parsedCalories) || parsedCalories < 0)) {
+      alert('Please enter a valid calorie value');
+      return;
+    }
+
+    const cleanedBreakdown = calorieBreakdown
+      .map((row) => ({
+        name: row.name.trim(),
+        calories: Math.max(0, Number(row.calories) || 0),
+      }))
+      .filter((row) => row.name.length > 0);
+
+    const incompleteRow = calorieBreakdown.find(
+      (row) => row.name.trim().length === 0 && Number(row.calories) > 0
+    );
+    if (incompleteRow) {
+      alert('Please enter a name for each calorie breakdown item');
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -146,7 +233,16 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
           categoryId: formData.categoryId,
           categoryName: formData.categoryName,
           images: existingImages,
-          status: formData.status
+          status: formData.status,
+          ...(parsedCalories !== undefined
+            ? { calories: parsedCalories }
+            : { calories: undefined }),
+          ...(cleanedBreakdown.length > 0
+            ? { calorieBreakdown: cleanedBreakdown }
+            : { calorieBreakdown: undefined }),
+          ...(selectedAllergens.length > 0
+            ? { allergens: selectedAllergens }
+            : { allergens: undefined }),
         },
         newImages.length > 0 ? newImages : undefined,
         imagesToDelete.length > 0 ? imagesToDelete : undefined
@@ -318,6 +414,151 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
               />
             </div>
 
+            {/* Calories (optional) */}
+            <div
+              className="rounded-xl border-2 p-4 space-y-4"
+              style={{ borderColor: '#D7CDC133', backgroundColor: '#F8F5F1' }}
+            >
+              <div className="flex items-center gap-2">
+                <Flame size={18} style={{ color: '#0E302A' }} />
+                <div>
+                  <p
+                    className="text-sm font-semibold"
+                    style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
+                  >
+                    Calories (optional)
+                  </p>
+                  <p
+                    className="text-xs mt-0.5"
+                    style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
+                  >
+                    Shown only on the product details page. Breakdown items are optional.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="calories"
+                  className="block text-sm font-semibold mb-2"
+                  style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
+                >
+                  Total Calories
+                </label>
+                <input
+                  type="number"
+                  id="calories"
+                  value={formData.calories}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      calories: e.target.value === '' ? '' : e.target.value,
+                    })
+                  }
+                  className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-200 outline-none"
+                  style={{
+                    borderColor: '#D7CDC133',
+                    backgroundColor: 'white',
+                    color: '#0E302A',
+                    fontFamily: 'Inter, sans-serif',
+                  }}
+                  onFocus={(e) => (e.target.style.borderColor = '#D7CDC1')}
+                  onBlur={(e) => (e.target.style.borderColor = '#D7CDC133')}
+                  min="0"
+                  step="1"
+                  placeholder="e.g., 405"
+                />
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-2 gap-3">
+                  <label
+                    className="block text-sm font-semibold"
+                    style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
+                  >
+                    Calorie Breakdown (optional)
+                  </label>
+                  <button
+                    type="button"
+                    onClick={handleAddBreakdownRow}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                    style={{
+                      backgroundColor: '#0E302A',
+                      color: '#D7CDC1',
+                      fontFamily: 'Inter, sans-serif',
+                    }}
+                  >
+                    <Plus size={14} />
+                    Add Item
+                  </button>
+                </div>
+
+                {calorieBreakdown.length === 0 ? (
+                  <p
+                    className="text-xs"
+                    style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
+                  >
+                    No breakdown items. Guests will only see the total calories.
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {calorieBreakdown.map((row, index) => (
+                      <div
+                        key={index}
+                        className="grid grid-cols-1 sm:grid-cols-[1fr_110px_auto] gap-2 items-stretch sm:items-center"
+                      >
+                        <input
+                          type="text"
+                          value={row.name}
+                          onChange={(e) =>
+                            handleBreakdownChange(index, 'name', e.target.value)
+                          }
+                          className="w-full px-3 py-2.5 rounded-lg border-2 outline-none"
+                          style={{
+                            borderColor: '#D7CDC133',
+                            backgroundColor: 'white',
+                            color: '#0E302A',
+                            fontFamily: 'Inter, sans-serif',
+                          }}
+                          onFocus={(e) => (e.target.style.borderColor = '#D7CDC1')}
+                          onBlur={(e) => (e.target.style.borderColor = '#D7CDC133')}
+                          placeholder="Ingredient name"
+                        />
+                        <input
+                          type="number"
+                          value={row.calories || ''}
+                          onChange={(e) =>
+                            handleBreakdownChange(index, 'calories', e.target.value)
+                          }
+                          className="w-full px-3 py-2.5 rounded-lg border-2 outline-none"
+                          style={{
+                            borderColor: '#D7CDC133',
+                            backgroundColor: 'white',
+                            color: '#0E302A',
+                            fontFamily: 'Inter, sans-serif',
+                          }}
+                          onFocus={(e) => (e.target.style.borderColor = '#D7CDC1')}
+                          onBlur={(e) => (e.target.style.borderColor = '#D7CDC133')}
+                          min="0"
+                          step="1"
+                          placeholder="cal"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveBreakdownRow(index)}
+                          className="p-2.5 rounded-lg transition-colors justify-self-end sm:justify-self-auto"
+                          style={{ backgroundColor: '#fee2e2' }}
+                          aria-label="Remove calorie item"
+                        >
+                          <Trash2 size={14} color="#dc2626" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
             {/* Description */}
             <div>
               <label 
@@ -344,6 +585,76 @@ const MenuFormModal: React.FC<MenuFormModalProps> = ({
                 placeholder="Describe the menu item... (optional)"
                 
               />
+            </div>
+
+            {/* Food Allergens (optional multi-select) */}
+            <div
+              className="rounded-xl border-2 p-4 space-y-4"
+              style={{ borderColor: '#D7CDC133', backgroundColor: '#F8F5F1' }}
+            >
+              <div>
+                <p
+                  className="text-sm font-semibold"
+                  style={{ color: '#0E302A', fontFamily: 'Inter, sans-serif' }}
+                >
+                  Food Allergens (optional)
+                </p>
+                <p
+                  className="text-xs mt-0.5"
+                  style={{ color: '#0E302A99', fontFamily: 'Inter, sans-serif' }}
+                >
+                  Select one or more. Shown only on the product details page.
+                </p>
+              </div>
+
+              {selectedAllergens.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {selectedAllergens.map((allergen) => (
+                    <span
+                      key={allergen}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium"
+                      style={{
+                        backgroundColor: '#0E302A',
+                        color: '#D7CDC1',
+                        fontFamily: 'Inter, sans-serif',
+                      }}
+                    >
+                      {allergen}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveAllergen(allergen)}
+                        className="rounded-full p-0.5 hover:opacity-80 transition-opacity"
+                        aria-label={`Remove ${allergen}`}
+                      >
+                        <X size={14} />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex flex-wrap gap-2">
+                {FOOD_ALLERGENS.map((allergen) => {
+                  const isSelected = selectedAllergens.includes(allergen);
+                  return (
+                    <button
+                      key={allergen}
+                      type="button"
+                      onClick={() => handleToggleAllergen(allergen)}
+                      className="px-3 py-1.5 rounded-full text-sm font-medium border-2 transition-all"
+                      style={{
+                        borderColor: isSelected ? '#0E302A' : '#D7CDC1',
+                        backgroundColor: isSelected ? '#0E302A14' : 'white',
+                        color: '#0E302A',
+                        fontFamily: 'Inter, sans-serif',
+                        opacity: isSelected ? 0.55 : 1,
+                      }}
+                    >
+                      {isSelected ? `✓ ${allergen}` : `+ ${allergen}`}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Images Section */}
